@@ -2,7 +2,11 @@
   <div class="blog-article">
     <div class="title">Being Outside in Fresh Air & How Your Body Loves It</div>
     <div class="label">NOVEMBER 20, 2016 FESTYLE, MARKUP</div>
-    <div class="cover-img"><img src="@/assets/img/01.jpg" /></div>
+    <div class="cover-img">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVeeHOzOayQnxmBUV2amkVRbc9CzFxr4c7vA&usqp=CAU"
+      />
+    </div>
     <div class="abstract">
       Amor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
       incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -11,6 +15,8 @@
       cillumdolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
       non proident, sunt in culpa qui officia
     </div>
+    <div class="more-link">Continue Reading →</div>
+    <hr class="footer-hr" />
   </div>
 </template>
 
@@ -55,5 +61,13 @@ export default {
   font-size: 14px;
   line-height: 1.8;
   text-align: justify;
+}
+.blog-article .more-link {
+  margin: 23px 0;
+  color: #1fa0ae;
+  font-size: 13px;
+}
+.blog-article .footer-hr {
+  border: 2px solid #ccc;
 }
 </style>

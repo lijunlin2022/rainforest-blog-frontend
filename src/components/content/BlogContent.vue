@@ -1,6 +1,8 @@
 <template>
   <div class="blog-content">
     <blog-article></blog-article>
+    <blog-article></blog-article>
+    <blog-article></blog-article>
   </div>
 </template>
 

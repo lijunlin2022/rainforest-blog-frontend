@@ -3,7 +3,9 @@
     <header>
       <blog-header></blog-header>
     </header>
-    <div class="sidebar"></div>
+    <div class="sidebar">
+      <blog-sidebar></blog-sidebar>
+    </div>
     <div class="content">
       <blog-content></blog-content>
     </div>
@@ -13,24 +15,29 @@
 <script>
 import BlogHeader from "@/components/header/BlogHeader.vue";
 import BlogContent from "@/components/content/BlogContent.vue";
+import BlogSidebar from "@/components/sidebar/BlogSidebar.vue";
 export default {
   components: {
     BlogHeader,
     BlogContent,
+    BlogSidebar,
   },
   name: "Home",
 };
 </script>
 
 <style scoped>
+.home {
+  width: 100%;
+}
+.content {
+  width: 100%;
+}
+.sidebar {
+  display: none;
+}
 /* 手机时全屏显示 */
 @media screen and (max-width: 768px) {
-  .home {
-    width: 100%;
-  }
-  .content {
-    width: 100%;
-  }
 }
 
 /* 平板时居中显示 */
@@ -38,9 +45,6 @@ export default {
   .home {
     width: 800px;
     margin: 0 auto;
-  }
-  .content {
-    width: 600px;
   }
 }
 
@@ -51,6 +55,10 @@ export default {
   }
   .content {
     width: 800px;
+  }
+  .sidebar {
+    display: block;
+    float: right;
   }
 }
 </style>
