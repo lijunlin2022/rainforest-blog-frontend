@@ -9,13 +9,12 @@
     <!-- PC 端和平板端导航 -->
     <div class="menu-pc">
       <ul>
-        <li>HOME</li>
-        <li>/</li>
-        <li>ARCHIVES</li>
-        <li>/</li>
-        <li>CATEGORIES</li>
-        <li>/</li>
-        <li>TAGS</li>
+        <li>
+          <router-link to="/content">主页</router-link>
+        </li>
+        <li>
+          <router-link to="/detail">详情</router-link>
+        </li>
       </ul>
     </div>
     <!-- 手机端导航 -->
@@ -36,8 +35,9 @@ export default {
 .blog-header .title {
   height: 70px;
   color: #333;
-  font-size: 48px;
+  font-size: 40px;
   font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 .blog-header .label {
   height: 25px;
@@ -45,6 +45,7 @@ export default {
   color: #a6a6a6;
   font-size: 14px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
 }
 .blog-header .menu-pc {
   height: 50px;

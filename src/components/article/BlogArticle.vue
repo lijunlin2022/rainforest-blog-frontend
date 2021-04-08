@@ -1,21 +1,20 @@
 <template>
   <div class="blog-article">
-    <div class="title">Being Outside in Fresh Air & How Your Body Loves It</div>
-    <div class="label">NOVEMBER 20, 2016 FESTYLE, MARKUP</div>
-    <div class="cover-img">
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVeeHOzOayQnxmBUV2amkVRbc9CzFxr4c7vA&usqp=CAU"
-      />
+    <div class="title">
+      <slot name="title"></slot>
+    </div>
+    <div class="label">
+      <slot name="createtime"></slot>
+    </div>
+    <div class="cover">
+      <slot name="cover"></slot>
     </div>
     <div class="abstract">
-      Amor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillumdolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-      non proident, sunt in culpa qui officia
+      <slot name="abstract"></slot>
     </div>
-    <div class="more-link">Continue Reading →</div>
+    <div class="more-link">
+      <slot name="link"></slot>
+    </div>
     <hr class="footer-hr" />
   </div>
 </template>
@@ -48,10 +47,10 @@ export default {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: center;
 }
-.blog-article .cover-img {
+.blog-article .cover {
   text-align: center;
 }
-.blog-article .cover-img > img {
+::v-deep(img) {
   width: 80%;
 }
 .blog-article .abstract {
@@ -66,6 +65,7 @@ export default {
   margin: 23px 0;
   color: #1fa0ae;
   font-size: 13px;
+  text-align: center;
 }
 .blog-article .footer-hr {
   border: 2px solid #ccc;

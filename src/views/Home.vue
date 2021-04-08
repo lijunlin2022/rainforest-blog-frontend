@@ -6,20 +6,18 @@
     <div class="sidebar">
       <blog-sidebar></blog-sidebar>
     </div>
-    <div class="content">
-      <blog-content></blog-content>
+    <div class="main">
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
 import BlogHeader from "@/components/header/BlogHeader.vue";
-import BlogContent from "@/components/content/BlogContent.vue";
 import BlogSidebar from "@/components/sidebar/BlogSidebar.vue";
 export default {
   components: {
     BlogHeader,
-    BlogContent,
     BlogSidebar,
   },
   name: "Home",
@@ -30,7 +28,7 @@ export default {
 .home {
   width: 100%;
 }
-.content {
+.main {
   width: 100%;
 }
 .sidebar {
@@ -53,10 +51,11 @@ export default {
   .home {
     width: 1150px;
   }
-  .content {
+  .main {
     width: 800px;
   }
   .sidebar {
+    width: 255px;
     display: block;
     float: right;
   }

@@ -1,22 +1,26 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
-import Detail from "../views/Detail.vue";
+import Home from "@/views/Home.vue";
+import BlogContent from "@/views/BlogContent.vue";
+import BlogDetail from "@/views/BlogDetail.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
-  },
-  {
-    path: "/detail",
-    name: "Detail",
-    component: Detail,
-  },
-  {
-    path: "/about",
-    name: "About",
-    component: () => import("../views/About.vue"),
+    redirect: "/content",
+    children: [
+      {
+        path: "/content",
+        name: "BlogContent",
+        component: BlogContent,
+      },
+      {
+        path: "/detail",
+        name: "BlogDetail",
+        component: BlogDetail,
+      },
+    ],
   },
 ];
 
