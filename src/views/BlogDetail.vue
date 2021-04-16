@@ -5,12 +5,27 @@
 </template>
 
 <script>
+import { getBlogDetail } from "@/api/blogs";
 export default {
   data() {
     return {
-      text:
-        "# 你好啊 \n ## 我看看是不是只有预览效果, nice \n 这是正文 \n 一个典型的效果是,这里的正文真的是我想看到的吗,还是说字号要更小一些呢? 果然啊, 没有共产党就没有新中国,没有共产党就没有新中国,共产党,请老唯名族,共产党,它一心就中国 \n \n ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkKV943kOSCJVIVx8VjtjuLfcQVuDGneDctg&usqp=CAU)",
+      text: "",
     };
+  },
+  methods: {
+    handleGetDetail(id) {
+      getBlogDetail(id)
+        .then((result) => {
+          const res = result.data;
+          this.text = res.data.content;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  created() {
+    this.handleGetDetail(this.$route.query.id);
   },
 };
 </script>
@@ -23,7 +38,7 @@ export default {
 ::v-deep(h5),
 ::v-deep(h6) {
   font-weight: normal !important;
-  font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif !important;
+  font-family: var(--title-font) !important;
 }
 ::v-deep(p) {
   text-align: justify !important;

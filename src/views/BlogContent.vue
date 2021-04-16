@@ -1,11 +1,11 @@
 <template>
   <div class="blog-content">
-    <blog-article>
+    <blog-article v-for="item in tableData" :key="item.id">
       <template v-slot:title>
-        <div>一个我想复杂了的问题</div>
+        {{ item.title }}
       </template>
       <template v-slot:createtime>
-        <div>2021-04-09 星期四</div>
+        {{ item.createtime }}
       </template>
       <template v-slot:cover>
         <img
@@ -13,35 +13,12 @@
         />
       </template>
       <template v-slot:abstract>
-        <div>
-          原本只需要一个插槽的方法，我却认为需要多个插槽。比较尴尬的是，在 scope
-          中设置img 等标签外界是不生效的。所以需要使用 ::v-deep() 进行样式穿透
-        </div>
+        {{ item.abstract }}
       </template>
       <template v-slot:link>
-        <router-link to="/detail">Reading More →</router-link>
-      </template>
-    </blog-article>
-    <blog-article>
-      <template v-slot:title>
-        <div>一个我想复杂了的问题</div>
-      </template>
-      <template v-slot:createtime>
-        <div>2021-04-09 星期四</div>
-      </template>
-      <template v-slot:cover>
-        <img
-          src="https://static.timesofisrael.com/www/uploads/2020/12/iStock-1090872318.jpg"
-        />
-      </template>
-      <template v-slot:abstract>
-        <div>
-          原本只需要一个插槽的方法，我却认为需要多个插槽。比较尴尬的是，在 scope
-          中设置img 等标签外界是不生效的。所以需要使用 ::v-deep() 进行样式穿透
-        </div>
-      </template>
-      <template v-slot:link>
-        <router-link to="/detail">Reading More →</router-link>
+        <router-link :to="{ path: '/detail', query: { id: item.id } }">
+          Reading More →
+        </router-link>
       </template>
     </blog-article>
   </div>
@@ -61,7 +38,7 @@ export default {
     };
   },
   methods: {
-    handleBtnGetList() {
+    handleGetList() {
       getBlogList()
         .then((result) => {
           const res = result.data;
@@ -71,6 +48,9 @@ export default {
           console.log(err);
         });
     },
+  },
+  created() {
+    this.handleGetList();
   },
 };
 </script>
