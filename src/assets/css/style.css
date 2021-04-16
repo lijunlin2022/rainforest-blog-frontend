@@ -1,0 +1,10 @@
+:root {
+  --main-color: #333;
+  --hover-color: #666;
+  --assist-color: #1fa0ae;
+  --bg-color: #fff;
+  --border-color: #999;
+  --title-font: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+  --label-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --nav-font: Oswald, "方正姚体", Arial, Helvetica, sans-serif;
+}

@@ -15,7 +15,7 @@
     <div class="more-link">
       <slot name="link"></slot>
     </div>
-    <hr class="footer-hr" />
+    <hr />
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
 .blog-article .title {
   padding: 10px;
   font-size: 23px;
-  font-family: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
+  font-family: var(--title-font);
   text-align: center;
   /* 先强制一行内显示文本 */
   white-space: nowrap;
@@ -44,7 +44,7 @@ export default {
 .blog-article .label {
   margin: 7px 0 10px;
   font-size: 13px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--label-font);
   text-align: center;
 }
 .blog-article .cover {
@@ -63,11 +63,15 @@ export default {
 }
 .blog-article .more-link {
   margin: 23px 0;
-  color: #1fa0ae;
-  font-size: 13px;
   text-align: center;
+  font-size: 13px;
 }
-.blog-article .footer-hr {
-  border: 2px solid #ccc;
+.blog-article .more-link ::v-deep(a) {
+  text-decoration: none;
+  color: var(--assist-color);
+}
+hr {
+  display: block;
+  margin-bottom: 30px;
 }
 </style>
