@@ -17,6 +17,9 @@
         <li>
           <router-link to="/detail">详情</router-link>
         </li>
+        <li>
+          <router-link to="/edit">编辑</router-link>
+        </li>
       </ul>
     </div>
     <!-- 手机端导航 -->

@@ -5,6 +5,19 @@
 </template>
 
 <script>
+var HtmlUtil = {
+  /*2.用浏览器内部转换器实现html解码（反转义）*/
+  htmlDecode: function (text) {
+    //1.首先动态创建一个容器标签元素，如DIV
+    var temp = document.createElement("div");
+    //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+    temp.innerHTML = text;
+    //3.最后返回这个元素的innerText或者textContent，即得到经过HTML解码的字符串了。
+    var output = temp.innerText || temp.textContent;
+    temp = null;
+    return output;
+  },
+};
 import { getBlogDetail } from "@/api/blogs";
 export default {
   data() {
@@ -17,7 +30,7 @@ export default {
       getBlogDetail(id)
         .then((result) => {
           const res = result.data;
-          this.text = res.data.content;
+          this.text = HtmlUtil.htmlDecode(res.data.content);
         })
         .catch((err) => {
           console.log(err);

@@ -39,14 +39,10 @@ export default {
   },
   methods: {
     handleGetList() {
-      getBlogList()
-        .then((result) => {
-          const res = result.data;
-          this.tableData = res.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      getBlogList().then((result) => {
+        const res = result.data;
+        this.tableData = res.data;
+      });
     },
   },
   created() {
