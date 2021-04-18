@@ -1,40 +1,25 @@
 <template>
   <div>
-    <v-md-preview :text="text"></v-md-preview>
+    <v-md-preview :text="content"></v-md-preview>
   </div>
 </template>
 
 <script>
-var HtmlUtil = {
-  /*2.用浏览器内部转换器实现html解码（反转义）*/
-  htmlDecode: function (text) {
-    //1.首先动态创建一个容器标签元素，如DIV
-    var temp = document.createElement("div");
-    //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
-    temp.innerHTML = text;
-    //3.最后返回这个元素的innerText或者textContent，即得到经过HTML解码的字符串了。
-    var output = temp.innerText || temp.textContent;
-    temp = null;
-    return output;
-  },
-};
-import { getBlogDetail } from "@/api/blogs";
+import { getBlogDetail } from "@/api/blogs.js";
+import { htmlDecode } from "@/utils/htmlUtils.js";
+
 export default {
   data() {
     return {
-      text: "",
+      content: "",
     };
   },
   methods: {
     handleGetDetail(id) {
-      getBlogDetail(id)
-        .then((result) => {
-          const res = result.data;
-          this.text = HtmlUtil.htmlDecode(res.data.content);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      getBlogDetail(id).then((result) => {
+        const res = result.data;
+        this.content = htmlDecode(res.data.content);
+      });
     },
   },
   created() {

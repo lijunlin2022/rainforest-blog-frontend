@@ -5,12 +5,11 @@
         {{ item.title }}
       </template>
       <template v-slot:createtime>
-        {{ item.createtime }}
+        {{ correctTime(item.createtime) }}
+        | {{ correctAuthor(item.author) }}
       </template>
       <template v-slot:cover>
-        <img
-          src="https://static.timesofisrael.com/www/uploads/2020/12/iStock-1090872318.jpg"
-        />
+        <img :src="item.cover" />
       </template>
       <template v-slot:abstract>
         {{ item.abstract }}
@@ -25,7 +24,8 @@
 </template>
 
 <script>
-import { getBlogList } from "@/api/blogs";
+import { getBlogList } from "@/api/blogs.js";
+import { timeDecode } from "@/utils/timeUtils.js";
 import BlogArticle from "@/components/article/BlogArticle.vue";
 export default {
   name: "BlogContent",
@@ -43,6 +43,14 @@ export default {
         const res = result.data;
         this.tableData = res.data;
       });
+    },
+    correctTime(time) {
+      return timeDecode(time);
+    },
+    correctAuthor(author) {
+      if (author === "undefined") {
+        return "佚名";
+      }
     },
   },
   created() {

@@ -56,7 +56,7 @@ export default {
 .blog-header .navbar {
   position: relative;
   height: 60px;
-  background-color: var(--main-color);
+  background-color: var(--bg-color);
   font-family: var(--nav-font);
   font-size: 18px;
 }
@@ -114,7 +114,7 @@ export default {
   line-height: 60px;
   text-align: center;
   list-style: none;
-  background-color: var(--main-color);
+  background-color: var(--bg-color);
   border-bottom: 1px solid var(--border-color);
 }
 .blog-header .navbar ul li:hover {
