@@ -1,12 +1,6 @@
 <template>
   <div class="blog-header">
-    <div class="title">
-      <div name="title">RAINFOREST</div>
-    </div>
-    <div class="label">
-      <div name="label">一个极简的博客系统</div>
-    </div>
-    <!-- PC 端和平板端导航 -->
+    <div class="logo">rainforest</div>
     <div class="navbar">
       <input type="checkbox" id="nav" />
       <label for="nav"></label>
@@ -15,14 +9,19 @@
           <router-link to="/content">主页</router-link>
         </li>
         <li>
-          <router-link to="/detail">详情</router-link>
+          <router-link to="/content">主页</router-link>
         </li>
         <li>
-          <router-link to="/edit">编辑</router-link>
+          <router-link to="/content">主页</router-link>
+        </li>
+        <li>
+          <router-link to="/content">主页</router-link>
+        </li>
+        <li>
+          <router-link to="/content">主页</router-link>
         </li>
       </ul>
     </div>
-    <!-- 手机端导航 -->
   </div>
 </template>
 
@@ -34,28 +33,27 @@ export default {
 
 <style scoped>
 .blog-header {
-  padding: 40px 0 20px;
+  position: fixed;
+  display: flex;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
-.blog-header .title {
-  height: 70px;
-  color: var(--main-color);
-  font-size: 40px;
+.blog-header .logo {
+  background-color: var(--assist-color);
+  line-height: 60px;
+  text-align: center;
+  padding: 0 10px;
   font-family: var(--title-font);
-  text-align: center;
+  font-weight: bold;
+  color: var(--bg-color);
 }
-.blog-header .label {
-  height: 25px;
-  margin: 0 0 20px;
-  color: var(--border-color);
-  font-size: 14px;
-  font-family: var(--label-font);
-  text-align: center;
-}
-
 /* 导航栏 */
 .blog-header .navbar {
   position: relative;
   height: 60px;
+  width: 100%;
   background-color: var(--bg-color);
   font-family: var(--nav-font);
   font-size: 18px;
@@ -76,7 +74,7 @@ export default {
   content: "";
   position: absolute;
   width: 30px;
-  height: 2px;
+  height: 4px;
   right: 5px;
   background-color: var(--assist-color);
   transition: transform 0.3s ease-out, 0.3s top ease-out;
@@ -102,6 +100,7 @@ export default {
   position: relative;
   top: 60px;
   width: 100%;
+  background-color: var(--main-color);
 
   transform: scaleY(0);
   transform-origin: 50% 0;
@@ -114,16 +113,15 @@ export default {
   line-height: 60px;
   text-align: center;
   list-style: none;
-  background-color: var(--bg-color);
-  border-bottom: 1px solid var(--border-color);
+  background-color: var(--main-color);
 }
 .blog-header .navbar ul li:hover {
-  background-color: var(--hover-color);
+  background-color: var(--assist-color);
 }
 .blog-header .navbar ul li a {
   display: block;
   text-decoration: none;
-  color: var(--assist-color);
+  color: var(--bg-color);
 }
 .blog-header .navbar input:checked ~ ul {
   opacity: 1;
@@ -143,7 +141,9 @@ export default {
     opacity: 1;
     transform: scaleY(1);
     justify-content: center;
-    border-top: 1px solid var(--border-color);
+  }
+  .blog-header .navbar ul li {
+    width: 100px;
   }
 }
 </style>

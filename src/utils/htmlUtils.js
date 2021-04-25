@@ -6,7 +6,7 @@
 export function htmlDecode(text) {
   let tmp = document.createElement("div");
   tmp.innerHTML = text;
-  let output = tmp.innerHTML || tmp.textContent;
+  let output = tmp.innerText || tmp.textContent;
   tmp = null;
   return output;
 }

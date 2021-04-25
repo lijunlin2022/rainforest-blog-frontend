@@ -15,7 +15,6 @@
     <div class="more-link">
       <slot name="link"></slot>
     </div>
-    <hr />
   </div>
 </template>
 
@@ -28,6 +27,11 @@ export default {
 <style scoped>
 .blog-article {
   margin-top: 40px;
+  max-width: 600px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2);
+  margin: 30px auto;
 }
 .blog-article .title {
   padding: 10px;
@@ -47,19 +51,21 @@ export default {
   font-family: var(--label-font);
   text-align: center;
 }
-.blog-article .cover {
-  text-align: center;
-}
-::v-deep(img) {
-  width: 80%;
-}
 .blog-article .abstract {
   width: 80%;
   margin: 0 auto;
   padding: 0 5px;
   font-size: 14px;
   line-height: 1.8;
-  text-align: justify;
+  text-align: center;
+}
+.blog-article .cover {
+  text-align: center;
+  height: 200px;
+}
+.blog-article .cover ::v-deep(img) {
+  max-height: 200px;
+  max-width: 280px;
 }
 .blog-article .more-link {
   margin: 23px 0;
@@ -69,9 +75,5 @@ export default {
 .blog-article .more-link ::v-deep(a) {
   text-decoration: none;
   color: var(--assist-color);
-}
-hr {
-  display: block;
-  margin-bottom: 30px;
 }
 </style>

@@ -1,5 +1,13 @@
 <template>
   <div class="blog-content">
+    <div class="top-posts">
+      <button>热门文章 1</button>
+      <button>热门文章 2</button>
+      <button>热门文章 3</button>
+      <button>热门文章 4</button>
+      <button>热门文章 5</button>
+      <button>热门文章 6</button>
+    </div>
     <blog-article v-for="item in tableData" :key="item.id">
       <template v-slot:title>
         {{ item.title }}
@@ -20,6 +28,10 @@
         </router-link>
       </template>
     </blog-article>
+    <div class="top-posts">
+      <button>上一页 👈</button>
+      <button>下一页 👉</button>
+    </div>
   </div>
 </template>
 
@@ -58,3 +70,21 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.blog-content {
+  margin-top: 60px;
+}
+.top-posts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 600px;
+  margin: 20px auto;
+}
+button {
+  width: 260px;
+  height: 50px;
+  margin: 10px;
+}
+</style>

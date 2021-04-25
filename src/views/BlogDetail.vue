@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="blog-detail">
     <v-md-preview :text="content"></v-md-preview>
   </div>
 </template>
@@ -29,6 +29,10 @@ export default {
 </script>
 
 <style scoped>
+.blog-detail {
+  max-width: 1200px;
+  margin: 60px auto;
+}
 ::v-deep(h1),
 ::v-deep(h2),
 ::v-deep(h3),
