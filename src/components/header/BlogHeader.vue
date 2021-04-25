@@ -6,19 +6,16 @@
       <label for="nav"></label>
       <ul>
         <li>
-          <router-link to="/content">主页</router-link>
+          <router-link to="/content">首页</router-link>
         </li>
         <li>
-          <router-link to="/content">主页</router-link>
+          <router-link to="/">归档</router-link>
         </li>
         <li>
-          <router-link to="/content">主页</router-link>
+          <router-link to="/">关于</router-link>
         </li>
         <li>
-          <router-link to="/content">主页</router-link>
-        </li>
-        <li>
-          <router-link to="/content">主页</router-link>
+          <router-link to="/">友链</router-link>
         </li>
       </ul>
     </div>

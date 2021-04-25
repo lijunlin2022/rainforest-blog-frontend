@@ -1,13 +1,13 @@
 <template>
   <div class="blog-content">
-    <div class="top-posts">
+    <!-- <div class="top-posts">
       <button>热门文章 1</button>
       <button>热门文章 2</button>
       <button>热门文章 3</button>
       <button>热门文章 4</button>
       <button>热门文章 5</button>
       <button>热门文章 6</button>
-    </div>
+    </div> -->
     <blog-article v-for="item in tableData" :key="item.id">
       <template v-slot:title>
         {{ item.title }}
@@ -60,7 +60,7 @@ export default {
       return timeDecode(time);
     },
     correctAuthor(author) {
-      if (author === "undefined") {
+      if (author === "") {
         return "佚名";
       }
     },

@@ -1,19 +1,36 @@
 <template>
-  <div class="blog-edit">
-    <input type="text" v-model="blogData.title" placeholder="请输入标题" />
-    <input type="text" v-model="blogData.abstract" placeholder="请输入摘要" />
-    <input type="text" v-model="blogData.cover" placeholder="请输入封面图片" />
-    <input type="text" v-model="blogData.author" placeholder="请输入作者" />
-    <v-md-editor class="editor" v-model="blogData.content"></v-md-editor>
-    <div class="btn-container">
-      <button @click="handleNewBlog">提交</button>
-      <button @click="handleReturn">查看效果</button>
-    </div>
+  <div class="blog-editor">
+    <aside class="sidebar">
+      <div class="toggleBtn">RAINFOREST</div>
+      <ul>
+        <li>
+          <a href="javascrip:void(0);">文章管理</a>
+        </li>
+        <li>
+          <a href="javascrip:void(0);">数据统计</a>
+        </li>
+        <li>
+          <a href="javascrip:void(0);">数据库</a>
+        </li>
+      </ul>
+    </aside>
+    <main>
+      <input type="text" v-model="blogData.title" placeholder="标题" />
+      <input type="text" v-model="blogData.abstract" placeholder="摘要" />
+      <input type="text" v-model="blogData.cover" placeholder="头图" />
+      <input type="text" v-model="blogData.author" placeholder="作者" />
+      <v-md-editor class="md-editor" v-model="blogData.content"></v-md-editor>
+      <div class="btn-container">
+        <button @click="handleNewBlog">提交</button>
+        <button @click="handleReturn">查看效果</button>
+      </div>
+    </main>
   </div>
 </template>
 
 <script>
 import { createNewBlog } from "@/api/blogs.js";
+
 export default {
   name: "BlogEdit",
   data() {
@@ -29,10 +46,16 @@ export default {
   },
   methods: {
     handleNewBlog() {
+      if(this.blogData.content === "") {
+        alert("输入为空, 不可以发送博客");
+        return;
+      }
       createNewBlog(this.blogData).then((result) => {
         const res = result.data;
         if (res.errno === 0) {
           alert("发送成功");
+        } else {
+          alert("发送失败");
         }
       });
     },
@@ -44,19 +67,79 @@ export default {
 </script>
 
 <style scoped>
+.blog-editor {
+  min-height: 100vh;
+}
+.blog-editor main {
+  max-width: 1200px;
+  margin-left: 200px;
+}
+.blog-editor .sidebar {
+  position: fixed;
+  float: left;
+  min-width: 150px;
+  height: 100vh;
+  background-color: var(--main-color);
+}
+.blog-editor .sidebar .toggleBtn {
+  display: block;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: var(--title-font);
+  font-weight: bold;
+  color: var(--bg-color);
+  background-color: var(--assist-color);
+  transition: all 0.3s ease-out;
+}
+.blog-editor .sidebar ul {
+  width: 100%;
+  list-style: none;
+  transition: all 0.3s ease-out;
+}
+.blog-editor .sidebar ul li {
+  margin: 10px 0;
+  height: 40px;
+  padding: 5px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-family: var(--nav-font);
+  background-color: var(--main-color);
+}
+.blog-editor .sidebar ul li:hover {
+  background-color: var(--assist-color);
+}
+.blog-editor .sidebar ul li a {
+  text-decoration: none;
+  color: var(--bg-color);
+}
+
 input[type="text"],
 button {
   height: 50px;
-  width: 250px;
   outline: none;
   border: 1px solid var(--border-color);
-  margin: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin: 10px 10px 0 0;
+  text-align: center;
 }
-.editor {
+input[type="text"] {
+  min-width: 200px;
+  max-width: 1000px;
+}
+button {
+  min-width: 150px;
+  max-width: 200px;
+  color: var(--bg-color);
+  background-color: var(--main-color);
+}
+button:hover {
+  background-color: var(--assist-color);
+}
+.md-editor {
+  min-width: 400px;
   min-height: 500px;
-}
-.btn-container {
-  display: flex;
-  justify-content: flex-end;
 }
 </style>
