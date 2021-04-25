@@ -22,6 +22,7 @@
       <v-md-editor class="md-editor" v-model="blogData.content"></v-md-editor>
       <div class="btn-container">
         <button @click="handleNewBlog">提交</button>
+        <button @click="handleUpdateBlog">修改</button>
         <button @click="handleReturn">查看效果</button>
       </div>
     </main>
@@ -29,7 +30,7 @@
 </template>
 
 <script>
-import { createNewBlog } from "@/api/blogs.js";
+import { createNewBlog, getBlogDetail, updateBlog } from "@/api/blogs.js";
 
 export default {
   name: "BlogEdit",
@@ -46,8 +47,12 @@ export default {
   },
   methods: {
     handleNewBlog() {
-      if(this.blogData.content === "") {
+      if (this.blogData.content === "") {
         alert("输入为空, 不可以发送博客");
+        return;
+      }
+      if (this.$route.query.id) {
+        alert("只允许修改博客, 不允许新建博客");
         return;
       }
       createNewBlog(this.blogData).then((result) => {
@@ -59,9 +64,29 @@ export default {
         }
       });
     },
+    handleUpdateBlog() {
+      if (this.blogData.content === "") {
+        alert("输入为空, 不可以发送博客");
+        return;
+      }
+      updateBlog(this.$route.query.id, this.blogData).then((result) => {
+        const res = result.data;
+        if (res.errno === 0) {
+          alert("修改成功");
+        } else {
+          alert("修改失败");
+        }
+      });
+    },
     handleReturn() {
       this.$router.replace("/");
     },
+  },
+  created() {
+    getBlogDetail(this.$route.query.id).then((result) => {
+      const res = result.data;
+      this.blogData = res.data;
+    });
   },
 };
 </script>

@@ -37,12 +37,9 @@ export function createNewBlog(blogData) {
  */
 export function updateBlog(id, blogData) {
   return request({
-    url: "/blog/update",
+    url: `/blog/update?id=${id}`,
     method: "post",
-    data: {
-      id,
-      data: blogData,
-    },
+    data: blogData,
   });
 }
 
