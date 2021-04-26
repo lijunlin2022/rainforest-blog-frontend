@@ -2,19 +2,19 @@
   <div class="blog-header">
     <div class="logo">rainforest</div>
     <div class="navbar">
-      <input type="checkbox" id="nav" />
+      <input type="checkbox" id="nav" :checked="isActive" @click="toggle" />
       <label for="nav"></label>
       <ul>
-        <li>
+        <li @click="toggle">
           <router-link to="/content">首页</router-link>
         </li>
-        <li>
+        <li @click="toggle">
           <router-link to="/">归档</router-link>
         </li>
-        <li>
+        <li @click="toggle">
           <router-link to="/">关于</router-link>
         </li>
-        <li>
+        <li @click="toggle">
           <router-link to="/">友链</router-link>
         </li>
       </ul>
@@ -25,6 +25,16 @@
 <script>
 export default {
   name: "BlogHeader",
+  data() {
+    return {
+      isActive: false,
+    };
+  },
+  methods: {
+    toggle() {
+      this.isActive = !this.isActive;
+    },
+  },
 };
 </script>
 
