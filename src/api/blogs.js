@@ -7,9 +7,17 @@ export function getBlogList() {
   });
 }
 
-/**
- * @param {Number} id
- */
+export function getBlogListByPage(current, size) {
+  return request({
+    url: "/blog/listByPage",
+    method: "get",
+    params: {
+      current,
+      size,
+    },
+  });
+}
+
 export function getBlogDetail(id) {
   return request({
     url: "/blog/detail",
@@ -20,9 +28,6 @@ export function getBlogDetail(id) {
   });
 }
 
-/**
- * @param {Object} blogData
- */
 export function createNewBlog(blogData) {
   return request({
     url: "/blog/new",
@@ -31,10 +36,6 @@ export function createNewBlog(blogData) {
   });
 }
 
-/**
- * @param {Number} id
- * @param {Object} blogData
- */
 export function updateBlog(id, blogData) {
   return request({
     url: `/blog/update?id=${id}`,
@@ -43,10 +44,6 @@ export function updateBlog(id, blogData) {
   });
 }
 
-/**
- * @param {Number} id
- * @param {String} author
- */
 export function deleteBlog(id, author) {
   return request({
     url: "/blog/del",
