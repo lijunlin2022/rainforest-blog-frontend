@@ -19,6 +19,7 @@
       <input type="text" v-model="blogData.abstract" placeholder="摘要" />
       <input type="text" v-model="blogData.cover" placeholder="头图" />
       <input type="text" v-model="blogData.author" placeholder="作者" />
+      <input type="checkbox" v-model="blogData.hot" />
       <v-md-editor class="md-editor" v-model="blogData.content"></v-md-editor>
       <div class="btn-container">
         <button @click="handleNewBlog">提交</button>
@@ -36,12 +37,14 @@ export default {
   name: "BlogEdit",
   data() {
     return {
+      id: this.$route.query.id,
       blogData: {
-        title: "",
+        title: "我看看",
         abstract: "",
         cover: "",
         content: "",
         author: "",
+        hot: false,
       },
     };
   },
@@ -51,7 +54,7 @@ export default {
         alert("输入为空, 不可以发送博客");
         return;
       }
-      if (this.$route.query.id) {
+      if (this.id) {
         alert("只允许修改博客, 不允许新建博客");
         return;
       }
@@ -69,7 +72,7 @@ export default {
         alert("输入为空, 不可以发送博客");
         return;
       }
-      updateBlog(this.$route.query.id, this.blogData).then((result) => {
+      updateBlog(this.id, this.blogData).then((result) => {
         const res = result.data;
         if (res.errno === 0) {
           alert("修改成功");
@@ -83,10 +86,12 @@ export default {
     },
   },
   created() {
-    getBlogDetail(this.$route.query.id).then((result) => {
-      const res = result.data;
-      this.blogData = res.data;
-    });
+    if (this.id) {
+      getBlogDetail(this.id).then((result) => {
+        const res = result.data;
+        this.blogData = res.data;
+      });
+    }
   },
 };
 </script>

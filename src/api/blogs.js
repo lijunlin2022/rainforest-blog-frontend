@@ -7,6 +7,13 @@ export function getBlogList() {
   });
 }
 
+export function getHotBlogList() {
+  return request({
+    url: "/blog/hot",
+    method: "get",
+  });
+}
+
 export function getBlogListByPage(current, size) {
   return request({
     url: "/blog/listByPage",
