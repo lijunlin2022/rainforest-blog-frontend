@@ -19,7 +19,7 @@ export default {
   line-height: 50px;
 
   font-family: var(--label-font);
-  font-size: 5px;
+  font-size: 13px;
   text-align: center;
   /* 先强制一行内显示文本 */
   white-space: nowrap;
@@ -34,11 +34,11 @@ export default {
   content: "hot";
   position: absolute;
   display: block;
-  height: 14px;
+  height: 15px;
   line-height: 15px;
   width: 25px;
   left: 10px;
   background-color: var(--assist-color);
-  font-size: 5px;
+  font-size: 12px;
 }
 </style>

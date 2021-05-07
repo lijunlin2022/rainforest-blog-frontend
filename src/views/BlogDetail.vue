@@ -63,7 +63,7 @@ export default {
 
 <style scoped>
 .blog-detail {
-  max-width: 1200px;
+  max-width: 800px;
   margin: 60px auto;
 }
 ::v-deep(h1),
