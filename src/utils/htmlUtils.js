@@ -3,10 +3,16 @@
  * @param {String} text
  * @returns
  */
-export function htmlDecode(text) {
-  let tmp = document.createElement("div");
-  tmp.innerHTML = text;
-  let output = tmp.innerText || tmp.textContent;
-  tmp = null;
-  return output;
+export function htmlDecode(str) {
+  if (str.length == 0) {
+    return "";
+  }
+  var s = "";
+  s = str.replace(/&nbsp;/g, " ");
+  s = s.replace(/&lt;/g, "<");
+  s = s.replace(/&gt;/g, ">");
+  s = s.replace(/&amp;/g, "&");
+  s = s.replace(/&quot;/g, '"');
+  s = s.replace(/&apos;/g, "'");
+  return s;
 }

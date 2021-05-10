@@ -33,6 +33,7 @@ export default {
     handleGetDetail() {
       getBlogDetail(this.id).then((result) => {
         const res = result.data;
+        console.log(res);
         this.content = htmlDecode(res.data.content);
       });
     },
@@ -65,18 +66,6 @@ export default {
 .blog-detail {
   max-width: 800px;
   margin: 60px auto;
-}
-::v-deep(h1),
-::v-deep(h2),
-::v-deep(h3),
-::v-deep(h4),
-::v-deep(h5),
-::v-deep(h6) {
-  font-weight: normal !important;
-  font-family: var(--title-font) !important;
-}
-::v-deep(p) {
-  text-align: justify !important;
 }
 .paging {
   display: flex;
