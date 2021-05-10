@@ -65,7 +65,7 @@ export default {
 <style scoped>
 .blog-detail {
   max-width: 800px;
-  margin: 60px auto;
+  margin: 0 auto;
 }
 .paging {
   display: flex;

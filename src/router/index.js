@@ -2,7 +2,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
 import BlogContent from "@/views/BlogContent.vue";
 import BlogDetail from "@/views/BlogDetail.vue";
-import BlogEdit from "@/views/BlogEdit.vue";
+import BlogEditor from "@/views/BlogEditor.vue";
+import BlogLogin from "@/views/BlogLogin.vue";
+import BlogArchives from "@/views/BlogArchives.vue";
 
 const routes = [
   {
@@ -21,12 +23,22 @@ const routes = [
         name: "BlogDetail",
         component: BlogDetail,
       },
+      {
+        path: "/archives",
+        name: "BlogArchives",
+        component: BlogArchives,
+      },
     ],
   },
   {
     path: "/edit",
-    name: "BlogEdit",
-    component: BlogEdit,
+    name: "BlogEditor",
+    component: BlogEditor,
+  },
+  {
+    path: "/login",
+    name: "BlogLogin",
+    component: BlogLogin,
   },
 ];
 

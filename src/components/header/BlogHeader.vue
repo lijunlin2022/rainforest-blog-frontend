@@ -9,13 +9,16 @@
           <router-link to="/content">首页</router-link>
         </li>
         <li @click="toggle">
-          <router-link to="/">归档</router-link>
+          <router-link to="/archives">归档</router-link>
         </li>
         <li @click="toggle">
           <router-link to="/">关于</router-link>
         </li>
         <li @click="toggle">
           <router-link to="/">友链</router-link>
+        </li>
+        <li @click="toggle">
+          <router-link to="/login">登录</router-link>
         </li>
       </ul>
     </div>

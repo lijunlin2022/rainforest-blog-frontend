@@ -115,9 +115,6 @@ export default {
 </script>
 
 <style scoped>
-.blog-content {
-  margin-top: 80px;
-}
 .top-posts {
   margin: 20px auto;
   max-width: 900px;

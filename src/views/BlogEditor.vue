@@ -34,7 +34,7 @@
 import { createNewBlog, getBlogDetail, updateBlog } from "@/api/blogs.js";
 
 export default {
-  name: "BlogEdit",
+  name: "BlogEditor",
   data() {
     return {
       id: this.$route.query.id,

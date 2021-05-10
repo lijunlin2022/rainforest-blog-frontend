@@ -25,6 +25,7 @@ export default {
 }
 .main {
   width: 100%;
+  margin-top: 80px;
 }
 .sidebar {
   display: none;
