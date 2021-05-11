@@ -50,22 +50,32 @@ export default {
 
 <style scoped>
 .blog-archives {
-  max-width: 600px;
+  max-width: 560px;
+  padding: 0 20px;
   margin: 0 auto;
 }
 .blog-archives .archives {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  border-left: 2px solid var(--assist-color);
-  margin-bottom: 10px;
-  color: var(--form-title-color);
+  border-left: 5px solid var(--assist-color);
+  margin-bottom: 15px;
   transition: all 0.3s;
   cursor: pointer;
 }
-.blog-archives .archives .time {
-  margin: 0 10px;
-}
 .blog-archives .archives:hover {
   border-left: 50px solid var(--assist-color);
+}
+.blog-archives .archives .time {
+  margin: 5px 10px;
+  font-family: var(--nav-font);
+}
+.blog-archives .archives .title {
+  margin: 0 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--link-color);
+  font-family: var(--nav-font);
 }
 </style>
