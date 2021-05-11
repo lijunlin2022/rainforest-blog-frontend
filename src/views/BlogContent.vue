@@ -80,20 +80,10 @@ export default {
     handlePreBtn() {
       this.current--;
       this.handleGetListByPage();
-      window.scrollTo({
-        left: 0,
-        top: 0,
-        behavior: "smooth",
-      });
     },
     handleNextBtn() {
       this.current++;
       this.handleGetListByPage();
-      window.scrollTo({
-        left: 0,
-        top: 0,
-        behavior: "smooth",
-      });
     },
     correctTime(time) {
       return timeDecode(time);

@@ -1,50 +1,48 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "@/views/Home.vue";
-import BlogContent from "@/views/BlogContent.vue";
-import BlogDetail from "@/views/BlogDetail.vue";
-import BlogEditor from "@/views/BlogEditor.vue";
-import BlogLogin from "@/views/BlogLogin.vue";
-import BlogArchives from "@/views/BlogArchives.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: () => import("@/views/Home.vue"),
     redirect: "/content",
     children: [
       {
         path: "/content",
         name: "BlogContent",
-        component: BlogContent,
+        component: () => import("@/views/BlogContent.vue"),
       },
       {
         path: "/detail",
         name: "BlogDetail",
-        component: BlogDetail,
+        component: () => import("@/views/BlogDetail.vue"),
       },
       {
         path: "/archives",
         name: "BlogArchives",
-        component: BlogArchives,
+        component: () => import("@/views/BlogArchives.vue"),
       },
     ],
   },
   {
     path: "/edit",
     name: "BlogEditor",
-    component: BlogEditor,
+    component: () => import("@/views/BlogEditor.vue"),
   },
   {
     path: "/login",
     name: "BlogLogin",
-    component: BlogLogin,
+    component: () => import("@/views/BlogLogin.vue"),
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach(() => {
+  document.documentElement.scrollTop = 0;
 });
 
 export default router;
