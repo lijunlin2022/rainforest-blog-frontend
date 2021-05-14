@@ -9,11 +9,11 @@ import githubTheme from "@kangc/v-md-editor/lib/theme/github.js";
 import "@kangc/v-md-editor/lib/theme/style/github.css";
 import createMermaidPlugin from "@kangc/v-md-editor/lib/plugins/mermaid/cdn";
 import "@kangc/v-md-editor/lib/plugins/mermaid/mermaid.css";
-import cpp from "highlight.js/lib/languages/cpp";
-import java from "highlight.js/lib/languages/java";
-import json from "highlight.js/lib/languages/json";
-import python from "highlight.js/lib/languages/python";
-import sql from "highlight.js/lib/languages/sql";
+import c from "highlight.js/lib/languages/c.js";
+import java from "highlight.js/lib/languages/java.js";
+import json from "highlight.js/lib/languages/json.js";
+import python from "highlight.js/lib/languages/python.js";
+import sql from "highlight.js/lib/languages/sql.js";
 
 VueMarkdownEditor.use(githubTheme);
 VueMarkdownEditor.use(createMermaidPlugin());
@@ -22,7 +22,7 @@ VMdPreview.use(githubTheme, {
     // md为 markdown-it 实例，可以在此处进行修改配置,并使用 plugin 进行语法扩展
     // md.set(option).use(plugin);
     // 注册语言包
-    hljs.registerLanguage("cpp", cpp);
+    hljs.registerLanguage("c", c);
     hljs.registerLanguage("json", json);
     hljs.registerLanguage("java", java);
     hljs.registerLanguage("python", python);

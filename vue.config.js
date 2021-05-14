@@ -1,5 +1,4 @@
 module.exports = {
-  productionSourceMap: false, // 关闭 source map, 方便打包
   devServer: {
     port: 9000,
     proxy: {
