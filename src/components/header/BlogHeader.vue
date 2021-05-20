@@ -12,12 +12,6 @@
           <router-link to="/archives">归档</router-link>
         </li>
         <li @click="toggle">
-          <router-link to="/detail?id=1">友链</router-link>
-        </li>
-        <li @click="toggle">
-          <router-link to="/detail?id=2">关于</router-link>
-        </li>
-        <li @click="toggle">
           <router-link to="/login">登录</router-link>
         </li>
       </ul>
@@ -36,6 +30,14 @@ export default {
   methods: {
     toggle() {
       this.isActive = !this.isActive;
+    },
+    handleReadMore(id) {
+      this.$router.push({
+        path: "/detail",
+        query: {
+          id: id,
+        },
+      });
     },
   },
 };
