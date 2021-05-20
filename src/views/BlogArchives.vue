@@ -53,6 +53,8 @@ export default {
   max-width: 560px;
   padding: 0 20px;
   margin: 0 auto;
+  background-color: var(--white-color);
+  min-height: calc(100vh - 60px);
 }
 .blog-archives .archives {
   display: flex;

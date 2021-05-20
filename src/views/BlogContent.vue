@@ -105,6 +105,9 @@ export default {
 </script>
 
 <style scoped>
+.blog-content {
+  min-height: calc(100vh - 60px);
+}
 .top-posts {
   margin: 20px auto;
   max-width: 900px;
