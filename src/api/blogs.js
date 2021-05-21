@@ -14,6 +14,13 @@ export function getHotBlogList() {
   });
 }
 
+export function getIdSetOfInterfaces() {
+  return request({
+    url: "/blog/interfaces",
+    method: "get",
+  });
+}
+
 export function getBlogListByPage(current, size) {
   return request({
     url: "/blog/listByPage",

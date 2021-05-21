@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       id: this.$route.query.id,
-      content: "",
+      content: "我",
     };
   },
   methods: {

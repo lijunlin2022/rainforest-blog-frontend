@@ -10,7 +10,7 @@
   <!-- <router-link to="/detail">Detail</router-link> | -->
   <!-- <router-link to="/about">About</router-link> -->
   <!-- </div> -->
-  <router-view />
+  <router-view :key="$route.fullPath" />
 </template>
 
 <style>

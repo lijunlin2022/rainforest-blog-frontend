@@ -5,14 +5,8 @@
       <input type="checkbox" id="nav" :checked="isActive" @click="toggle" />
       <label for="nav"></label>
       <ul>
-        <li @click="toggle">
-          <router-link to="/content">首页</router-link>
-        </li>
-        <li @click="toggle">
-          <router-link to="/archives">归档</router-link>
-        </li>
-        <li @click="toggle">
-          <router-link to="/login">登录</router-link>
+        <li v-for="item in navItems" :key="item" @click="toggle">
+          <router-link :to="item.path">{{ item.title }}</router-link>
         </li>
       </ul>
     </div>
@@ -20,25 +14,33 @@
 </template>
 
 <script>
+import { getIdSetOfInterfaces } from "@/api/blogs.js";
+
 export default {
   name: "BlogHeader",
   data() {
     return {
       isActive: false,
+      navItems: [
+        { path: "/content", title: "首页", id: null },
+        { path: "/archives", title: "归档", id: null },
+      ],
     };
   },
   methods: {
     toggle() {
       this.isActive = !this.isActive;
     },
-    handleReadMore(id) {
-      this.$router.push({
-        path: "/detail",
-        query: {
-          id: id,
-        },
-      });
-    },
+  },
+  created() {
+    getIdSetOfInterfaces().then((result) => {
+      const res = result.data;
+      let newItems = res.data;
+      for (let item of newItems) {
+        item.path = "/interface?id=" + item.id;
+      }
+      this.navItems.push(...newItems);
+    });
   },
 };
 </script>

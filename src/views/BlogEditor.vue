@@ -19,7 +19,8 @@
       <input type="text" v-model="blogData.abstract" placeholder="摘要" />
       <input type="text" v-model="blogData.cover" placeholder="头图" />
       <input type="text" v-model="blogData.author" placeholder="作者" />
-      <input type="checkbox" v-model="blogData.hot" />
+      是否置顶<input type="checkbox" v-model="blogData.ishot" />
+      是否设置为独立页面<input type="checkbox" v-model="blogData.isinterface" />
       <v-md-editor class="md-editor" v-model="blogData.content"></v-md-editor>
       <div class="btn-container">
         <button @click="handleNewBlog">提交</button>
@@ -39,12 +40,13 @@ export default {
     return {
       id: this.$route.query.id,
       blogData: {
-        title: "我看看",
+        title: "",
         abstract: "",
         cover: "",
         content: "",
         author: "",
-        hot: false,
+        ishot: false,
+        isinterface: false,
       },
     };
   },
