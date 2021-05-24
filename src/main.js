@@ -13,7 +13,6 @@ import createCopyCodePlugin from "@kangc/v-md-editor/lib/plugins/copy-code/index
 import "@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css";
 import createTodoListPlugin from "@kangc/v-md-editor/lib/plugins/todo-list/index";
 import "@kangc/v-md-editor/lib/plugins/todo-list/todo-list.css";
-import createLineNumbertPlugin from "@kangc/v-md-editor/lib/plugins/line-number/index";
 import c from "highlight.js/lib/languages/c.js";
 import java from "highlight.js/lib/languages/java.js";
 import json from "highlight.js/lib/languages/json.js";
@@ -36,8 +35,7 @@ VMdPreview.use(githubTheme, {
 });
 VMdPreview.use(createMermaidPlugin());
 VMdPreview.use(createCopyCodePlugin());
-VMdPreview.use(createTodoListPlugin());
-VMdPreview.use(createLineNumbertPlugin());
+VMdPreview.use(createTodoListPlugin({ color: "#1FA0AE" }));
 const app = createApp(App);
 app.use(router);
 app.use(VueMarkdownEditor);

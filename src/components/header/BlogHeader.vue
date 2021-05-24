@@ -1,6 +1,8 @@
 <template>
   <div class="blog-header">
-    <div class="logo">rainforest</div>
+    <div class="logo">
+      <router-link to="/login">RainForest</router-link>
+    </div>
     <div class="navbar">
       <input type="checkbox" id="nav" :checked="isActive" @click="toggle" />
       <label for="nav"></label>
@@ -59,6 +61,9 @@ export default {
   line-height: 60px;
   text-align: center;
   padding: 0 10px;
+}
+.blog-header .logo a {
+  text-decoration: none;
   font-family: var(--title-font);
   font-weight: bold;
   color: var(--bg-color);

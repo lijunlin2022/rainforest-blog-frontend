@@ -1,6 +1,6 @@
 <template>
   <div class="blog-editor">
-    <div class="navbar">RainForest 文章详情</div>
+    <div class="admin-navbar">编辑文章</div>
     <aside class="sidebar"></aside>
     <main>
       <input
@@ -122,7 +122,7 @@ export default {
   background-color: var(--bg-color);
   overflow: hidden;
 }
-.blog-editor .navbar {
+.blog-editor .admin-navbar {
   height: 60px;
   line-height: 60px;
   background-color: var(--main-color);
