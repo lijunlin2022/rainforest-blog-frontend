@@ -1,27 +1,37 @@
 <template>
   <div class="blog-editor">
-    <aside class="sidebar">
-      <div class="toggleBtn">RAINFOREST</div>
-      <ul>
-        <li>
-          <a href="javascrip:void(0);">文章管理</a>
-        </li>
-        <li>
-          <a href="javascrip:void(0);">数据统计</a>
-        </li>
-        <li>
-          <a href="javascrip:void(0);">数据库</a>
-        </li>
-      </ul>
-    </aside>
+    <div class="navbar">RainForest 文章详情</div>
+    <aside class="sidebar"></aside>
     <main>
-      <input type="text" v-model="blogData.title" placeholder="标题" />
-      <input type="text" v-model="blogData.abstract" placeholder="摘要" />
-      <input type="text" v-model="blogData.cover" placeholder="头图" />
-      <input type="text" v-model="blogData.author" placeholder="作者" />
-      是否置顶<input type="checkbox" v-model="blogData.ishot" />
-      是否设置为独立页面<input type="checkbox" v-model="blogData.isinterface" />
+      <input
+        type="text"
+        class="title"
+        v-model="blogData.title"
+        placeholder="请输入标题"
+      />
       <v-md-editor class="md-editor" v-model="blogData.content"></v-md-editor>
+      <input type="text" v-model="blogData.abstract" placeholder="摘要" />
+      <input type="text" v-model="blogData.cover" placeholder="头图 URL" />
+      <blog-switch>
+        <template v-slot:title>
+          <span>置顶</span>
+        </template>
+        <template v-slot:checkbox>
+          <input type="checkbox" class="checkbox" v-model="blogData.ishot" />
+        </template>
+      </blog-switch>
+      <blog-switch>
+        <template v-slot:title>
+          <span>设置为独立界面</span>
+        </template>
+        <template v-slot:checkbox>
+          <input
+            type="checkbox"
+            class="checkbox"
+            v-model="blogData.isinterface"
+          />
+        </template>
+      </blog-switch>
       <div class="btn-container">
         <button @click="handleNewBlog">提交</button>
         <button @click="handleUpdateBlog">修改</button>
@@ -33,9 +43,12 @@
 
 <script>
 import { createNewBlog, getBlogDetail, updateBlog } from "@/api/blogs.js";
-
+import BlogSwitch from "@/components/switch/BlogSwitch.vue";
 export default {
   name: "BlogEditor",
+  components: {
+    BlogSwitch,
+  },
   data() {
     return {
       id: this.$route.query.id,
@@ -44,7 +57,6 @@ export default {
         abstract: "",
         cover: "",
         content: "",
-        author: "",
         ishot: false,
         isinterface: false,
       },
@@ -92,6 +104,12 @@ export default {
       getBlogDetail(this.id).then((result) => {
         const res = result.data;
         this.blogData = res.data;
+        if (this.blogData.ishot === 1) {
+          this.blogData.ishot = true;
+        }
+        if (this.blogData.isinterface === 1) {
+          this.blogData.isinterface = true;
+        }
       });
     }
   },
@@ -101,67 +119,29 @@ export default {
 <style scoped>
 .blog-editor {
   min-height: 100vh;
+  background-color: var(--bg-color);
+  overflow: hidden;
 }
-.blog-editor main {
-  max-width: 1200px;
-  margin-left: 200px;
-}
-.blog-editor .sidebar {
-  position: fixed;
-  float: left;
-  min-width: 150px;
-  height: 100vh;
+.blog-editor .navbar {
+  height: 60px;
+  line-height: 60px;
   background-color: var(--main-color);
-}
-.blog-editor .sidebar .toggleBtn {
-  display: block;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
+  color: var(--white-color);
+  font-family: var(--title-font);
   text-align: center;
-  font-size: var(--title-font);
-  font-weight: bold;
-  color: var(--bg-color);
-  background-color: var(--assist-color);
-  transition: all 0.3s ease-out;
-}
-.blog-editor .sidebar ul {
-  width: 100%;
-  list-style: none;
-  transition: all 0.3s ease-out;
-}
-.blog-editor .sidebar ul li {
-  margin: 10px 0;
-  height: 40px;
-  padding: 5px;
-  line-height: 40px;
-  text-align: center;
-  font-size: 18px;
-  font-family: var(--nav-font);
-  background-color: var(--main-color);
-}
-.blog-editor .sidebar ul li:hover {
-  background-color: var(--assist-color);
-}
-.blog-editor .sidebar ul li a {
-  text-decoration: none;
-  color: var(--bg-color);
+  font-size: 20px;
 }
 
-input[type="text"],
-button {
-  height: 50px;
+input[type="text"] {
+  width: 100vw;
+  height: 120px;
   outline: none;
   border: 1px solid var(--border-color);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  margin: 10px 10px 0 0;
   text-align: center;
-}
-input[type="text"] {
-  min-width: 200px;
-  max-width: 1000px;
+  font-size: 18px;
 }
 button {
+  height: 50px;
   min-width: 150px;
   max-width: 200px;
   color: var(--bg-color);
@@ -171,7 +151,10 @@ button:hover {
   background-color: var(--assist-color);
 }
 .md-editor {
-  min-width: 400px;
+  max-width: 100vw;
   min-height: 500px;
+}
+.md-editor ::v-deep(.v-md-editor__toolbar) {
+  display: none;
 }
 </style>

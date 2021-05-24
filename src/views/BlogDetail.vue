@@ -1,7 +1,8 @@
 <template>
   <div class="blog-detail">
     <div class="preview">
-      <v-md-preview :text="content"></v-md-preview>
+      <v-md-preview :text="content" @copy-code-success="copyCodeSuccess()">
+      </v-md-preview>
     </div>
     <div class="paging">
       <!-- 如果 id 为 1, 则没有上一篇 -->
@@ -28,10 +29,13 @@ export default {
   data() {
     return {
       id: this.$route.query.id,
-      content: "我",
+      content: "",
     };
   },
   methods: {
+    copyCodeSuccess() {
+      alert("复制成功");
+    },
     handleGetDetail() {
       getBlogDetail(this.id).then((result) => {
         const res = result.data;
