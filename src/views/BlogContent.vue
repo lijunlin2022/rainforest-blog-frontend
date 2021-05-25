@@ -35,8 +35,7 @@
 
     <!------- 下一页 ------->
     <div class="paging">
-      <!-- 如果 articleData 的长度小于 size, 则没有下一页 -->
-      <blog-button v-if="articleData.length === size" @click="handleNextBtn">
+      <blog-button v-if="hasNext" @click="handleNextBtn">
         <template v-slot:default>更多</template>
       </blog-button>
       <blog-button v-else>
@@ -64,6 +63,7 @@ export default {
     return {
       current: 0,
       size: 5,
+      hasNext: true,
       postData: [],
       articleData: [],
     };
@@ -86,6 +86,9 @@ export default {
       getBlogListByPage(this.current, this.size).then((result) => {
         const res = result.data;
         this.articleData.push(...res.data);
+        if (res.data.length < this.size) {
+          this.hasNext = false;
+        }
       });
     },
     correctTime(time) {
