@@ -35,7 +35,7 @@ VMdPreview.use(githubTheme, {
 });
 VMdPreview.use(createMermaidPlugin());
 VMdPreview.use(createCopyCodePlugin());
-VMdPreview.use(createTodoListPlugin({ color: "#1FA0AE" }));
+VMdPreview.use(createTodoListPlugin());
 const app = createApp(App);
 app.use(router);
 app.use(VueMarkdownEditor);

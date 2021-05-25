@@ -1,5 +1,6 @@
 <template>
   <div class="blog-content">
+    <!------- 热点文章 ------->
     <div class="top-posts">
       <blog-post
         v-for="item in postData"
@@ -11,6 +12,8 @@
         </template>
       </blog-post>
     </div>
+
+    <!------- 文章列表 ------->
     <blog-article v-for="item in articleData" :key="item.id">
       <template v-slot:title>
         {{ item.title }}
@@ -29,14 +32,15 @@
         <a @click="handleReadMore(item.id)">点击阅读</a>
       </template>
     </blog-article>
+
+    <!------- 下一页 ------->
     <div class="paging">
-      <!-- 如果 current 为 0, 则没有上一页 -->
-      <blog-button v-if="current !== 0" @click="handlePreBtn">
-        <template v-slot:default>上一页</template>
-      </blog-button>
       <!-- 如果 articleData 的长度小于 size, 则没有下一页 -->
       <blog-button v-if="articleData.length === size" @click="handleNextBtn">
-        <template v-slot:default>下一页</template>
+        <template v-slot:default>更多</template>
+      </blog-button>
+      <blog-button v-else>
+        <template v-slot:default>很高兴你看到这里，但是真的没有了...</template>
       </blog-button>
     </div>
   </div>
@@ -77,13 +81,12 @@ export default {
         this.articleData = res.data;
       });
     },
-    handlePreBtn() {
-      this.current--;
-      this.handleGetListByPage();
-    },
     handleNextBtn() {
       this.current++;
-      this.handleGetListByPage();
+      getBlogListByPage(this.current, this.size).then((result) => {
+        const res = result.data;
+        this.articleData.push(...res.data);
+      });
     },
     correctTime(time) {
       return timeDecode(time);
