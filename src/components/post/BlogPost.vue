@@ -17,6 +17,7 @@ export default {
   height: 49px;
   margin: 5px 20px;
   line-height: 50px;
+  background-color: var(--white-color);
 
   font-family: var(--label-font);
   font-size: 13px;

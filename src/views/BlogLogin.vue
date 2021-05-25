@@ -63,7 +63,7 @@ export default {
 }
 section {
   min-height: 100vh;
-  background-color: var(--assist-color);
+  background-color: var(--bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,7 +73,7 @@ section .container {
   position: relative;
   width: 800px;
   height: 500px;
-  background-color: var(--bg-color);
+  background-color: var(--white-color);
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
@@ -106,7 +106,7 @@ section .container .user .formBx {
   width: 50%;
   padding: 0 20px;
   height: 100%;
-  background-color: var(--bg-color);
+  background-color: var(--white-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -138,7 +138,7 @@ section .container .user .formBx input {
 section .container .user .formBx input[type="submit"] {
   max-width: 100px;
   background-color: var(--link-color);
-  color: var(--bg-color);
+  color: var(--white-color);
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;

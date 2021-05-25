@@ -22,6 +22,11 @@ const routes = [
         name: "BlogArchives",
         component: () => import("@/views/BlogArchives.vue"),
       },
+      {
+        path: "/interface",
+        name: "BlogInterface",
+        component: () => import("@/views/BlogInterface.vue"),
+      },
     ],
   },
   {
@@ -39,10 +44,6 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-});
-
-router.beforeEach(() => {
-  document.documentElement.scrollTop = 0;
 });
 
 export default router;

@@ -32,6 +32,7 @@ export default {
   border-radius: 10px;
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2);
   margin: 30px auto;
+  background-color: var(--white-color);
 }
 .blog-article .title {
   padding: 10px;

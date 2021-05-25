@@ -1,6 +1,9 @@
 <template>
   <div class="blog-detail">
-    <v-md-preview :text="content"></v-md-preview>
+    <div class="preview">
+      <v-md-preview :text="content" @copy-code-success="copyCodeSuccess()">
+      </v-md-preview>
+    </div>
     <div class="paging">
       <!-- 如果 id 为 1, 则没有上一篇 -->
       <blog-button @click="handlePreBtn">
@@ -30,6 +33,9 @@ export default {
     };
   },
   methods: {
+    copyCodeSuccess() {
+      alert("复制成功");
+    },
     handleGetDetail() {
       getBlogDetail(this.id).then((result) => {
         const res = result.data;
@@ -67,8 +73,14 @@ export default {
   max-width: 800px;
   margin: 0 auto;
 }
+.preview {
+  min-height: calc(100vh - 120px);
+  background-color: var(--white-color);
+}
 .paging {
   display: flex;
   justify-content: space-around;
+  margin-top: 20px;
+  height: 40px;
 }
 </style>
