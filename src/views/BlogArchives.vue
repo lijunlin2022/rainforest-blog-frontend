@@ -50,7 +50,7 @@ export default {
 
 <style scoped>
 .blog-archives {
-  max-width: 560px;
+  max-width: 660px;
   padding: 0 20px;
   margin: 0 auto;
   background-color: var(--white-color);
@@ -66,11 +66,12 @@ export default {
   cursor: pointer;
 }
 .blog-archives .archives:hover {
-  border-left: 50px solid var(--assist-color);
+  border-left: 7px solid var(--accent-color);
 }
 .blog-archives .archives .time {
   margin: 5px 10px;
   font-family: var(--nav-font);
+  color: var(--secondary-color);
 }
 .blog-archives .archives .title {
   margin: 0 10px;

@@ -18,15 +18,12 @@
       <template v-slot:title>
         {{ item.title }}
       </template>
-      <template v-slot:createtime>
-        {{ correctTime(item.createtime) }}
-        | {{ item.author }}
-      </template>
-      <template v-slot:cover>
-        <img :src="item.cover" />
-      </template>
       <template v-slot:abstract>
         {{ item.abstract }}
+      </template>
+      <template v-slot:createtime>
+        {{ correctTime(item.createtime) }}
+        {{ item.author }}
       </template>
       <template v-slot:link>
         <a @click="handleReadMore(item.id)">点击阅读</a>

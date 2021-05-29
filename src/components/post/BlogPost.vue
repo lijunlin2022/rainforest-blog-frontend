@@ -14,13 +14,14 @@ export default {
 .post {
   position: relative;
   width: 258px;
-  height: 49px;
-  margin: 5px 20px;
-  line-height: 50px;
+  height: 89px;
+  margin: 5px 10px;
+  padding: 0 10px;
+  line-height: 90px;
   background-color: var(--white-color);
 
-  font-family: var(--label-font);
-  font-size: 13px;
+  font-family: var(--title-font);
+  font-size: 18px;
   text-align: center;
   /* 先强制一行内显示文本 */
   white-space: nowrap;
@@ -29,17 +30,26 @@ export default {
   /* 文字用省略号代替超出的部分 */
   text-overflow: ellipsis;
 
-  border: 1px solid var(--assist-color);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.2);
+
+  cursor: pointer;
 }
 .post::before {
   content: "hot";
   position: absolute;
   display: block;
-  height: 15px;
-  line-height: 15px;
-  width: 25px;
+  height: 20px;
+  line-height: 20px;
+  width: 20px;
   left: 10px;
-  background-color: var(--assist-color);
-  font-size: 12px;
+  background-color: var(--accent-color);
+  color: var(--white-color);
+  font-size: 14px;
+  /* 猫咪头挂件效果 */
+  border-left: 5px solid var(--accent-color);
+  border-right: 5px solid var(--accent-color);
+  border-top: 5px solid var(--white-color);
+  border-radius: 5px;
 }
 </style>

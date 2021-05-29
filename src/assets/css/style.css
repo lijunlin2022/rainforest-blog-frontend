@@ -1,14 +1,16 @@
 :root {
-  --main-color: #000;
+  --main-color: #fff;
   --assist-color: #0aa679;
+  --accent-color: #e63657;
+  --secondary-color: #626675;
   --bg-color: #f0f2f5;
   --white-color: #fff;
-  --border-color: #ccc;
+  --black-color: #000;
+  --border-color: #eaecef;
   --form-title-color: #555;
   --input-bg-color: #f5f5f5;
   --input-font-color: #333;
   --link-color: #0366d6;
-  --title-font: Oswald, "Microsoft Yahei", Arial, Helvetica, sans-serif;
   --label-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --nav-font: Oswald, "方正姚体", Arial, Helvetica, sans-serif;
+  --title-font: Oswald, "方正姚体", Arial, Helvetica, sans-serif;
 }

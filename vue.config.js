@@ -12,4 +12,13 @@ module.exports = {
       },
     },
   },
+  // 修改  index.html 里面的 html-webpack-plugin 的值
+  chainWebpack: config => {
+    config.plugin("html")
+      .tap(args => {
+        args[0].title = "计算机专业资料分享";
+        return args;
+      });
+  },
+  productionSourceMap: false,
 };

@@ -57,6 +57,7 @@ export default {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 .blog-header .logo {
+  display: none;
   background-color: var(--assist-color);
   line-height: 60px;
   text-align: center;
@@ -74,7 +75,7 @@ export default {
   height: 60px;
   width: 100%;
   background-color: var(--bg-color);
-  font-family: var(--nav-font);
+  font-family: var(--title-font);
   font-size: 18px;
 }
 .blog-header .navbar input[type="checkbox"] {
@@ -86,7 +87,6 @@ export default {
   top: 10px;
   width: 40px;
   height: 40px;
-  background-color: var(--label-color);
 }
 .blog-header .navbar label::before,
 .blog-header .navbar label::after {
@@ -128,19 +128,20 @@ export default {
 }
 .blog-header .navbar ul li {
   width: 100%;
-  height: 60px;
+  height: 58px;
+  border-bottom: 2px solid var(--border-color);
   line-height: 60px;
   text-align: center;
   list-style: none;
   background-color: var(--main-color);
 }
 .blog-header .navbar ul li:hover {
-  background-color: var(--assist-color);
+  border-bottom: 2px solid var(--accent-color);
 }
 .blog-header .navbar ul li a {
   display: block;
   text-decoration: none;
-  color: var(--bg-color);
+  color: var(--black-color);
 }
 .blog-header .navbar input:checked ~ ul {
   opacity: 1;
@@ -148,6 +149,9 @@ export default {
 }
 /* pc 端导航栏 */
 @media screen and (min-width: 992px) {
+  .blog-header .logo {
+    display: block;
+  }
   .blog-header .navbar {
     background-color: var(--bg-color);
   }
@@ -159,7 +163,7 @@ export default {
     display: flex;
     opacity: 1;
     transform: scaleY(1);
-    justify-content: center;
+    justify-content: flex-end;
   }
   .blog-header .navbar ul li {
     width: 100px;
