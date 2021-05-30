@@ -70,8 +70,11 @@ export default {
 
 <style scoped>
 .blog-detail {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 98px auto 38px;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 .preview {
   min-height: calc(100vh - 120px);
@@ -82,5 +85,15 @@ export default {
   justify-content: space-around;
   margin-top: 20px;
   height: 40px;
+}
+::v-deep(h1),
+::v-deep(h2),
+::v-deep(h3),
+::v-deep(h4),
+::v-deep(h5),
+::v-deep(h6),
+::v-deep(strong),
+::v-deep(p) {
+  color: var(--secondary-color);
 }
 </style>

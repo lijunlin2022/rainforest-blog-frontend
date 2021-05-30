@@ -15,13 +15,13 @@ export default {
   position: relative;
   width: 258px;
   height: 89px;
-  margin: 5px 10px;
+  margin: 0 10px;
   padding: 0 10px;
   line-height: 90px;
   background-color: var(--white-color);
 
-  font-family: var(--title-font);
-  font-size: 18px;
+  font-family: var(--text-font);
+  font-size: 15.2px;
   text-align: center;
   /* 先强制一行内显示文本 */
   white-space: nowrap;
@@ -31,7 +31,8 @@ export default {
   text-overflow: ellipsis;
 
   border: 1px solid var(--border-color);
-  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 
   cursor: pointer;
 }

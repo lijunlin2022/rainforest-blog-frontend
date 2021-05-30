@@ -26,21 +26,22 @@ export default {
 <style scoped>
 .blog-article {
   margin-top: 40px;
-  max-width: 899px;
+  max-width: 871px;
+  padding: 28px;
   border: 1px solid var(--border-color);
-  border-radius: 5px;
-  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   margin: 30px auto;
-  background-color: var(--white-color);
 }
 
 .blog-article .title {
   height: 49px;
   line-height: 50px;
-  padding: 0 20px;
-  font-size: 23px;
-  font-family: var(--title-font);
-  text-align: center;
+  font-size: 21.28px;
+  font-family: var(--text-font);
+  font-weight: bold;
+  color: var(--secondary-color);
+  text-align: left;
   /* 先强制一行内显示文本 */
   white-space: nowrap;
   /* 超出部分隐藏 */
@@ -50,27 +51,24 @@ export default {
   border-bottom: 1px solid var(--border-color);
 }
 .blog-article .abstract {
-  padding: 10px;
-  font-size: 14px;
-  line-height: 25px;
+  margin: 15.2px 0;
+  font-size: 15.2px;
+  line-height: 2;
   color: var(--secondary-color);
 }
 .label-more-link {
-  height: 30px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  color: var(--third-color);
 }
 .blog-article .label {
-  width: 150px;
-  font-size: 13px;
-  font-family: var(--label-font);
+  font-size: 13.398px;
+  font-family: var(--text-font);
   text-align: center;
-  color: var(--secondary-color);
 }
 .blog-article .more-link {
-  width: 100px;
   text-align: center;
-  font-size: 13px;
+  font-size: 13.398px;
 }
 .blog-article .more-link ::v-deep(a) {
   text-decoration: none;

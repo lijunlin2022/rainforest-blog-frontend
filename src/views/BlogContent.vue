@@ -26,7 +26,7 @@
         {{ item.author }}
       </template>
       <template v-slot:link>
-        <a @click="handleReadMore(item.id)">点击阅读</a>
+        <a @click="handleReadMore(item.id)">Read more ></a>
       </template>
     </blog-article>
 
@@ -112,7 +112,7 @@ export default {
   min-height: calc(100vh - 60px);
 }
 .top-posts {
-  margin: 20px auto;
+  margin: 98px auto 38px;
   max-width: 900px;
   display: flex;
   justify-content: center;

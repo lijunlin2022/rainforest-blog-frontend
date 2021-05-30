@@ -10,9 +10,6 @@ export function timeDecode(time) {
     date.getMonth() + 1 < 10
       ? "0" + (date.getMonth() + 1)
       : date.getMonth() + 1;
-  let day = date.getDate();
-  let hour = date.getHours();
-  let minute =
-    date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-  return year + "/" + month + "/" + day + " " + hour + ":" + minute;
+  let day = date.getDate() + 1 < 10 ? "0" + date.getDate() : date.getDate();
+  return year + "/" + month + "/" + day;
 }

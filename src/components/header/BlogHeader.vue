@@ -65,7 +65,7 @@ export default {
 }
 .blog-header .logo a {
   text-decoration: none;
-  font-family: var(--title-font);
+  font-family: var(--text-font);
   font-weight: bold;
   color: var(--bg-color);
 }
@@ -75,7 +75,7 @@ export default {
   height: 60px;
   width: 100%;
   background-color: var(--bg-color);
-  font-family: var(--title-font);
+  font-family: var(--text-font);
   font-size: 18px;
 }
 .blog-header .navbar input[type="checkbox"] {
@@ -141,7 +141,7 @@ export default {
 .blog-header .navbar ul li a {
   display: block;
   text-decoration: none;
-  color: var(--black-color);
+  color: var(--secondary-color);
 }
 .blog-header .navbar input:checked ~ ul {
   opacity: 1;

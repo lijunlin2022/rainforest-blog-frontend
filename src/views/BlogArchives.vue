@@ -50,35 +50,30 @@ export default {
 
 <style scoped>
 .blog-archives {
-  max-width: 660px;
-  padding: 0 20px;
-  margin: 0 auto;
-  background-color: var(--white-color);
-  min-height: calc(100vh - 60px);
+  max-width: 871px;
+  margin: 98px auto 39px;
+  padding: 28px;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  min-height: calc(100vh - 98px);
 }
 .blog-archives .archives {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
-  border-left: 5px solid var(--assist-color);
-  margin-bottom: 15px;
-  transition: all 0.3s;
+  margin-bottom: 15.2px;
   cursor: pointer;
-}
-.blog-archives .archives:hover {
-  border-left: 7px solid var(--accent-color);
-}
-.blog-archives .archives .time {
-  margin: 5px 10px;
-  font-family: var(--nav-font);
+  font-family: var(--text-font);
   color: var(--secondary-color);
 }
 .blog-archives .archives .title {
-  margin: 0 10px;
+  margin: 0 15.2px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  color: var(--link-color);
-  font-family: var(--nav-font);
+}
+.blog-archives .archives .title:hover {
+  color: var(--accent-color);
 }
 </style>
