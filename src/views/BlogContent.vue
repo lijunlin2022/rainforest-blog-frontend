@@ -33,10 +33,10 @@
     <!------- 下一页 ------->
     <div class="paging">
       <blog-button v-if="hasNext" @click="handleNextBtn">
-        <template v-slot:default>更多</template>
+        <template v-slot:default>Next</template>
       </blog-button>
       <blog-button v-else>
-        <template v-slot:default>很高兴你看到这里，但是真的没有了...</template>
+        <template v-slot:default>No more...</template>
       </blog-button>
     </div>
   </div>

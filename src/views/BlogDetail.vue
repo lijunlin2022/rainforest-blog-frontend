@@ -6,12 +6,12 @@
     </div>
     <div class="paging">
       <!-- 如果 id 为 1, 则没有上一篇 -->
-      <blog-button @click="handlePreBtn">
-        <template v-slot:default>上一篇</template>
+      <blog-button @click="handlePreBtn" v-if="hasPrev">
+        <template v-slot:default>Prev</template>
       </blog-button>
       <!-- 如果 content 为 "", 则没有下一篇 -->
-      <blog-button @click="handleNextBtn">
-        <template v-slot:default>下一篇</template>
+      <blog-button @click="handleNextBtn" v-if="hasNext">
+        <template v-slot:default>Next</template>
       </blog-button>
     </div>
   </div>
@@ -30,6 +30,8 @@ export default {
     return {
       id: this.$route.query.id,
       content: "",
+      hasPrev: true,
+      hasNext: true,
     };
   },
   methods: {
@@ -41,6 +43,9 @@ export default {
         const res = result.data;
         console.log(res);
         this.content = htmlDecode(res.data.content);
+        if (res.data.id === 1) {
+          this.hasPrev = false;
+        }
       });
     },
     handlePreBtn() {

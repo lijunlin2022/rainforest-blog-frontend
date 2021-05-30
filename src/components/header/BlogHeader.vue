@@ -1,7 +1,7 @@
 <template>
   <div class="blog-header">
     <div class="logo">
-      <router-link to="/login">RainForest</router-link>
+      <router-link to="/login">Rainforest</router-link>
     </div>
     <div class="navbar">
       <input type="checkbox" id="nav" :checked="isActive" @click="toggle" />
@@ -62,6 +62,7 @@ export default {
   line-height: 60px;
   text-align: center;
   padding: 0 10px;
+  border-radius: 30px;
 }
 .blog-header .logo a {
   text-decoration: none;
@@ -151,9 +152,10 @@ export default {
 @media screen and (min-width: 992px) {
   .blog-header .logo {
     display: block;
+    margin-left: 200px;
   }
   .blog-header .navbar {
-    background-color: var(--bg-color);
+    margin-right: 200px;
   }
   .blog-header .navbar label {
     display: none;
