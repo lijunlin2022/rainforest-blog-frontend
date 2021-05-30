@@ -25,7 +25,7 @@ export default {
   height: 80px;
   font-size: 18px;
   text-align: center;
-  border: 1px solid var(--border-color);
+  color: var(--secondary-color);
 }
 .blog-switch tr td {
   width: 50%;
@@ -63,9 +63,9 @@ export default {
   left: 0;
   top: 0;
   transition: all 0.2s;
-  background-color: var(--main-color);
+  background-color: var(--assist-color);
 }
 .blog-switch label input:checked::before {
-  background-color: var(--assist-color);
+  background-color: var(--accent-color);
 }
 </style>

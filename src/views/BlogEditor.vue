@@ -119,17 +119,17 @@ export default {
 <style scoped>
 .blog-editor {
   min-height: 100vh;
-  background-color: var(--bg-color);
   overflow: hidden;
 }
 .blog-editor .admin-navbar {
   height: 60px;
   line-height: 60px;
-  background-color: var(--main-color);
+  background-color: var(--assist-color);
   color: var(--white-color);
-  font-family: var(--title-font);
+  font-family: var(--text-font);
   text-align: center;
-  font-size: 20px;
+  font-size: 21.28px;
+  font-weight: bold;
 }
 
 input[type="text"] {
@@ -144,11 +144,13 @@ button {
   height: 50px;
   min-width: 150px;
   max-width: 200px;
+  outline: none;
+  border: 1px solid var(--border-color);
   color: var(--bg-color);
-  background-color: var(--main-color);
+  background-color: var(--assist-color);
 }
 button:hover {
-  background-color: var(--assist-color);
+  background-color: var(--accent-color);
 }
 .md-editor {
   max-width: 100vw;
