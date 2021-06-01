@@ -1,7 +1,10 @@
 <template>
   <div class="blog-header">
     <div class="logo">
-      <router-link to="/login">Rainforest</router-link>
+      <span class="iconfont icon-huo-copy">&nbsp;</span>
+      <router-link to="/login">
+        <span>Rainforest</span>
+      </router-link>
     </div>
     <div class="navbar">
       <input type="checkbox" id="nav" :checked="isActive" @click="toggle" />
@@ -58,24 +61,28 @@ export default {
 }
 .blog-header .logo {
   display: none;
-  background-color: var(--assist-color);
   line-height: 60px;
   text-align: center;
   padding: 0 10px;
-  border-radius: 30px;
+  background-color: var(--white-color);
+}
+.blog-header .logo .iconfont {
+  color: var(--assist-color);
+  font-size: 21.28px;
 }
 .blog-header .logo a {
   text-decoration: none;
   font-family: var(--text-font);
   font-weight: bold;
-  color: var(--bg-color);
+  color: var(--assist-color);
+  font-size: 21.28px;
 }
 /* 导航栏 */
 .blog-header .navbar {
   position: relative;
   height: 60px;
   width: 100%;
-  background-color: var(--bg-color);
+  background-color: var(--white-color);
   font-family: var(--text-font);
   font-size: 18px;
 }

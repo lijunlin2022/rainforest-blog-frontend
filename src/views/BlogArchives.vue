@@ -6,7 +6,10 @@
       :key="item.id"
       @click="handleReadMore(item.id)"
     >
-      <div class="time">{{ correctTime(item.createtime) }}</div>
+      <div class="time">
+        <span class="iconfont icon-bianxie">&nbsp;</span>
+        {{ correctTime(item.createtime) }}
+      </div>
       <div class="title">{{ item.title }}</div>
     </div>
   </div>
@@ -67,13 +70,13 @@ export default {
   font-family: var(--text-font);
   color: var(--secondary-color);
 }
+.blog-archives .archives:hover {
+  color: var(--accent-color);
+}
 .blog-archives .archives .title {
   margin: 0 15.2px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-}
-.blog-archives .archives .title:hover {
-  color: var(--accent-color);
 }
 </style>

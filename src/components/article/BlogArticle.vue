@@ -8,6 +8,7 @@
     </div>
     <div class="label-more-link">
       <div class="label">
+        <span class="iconfont icon-bianxie">&nbsp;</span>
         <slot name="createtime"></slot>
       </div>
       <div class="more-link">

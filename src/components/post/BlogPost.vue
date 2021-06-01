@@ -1,6 +1,9 @@
 <template>
   <div class="post">
-    <slot></slot>
+    <span class="thumbtack iconfont icon-fix"></span>
+    <div class="title">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -36,21 +39,10 @@ export default {
 
   cursor: pointer;
 }
-.post::before {
-  content: "hot";
+.post .thumbtack {
   position: absolute;
-  display: block;
-  height: 20px;
-  line-height: 20px;
-  width: 20px;
-  left: 10px;
-  background-color: var(--accent-color);
-  color: var(--white-color);
-  font-size: 14px;
-  /* 猫咪头挂件效果 */
-  border-left: 5px solid var(--accent-color);
-  border-right: 5px solid var(--accent-color);
-  border-top: 5px solid var(--white-color);
-  border-radius: 5px;
+  bottom: 25px;
+  right: 15.2px;
+  color: var(--accent-color);
 }
 </style>
