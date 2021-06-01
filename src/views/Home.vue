@@ -26,7 +26,7 @@ export default {
 .main {
   width: 100%;
   margin-top: 60px;
-  background-color: var(--bg-color);
+  background-color: var(--main-color);
 }
 .sidebar {
   display: none;

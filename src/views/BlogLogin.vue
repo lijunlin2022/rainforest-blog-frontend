@@ -57,13 +57,11 @@ export default {
 
 <style scoped>
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 section {
   min-height: 100vh;
-  background-color: var(--bg-color);
+  background-color: var(--main-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,8 +71,8 @@ section .container {
   position: relative;
   width: 800px;
   height: 500px;
-  background-color: var(--white-color);
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  background-color: var(--main-color);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 section .container .user {
@@ -106,7 +104,7 @@ section .container .user .formBx {
   width: 50%;
   padding: 0 20px;
   height: 100%;
-  background-color: var(--white-color);
+  background-color: var(--main-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,14 +118,14 @@ section .container .user .formBx h2 {
   text-align: center;
   width: 100%;
   margin-bottom: 10px;
-  color: var(--form-title-color);
+  color: var(--secondary-color);
 }
 section .container .user .formBx input {
   position: relative;
   width: 100%;
   padding: 10px;
-  background-color: var(--input-bg-color);
-  color: var(--input-font-color);
+  background-color: var(--border-color);
+  color: var(--third-color);
   border: none;
   outline: none;
   box-shadow: none;
@@ -138,7 +136,7 @@ section .container .user .formBx input {
 section .container .user .formBx input[type="submit"] {
   max-width: 100px;
   background-color: var(--link-color);
-  color: var(--white-color);
+  color: var(--main-color);
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
@@ -147,7 +145,7 @@ section .container .user .formBx form .signup {
   position: relative;
   margin-top: 20px;
   font-size: 12px;
-  color: var(--form-title-color);
+  color: var(--secondary-color);
   text-transform: uppercase;
   font-weight: bold;
 }

@@ -64,7 +64,7 @@ export default {
   line-height: 60px;
   text-align: center;
   padding: 0 10px;
-  background-color: var(--white-color);
+  background-color: var(--main-color);
 }
 .blog-header .logo .iconfont {
   color: var(--assist-color);
@@ -82,7 +82,7 @@ export default {
   position: relative;
   height: 60px;
   width: 100%;
-  background-color: var(--white-color);
+  background-color: var(--main-color);
   font-family: var(--text-font);
   font-size: 18px;
 }

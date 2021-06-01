@@ -44,7 +44,7 @@
 
 <script>
 import { getHotBlogList, getBlogListByPage } from "@/api/blogs.js";
-import { timeDecode } from "@/utils/timeUtils.js";
+import { getYearMonthDay } from "@/utils/timeUtils.js";
 import BlogArticle from "@/components/article/BlogArticle.vue";
 import BlogButton from "@/components/button/BlogButton.vue";
 import BlogPost from "@/components/post/BlogPost.vue";
@@ -89,7 +89,7 @@ export default {
       });
     },
     correctTime(time) {
-      return timeDecode(time);
+      return getYearMonthDay(time);
     },
     handleReadMore(id) {
       this.$router.push({

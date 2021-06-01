@@ -6,18 +6,17 @@
       :key="item.id"
       @click="handleReadMore(item.id)"
     >
-      <div class="time">
-        <span class="iconfont icon-bianxie">&nbsp;</span>
-        {{ correctTime(item.createtime) }}
-      </div>
       <div class="title">{{ item.title }}</div>
+      <div class="time">
+        <span>{{ correctTime(item.createtime) }}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { getBlogList } from "@/api/blogs.js";
-import { timeDecode } from "@/utils/timeUtils.js";
+import { getMonthDay } from "@/utils/timeUtils.js";
 
 export default {
   name: "BlogArchives",
@@ -42,7 +41,7 @@ export default {
       });
     },
     correctTime(time) {
-      return timeDecode(time);
+      return getMonthDay(time);
     },
   },
   created() {
@@ -64,7 +63,8 @@ export default {
 .blog-archives .archives {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
+  flex-wrap: nowrap;
   margin-bottom: 15.2px;
   cursor: pointer;
   font-family: var(--text-font);
@@ -78,5 +78,8 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+.blog-archives .archives .time {
+  min-width: 50px;
 }
 </style>

@@ -46,7 +46,7 @@ export default {
   height: 40px;
   left: 5px;
   top: 4px;
-  background-color: var(--white-color);
+  background-color: var(--main-color);
   border-radius: 50%;
   transition: all 0.2s;
 }

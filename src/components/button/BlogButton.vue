@@ -16,7 +16,7 @@ export default {
   margin: 0 20px;
   font-size: 15.2px;
   font-family: var(--text-font);
-  background-color: var(--bg-color);
+  background-color: var(--main-color);
   color: var(--secondary-color);
   outline: none;
   border: 1px solid var(--border-color);

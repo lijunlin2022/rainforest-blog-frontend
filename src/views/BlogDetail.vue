@@ -83,7 +83,7 @@ export default {
 }
 .preview {
   min-height: calc(100vh - 120px);
-  background-color: var(--white-color);
+  background-color: var(--main-color);
 }
 .paging {
   display: flex;

@@ -21,7 +21,7 @@ export default {
   margin: 0 10px;
   padding: 0 10px;
   line-height: 90px;
-  background-color: var(--white-color);
+  background-color: var(--main-color);
 
   font-family: var(--text-font);
   font-size: 15.2px;

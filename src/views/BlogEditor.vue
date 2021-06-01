@@ -125,7 +125,7 @@ export default {
   height: 60px;
   line-height: 60px;
   background-color: var(--assist-color);
-  color: var(--white-color);
+  color: var(--main-color);
   font-family: var(--text-font);
   text-align: center;
   font-size: 21.28px;
@@ -146,7 +146,7 @@ button {
   max-width: 200px;
   outline: none;
   border: 1px solid var(--border-color);
-  color: var(--bg-color);
+  color: var(--main-color);
   background-color: var(--assist-color);
 }
 button:hover {
