@@ -24,7 +24,7 @@ export default {
       navItems: [
         { path: "/overview", title: "Overview", id: null },
         { path: "/notebookList", title: "Notebooks", id: null },
-        { path: "/articles", title: "Articles", id: null },
+        { path: "/list", title: "Articles", id: null },
         { path: "/friends", title: "Friends", id: null },
       ],
     };

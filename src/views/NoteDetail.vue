@@ -67,7 +67,7 @@ export default {
     },
     goBack() {
       this.$router.push({
-        path: "/notebook",
+        path: "/notebookDetail",
         query: {
           id: this.pid,
         },

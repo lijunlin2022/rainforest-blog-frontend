@@ -82,7 +82,7 @@ export default {
   methods: {
     openNotebook(id) {
       this.$router.push({
-        path: "/notebook",
+        path: "/notebookDetail",
         query: { id },
       });
     },
