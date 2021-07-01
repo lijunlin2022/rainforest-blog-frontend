@@ -64,7 +64,7 @@ import BlogFile from "@/components/file/BlogFile.vue";
 import BlogButton from "@/components/button/BlogButton.vue";
 
 export default {
-  name: "BlogOverview",
+  name: "Overview",
   components: {
     BlogDirectory,
     BlogFile,

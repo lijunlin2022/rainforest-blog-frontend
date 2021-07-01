@@ -2,7 +2,7 @@
   <div class="blog-detail">
     <header>
       <div class="title">
-        <div>
+        <div @click="changeMenu('/admin/edit')">
           <span class="iconfont icon-edit"></span>
           <span class>edit</span>
         </div>
@@ -22,7 +22,7 @@
           <span class="iconfont icon-update"></span>
           <span>{{ correctTime(updated_time) }}</span>
         </div>
-        <div>
+        <div @click="goBack">
           <span class="iconfont icon-back"></span>
           <span>go back</span>
         </div>
@@ -39,15 +39,12 @@
 import { getBlogDetail } from "@/api/blogs.js";
 import { htmlDecode } from "@/utils/htmlUtils.js";
 import { getYearMonthDay } from "@/utils/timeUtils.js";
-// import BlogButton from "@/components/button/BlogButton.vue";
 
 export default {
-  components: {
-    // BlogButton,
-  },
   data() {
     return {
       id: null,
+      pid: null,
       updated_time: null,
       created_time: null,
       content: "",
@@ -60,11 +57,28 @@ export default {
     copyCodeSuccess() {
       alert("复制成功");
     },
+    changeMenu(path) {
+      this.$router.push({
+        path,
+        query: {
+          id: this.$route.query.id,
+        },
+      });
+    },
+    goBack() {
+      this.$router.push({
+        path: "/notebook",
+        query: {
+          id: this.pid,
+        },
+      });
+    },
   },
   created() {
     getBlogDetail(this.$route.query.id).then((result) => {
       const res = result.data;
       this.id = res.data.id;
+      this.pid = res.data.pid;
       this.updated_time = res.data.updated_time;
       this.created_time = res.data.created_time;
       this.content = htmlDecode(res.data.content);

@@ -8,12 +8,12 @@
     </div>
     <div class="label-more-link">
       <div class="label">
-        <span class="icon-create"></span>
+        <span class="dot-create"></span>
         <span> create </span>
         <slot name="createdTime"></slot>
       </div>
       <div class="label">
-        <span class="icon-update"></span>
+        <span class="dot-update"></span>
         <span> update </span>
         <slot name="updatedTime"></slot>
       </div>
@@ -65,8 +65,8 @@ export default {
   flex-wrap: wrap;
   color: var(--third-color);
 }
-.icon-create,
-.icon-update {
+.dot-create,
+.dot-update {
   position: relative;
   top: 1px;
   display: inline-block;
@@ -74,12 +74,12 @@ export default {
   width: 12px;
   border-radius: 50%;
 }
-.icon-create {
+.dot-create {
   border: 1px solid #40c463;
   background-color: #40c463;
   color: #40c463;
 }
-.icon-update {
+.dot-update {
   border: 1px solid #e34c26;
   background-color: #e34c26;
   color: #e34c26;

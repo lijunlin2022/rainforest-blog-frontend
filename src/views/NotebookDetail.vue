@@ -3,8 +3,8 @@
     <!-- 笔记本中的所有文章 -->
     <header>
       <div class="row-head">
-        <div class="title">
-          <span>TITLE</span>
+        <div class="name">
+          <span>NAME</span>
         </div>
         <div class="time">
           <div class="created-time">
@@ -21,9 +21,19 @@
         v-bind:key="item.id"
         @click="openBlog(item.id)"
       >
-        <div class="title">
-          <span class="iconfont icon-file"></span>
-          <span>&nbsp;</span>
+        <div class="name">
+          <span
+            class="iconfont icon-file"
+            style="padding-right: 5px; color: #00a1e3"
+            v-if="item.title !== 'README'"
+          >
+          </span>
+          <span
+            class="iconfont icon-file"
+            style="padding-right: 5px; color: #fe898a"
+            v-else
+          >
+          </span>
           <span>{{ item.title }}</span>
         </div>
         <div class="time">
@@ -40,9 +50,10 @@
     <!-- README 文档 -->
     <section>
       <div class="title">
-        <span class="iconfont icon-edit"></span>
-        <span>&nbsp;</span>
-        <span>README.md</span>
+        <div @click="addBlog">
+          <span class="iconfont icon-add"></span>
+          <span>新增文章</span>
+        </div>
       </div>
       <div class="preview">
         <v-md-preview :text="content" @copy-code-success="copyCodeSuccess()">
@@ -55,8 +66,9 @@
 <script>
 import { getBlogsList, getBlogDetail } from "@/api/blogs.js";
 import { getYearMonthDay } from "@/utils/timeUtils.js";
+import { htmlDecode } from "@/utils/htmlUtils.js";
 export default {
-  name: "BlogNotebook",
+  name: "NotebookDetail",
   data() {
     return {
       fileData: [],
@@ -70,7 +82,7 @@ export default {
     });
     getBlogDetail(null, this.$route.query.id, "README").then((result) => {
       const res = result.data;
-      this.content = res.data.content;
+      this.content = htmlDecode(res.data.content);
     });
   },
   methods: {
@@ -81,6 +93,14 @@ export default {
       this.$router.push({
         path: "/detail",
         query: { id },
+      });
+    },
+    addBlog() {
+      this.$router.push({
+        path: "/admin/edit",
+        query: {
+          pid: this.$route.query.id,
+        },
       });
     },
   },
@@ -118,16 +138,6 @@ header .row-body:hover {
   background-color: #fafafa;
 }
 
-/* 标题 */
-.title {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  min-width: 150px;
-}
-.icon-file {
-  color: #79b8ff;
-}
 /* 时间 */
 .time {
   display: flex;
@@ -149,12 +159,23 @@ section {
   margin-top: 30px;
   border: 1px solid #d1d5da;
 }
-section .icon-edit {
-  color: #fe898a;
-}
 section .title {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding: 20px;
   border-bottom: 1px solid #ebedef;
   color: #6a737d;
+}
+section .title div {
+  width: 100px;
+  padding: 5px;
+}
+section .title div span {
+  margin: 0 2px;
+}
+section .icon-add {
+  color: #ffa500;
 }
 </style>

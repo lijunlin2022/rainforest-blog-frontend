@@ -12,6 +12,7 @@
       <input type="text" v-model="blogData.abstract" placeholder="请输入摘要" />
       <div class="btn-container">
         <a-button type="primary" @click="handleNewBlog">提交</a-button>
+        <a-button type="primary" @click="goBackNotebook">回到笔记本</a-button>
       </div>
     </main>
   </div>
@@ -20,10 +21,11 @@
 <script>
 import { createNewBlog, getBlogDetail, updateBlog } from "@/api/blogs.js";
 export default {
-  name: "BlogEditor",
+  name: "AdminEditor",
   data() {
     return {
-      id: this.$route.query.id,
+      id: null,
+      pid: null,
       blogData: {
         title: "",
         abstract: "",
@@ -65,22 +67,25 @@ export default {
         }
       });
     },
-    handleReturn() {
-      this.$router.replace("/");
+    goBackNotebook() {
+      this.$router.push({
+        path: "/notebook",
+        query: {
+          id: this.$route.query.pid,
+        },
+      });
     },
   },
   created() {
-    if (this.id) {
-      getBlogDetail(this.id).then((result) => {
+    const { id, pid } = this.$route.query;
+    if (id) {
+      getBlogDetail(id).then((result) => {
         const res = result.data;
         this.blogData = res.data;
-        if (this.blogData.ishot === 1) {
-          this.blogData.ishot = true;
-        }
-        if (this.blogData.isinterface === 1) {
-          this.blogData.isinterface = true;
-        }
       });
+    }
+    if (pid) {
+      this.blogData.content = "# 请输入博客内容\n";
     }
   },
 };
@@ -103,6 +108,9 @@ input[type="text"] {
   padding: 20px;
   display: flex;
   justify-content: flex-end;
+}
+.btn-container > button {
+  margin: 5px;
 }
 .md-editor {
   width: 100%;

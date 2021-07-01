@@ -9,18 +9,18 @@ const routes = [
     children: [
       {
         path: "/overview",
-        name: "BlogOverview",
-        component: () => import("@/views/BlogOverview.vue"),
+        name: "Overview",
+        component: () => import("@/views/Overview.vue"),
       },
       {
         path: "/notebook",
-        name: "BlogNotebook",
-        component: () => import("@/views/BlogNotebook.vue"),
+        name: "NotebookDetail",
+        component: () => import("@/views/NotebookDetail.vue"),
       },
       {
         path: "/detail",
-        name: "BlogDetail",
-        component: () => import("@/views/BlogDetail.vue"),
+        name: "NoteDetail",
+        component: () => import("@/views/NoteDetail.vue"),
       },
       {
         path: "/archives",
@@ -35,20 +35,20 @@ const routes = [
     ],
   },
   {
-    path: "/manage",
-    name: "BlogManage",
-    component: () => import("@/views/BlogManage.vue"),
-    redirect: "/edit",
+    path: "/admin/manage",
+    name: "AdminManage",
+    component: () => import("@/views/admin/AdminManage.vue"),
+    redirect: "/admin/notebook",
     children: [
       {
-        path: "/notebook",
+        path: "/admin/notebook",
         name: "AdminNotebook",
         component: () => import("@/views/admin/AdminNotebook.vue"),
       },
       {
-        path: "/edit",
-        name: "BlogEditor",
-        component: () => import("@/views/BlogEditor.vue"),
+        path: "/admin/edit",
+        name: "AminEditor",
+        component: () => import("@/views/admin/AdminEditor.vue"),
       },
     ],
   },
