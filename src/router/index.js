@@ -34,8 +34,8 @@ const routes = [
       },
       {
         path: "/archives",
-        name: "BlogArchives",
-        component: () => import("@/views/BlogArchives.vue"),
+        name: "Archives",
+        component: () => import("@/views/Archives.vue"),
       },
       {
         path: "/interface",
@@ -50,11 +50,6 @@ const routes = [
     component: () => import("@/views/admin/AdminManage.vue"),
     redirect: "/admin/notebook",
     children: [
-      {
-        path: "/admin/notebook",
-        name: "AdminNotebook",
-        component: () => import("@/views/admin/AdminNotebook.vue"),
-      },
       {
         path: "/admin/edit",
         name: "AminEditor",

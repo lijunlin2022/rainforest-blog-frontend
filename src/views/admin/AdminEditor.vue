@@ -11,47 +11,53 @@
       <v-md-editor class="md-editor" v-model="blogData.content"></v-md-editor>
       <input type="text" v-model="blogData.abstract" placeholder="请输入摘要" />
       <div class="btn-container">
-        <a-button type="primary" @click="handleNewBlog">提交</a-button>
-        <a-button type="primary" @click="goBackNotebook">回到笔记本</a-button>
+        <a-button type="primary" @click="submit">提交</a-button>
+        <a-button type="primary" @click="goBack">返回</a-button>
       </div>
     </main>
   </div>
 </template>
 
 <script>
-import { createNewBlog, getBlogDetail, updateBlog } from "@/api/blogs.js";
+import { newBlog, getBlogDetail, updateBlog } from "@/api/blogs.js";
 export default {
   name: "AdminEditor",
   data() {
     return {
-      id: null,
-      pid: null,
       blogData: {
+        pid: null,
         title: "",
         abstract: "",
-        cover: "",
         content: "",
       },
     };
   },
   methods: {
-    handleNewBlog() {
-      if (this.blogData.content === "") {
-        alert("输入为空, 不可以发送博客");
-        return;
-      }
-      if (this.id) {
-        alert("只允许修改博客, 不允许新建博客");
-        return;
-      }
-      createNewBlog(this.blogData).then((result) => {
-        const res = result.data;
-        if (res.errno === 0) {
-          alert("发送成功");
+    submit() {
+      if (
+        this.blogData.content !== "" &&
+        this.blogData.title !== "" &&
+        this.blogData.abstract !== ""
+      ) {
+        // 有 id 证明是更新操作
+        const id = this.$route.query.id;
+        if (id) {
+          updateBlog(id, this.blogData).then((result) => {
+            if (result.data.code === 200) {
+              alert("更新成功");
+            }
+          });
         } else {
-          alert("发送失败");
+          // 没有 id 证明是新增操作
+          this.blogData.pid = this.$route.query.pid;
+          newBlog(this.blogData).then((result) => {
+            if (result.data.code === 200) {
+              alert("新增成功");
+            }
+          });
         }
-      });
+      }
+      alert("提交失败");
     },
     handleUpdateBlog() {
       if (this.blogData.content === "") {
@@ -67,13 +73,8 @@ export default {
         }
       });
     },
-    goBackNotebook() {
-      this.$router.push({
-        path: "/notebook",
-        query: {
-          id: this.$route.query.pid,
-        },
-      });
+    goBack() {
+      this.$router.go(-1);
     },
   },
   created() {

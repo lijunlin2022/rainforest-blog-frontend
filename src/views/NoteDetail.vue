@@ -66,12 +66,7 @@ export default {
       });
     },
     goBack() {
-      this.$router.push({
-        path: "/notebookDetail",
-        query: {
-          id: this.pid,
-        },
-      });
+      this.$router.go(-1);
     },
   },
   created() {

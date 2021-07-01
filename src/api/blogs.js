@@ -40,6 +40,31 @@ export function getBlogDetail(id, pid, title) {
   });
 }
 
+/**
+ * @param {Object} blogData
+ * @returns
+ */
+export function newBlog(blogData) {
+  return request({
+    url: "/blog/new",
+    method: "post",
+    data: blogData,
+  });
+}
+
+/**
+ * @param {Number} id
+ * @param {Object} blogData
+ * @returns
+ */
+export function updateBlog(id, blogData) {
+  return request({
+    url: `/blog/update?id=${id}`,
+    method: "post",
+    data: blogData,
+  });
+}
+
 export function getIdSetOfInterfaces() {
   return request({
     url: "/blog/interfaces",
@@ -55,22 +80,6 @@ export function getBlogListByPage(current, size) {
       current,
       size,
     },
-  });
-}
-
-export function createNewBlog(blogData) {
-  return request({
-    url: "/blog/new",
-    method: "post",
-    data: blogData,
-  });
-}
-
-export function updateBlog(id, blogData) {
-  return request({
-    url: `/blog/update?id=${id}`,
-    method: "post",
-    data: blogData,
   });
 }
 

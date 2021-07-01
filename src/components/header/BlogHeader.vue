@@ -26,6 +26,7 @@ export default {
         { path: "/notebookList", title: "Notebooks", id: null },
         { path: "/list", title: "Articles", id: null },
         { path: "/friends", title: "Friends", id: null },
+        { path: "/archives", title: "Archives", id: null },
       ],
     };
   },
