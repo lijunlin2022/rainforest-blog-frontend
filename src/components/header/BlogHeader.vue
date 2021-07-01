@@ -1,7 +1,6 @@
 <template>
   <div class="blog-header">
     <div class="logo">
-      <span class="iconfont icon-huo-copy">&nbsp;</span>
       <router-link to="/login">Rainforest</router-link>
     </div>
     <div class="navbar">
@@ -23,8 +22,10 @@ export default {
     return {
       isActive: false,
       navItems: [
-        { path: "/overview", title: "首页", id: null },
-        { path: "/archives", title: "归档", id: null },
+        { path: "/overview", title: "Overview", id: null },
+        { path: "/notebookList", title: "Notebooks", id: null },
+        { path: "/articles", title: "Articles", id: null },
+        { path: "/friends", title: "Friends", id: null },
       ],
     };
   },
@@ -44,22 +45,18 @@ export default {
   width: 100%;
   z-index: 3;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  background-color: #24292a;
 }
 .blog-header .logo {
   display: none;
   line-height: 60px;
   text-align: center;
   padding: 0 10px;
-  background-color: var(--main-color);
-}
-.blog-header .logo .iconfont {
-  color: var(--assist-color);
-  font-size: 21.28px;
 }
 .blog-header .logo a {
   text-decoration: none;
   font-style: italic;
-  color: var(--assist-color);
+  color: #1890ff;
   font-size: 21.28px;
 }
 /* 导航栏 */
@@ -67,7 +64,6 @@ export default {
   position: relative;
   height: 60px;
   width: 100%;
-  background-color: var(--main-color);
   font-family: var(--text-font);
   font-size: 18px;
 }
@@ -88,7 +84,7 @@ export default {
   width: 30px;
   height: 4px;
   right: 5px;
-  background-color: var(--assist-color);
+  background-color: #1890ff;
   transition: transform 0.3s ease-out, 0.3s top ease-out;
 }
 .blog-header .navbar label::before {
@@ -112,8 +108,6 @@ export default {
   position: relative;
   top: 60px;
   width: 100%;
-  background-color: var(--main-color);
-
   transform: scaleY(0);
   transform-origin: 50% 0;
   opacity: 0;
@@ -125,15 +119,15 @@ export default {
   line-height: 60px;
   text-align: center;
   list-style: none;
-  background-color: var(--main-color);
-}
-.blog-header .navbar ul li:hover {
-  border-bottom: 2px solid var(--accent-color);
+  background-color: #24292a;
 }
 .blog-header .navbar ul li a {
   display: block;
   text-decoration: none;
-  color: var(--secondary-color);
+  color: #a6adb4;
+}
+.blog-header .navbar ul li a:hover {
+  color: #fff;
 }
 .blog-header .navbar input:checked ~ ul {
   opacity: 1;
@@ -143,10 +137,7 @@ export default {
 @media screen and (min-width: 992px) {
   .blog-header .logo {
     display: block;
-    margin-left: 200px;
-  }
-  .blog-header .navbar {
-    margin-right: 200px;
+    margin: 0 200px;
   }
   .blog-header .navbar label {
     display: none;
@@ -157,9 +148,6 @@ export default {
     opacity: 1;
     transform: scaleY(1);
     justify-content: flex-end;
-  }
-  .blog-header .navbar ul li {
-    width: 100px;
   }
 }
 </style>

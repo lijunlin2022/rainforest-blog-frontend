@@ -6,6 +6,7 @@
     <div class="main">
       <router-view />
     </div>
+    <a-back-top />
   </div>
 </template>
 
