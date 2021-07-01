@@ -5,12 +5,17 @@ const routes = [
     path: "/",
     name: "Home",
     component: () => import("@/views/Home.vue"),
-    redirect: "/content",
+    redirect: "/overview",
     children: [
       {
-        path: "/content",
-        name: "BlogContent",
-        component: () => import("@/views/BlogContent.vue"),
+        path: "/overview",
+        name: "BlogOverview",
+        component: () => import("@/views/BlogOverview.vue"),
+      },
+      {
+        path: "/notebook",
+        name: "BlogNotebook",
+        component: () => import("@/views/BlogNotebook.vue"),
       },
       {
         path: "/detail",
@@ -30,9 +35,22 @@ const routes = [
     ],
   },
   {
-    path: "/edit",
-    name: "BlogEditor",
-    component: () => import("@/views/BlogEditor.vue"),
+    path: "/manage",
+    name: "BlogManage",
+    component: () => import("@/views/BlogManage.vue"),
+    redirect: "/edit",
+    children: [
+      {
+        path: "/notebook",
+        name: "AdminNotebook",
+        component: () => import("@/views/admin/AdminNotebook.vue"),
+      },
+      {
+        path: "/edit",
+        name: "BlogEditor",
+        component: () => import("@/views/BlogEditor.vue"),
+      },
+    ],
   },
   {
     path: "/login",

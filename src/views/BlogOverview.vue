@@ -5,10 +5,10 @@
       <span>Popular Notebooks</span>
     </div>
     <div class="notebooks">
-      <blog-notebook
+      <blog-directory
         v-for="item in notebooksData"
         :key="item.id"
-        @click="handleReadMore(item.id)"
+        @click="openNotebook(item.id)"
       >
         <template v-slot:name>
           {{ item.name }}
@@ -16,7 +16,7 @@
         <template v-slot:description>
           {{ item.description }}
         </template>
-      </blog-notebook>
+      </blog-directory>
     </div>
 
     <!------- 文章列表 ------->
@@ -24,7 +24,7 @@
       <span>Recent Articles</span>
     </div>
     <div class="articles">
-      <blog-article v-for="item in articleData" :key="item.id">
+      <blog-file v-for="item in articleData" :key="item.id">
         <template v-slot:title>
           {{ item.title }}
         </template>
@@ -38,9 +38,9 @@
           {{ correctTime(item.updated_time) }}
         </template>
         <template v-slot:link>
-          <a @click="handleReadMore(item.id)">Read more ></a>
+          <a @click="openBlog(item.id)">Read more ></a>
         </template>
-      </blog-article>
+      </blog-file>
     </div>
 
     <!------- 下一页 ------->
@@ -56,18 +56,18 @@
 </template>
 
 <script>
-import { getLatestUpdatedBlogsList } from "@/api/blogs.js";
-import { getLatestUpdatedNotebooksList } from "@/api/notebooks.js";
+import { getBlogsList } from "@/api/blogs.js";
+import { getNotebooksList } from "@/api/notebooks.js";
 import { getYearMonthDay } from "@/utils/timeUtils.js";
-import BlogNotebook from "@/components/notebook/BlogNotebook.vue";
-import BlogArticle from "@/components/article/BlogArticle.vue";
+import BlogDirectory from "@/components/directory/BlogDirectory.vue";
+import BlogFile from "@/components/file/BlogFile.vue";
 import BlogButton from "@/components/button/BlogButton.vue";
 
 export default {
-  name: "BlogContent",
+  name: "BlogOverview",
   components: {
-    BlogNotebook,
-    BlogArticle,
+    BlogDirectory,
+    BlogFile,
     BlogButton,
   },
   data() {
@@ -80,21 +80,33 @@ export default {
     };
   },
   methods: {
+    openNotebook(id) {
+      this.$router.push({
+        path: "/notebook",
+        query: { id },
+      });
+    },
+    openBlog(id) {
+      this.$router.push({
+        path: "/detail",
+        query: { id },
+      });
+    },
     handleGetHotBlogList() {
-      getLatestUpdatedNotebooksList(0, 6).then((result) => {
+      getNotebooksList(0, 6).then((result) => {
         const res = result.data;
         this.notebooksData = res.data;
       });
     },
     handleGetListByPage() {
-      getLatestUpdatedBlogsList(this.current, this.size).then((result) => {
+      getBlogsList(null, this.current, this.size).then((result) => {
         const res = result.data;
         this.articleData = res.data;
       });
     },
     handleNextBtn() {
       this.current++;
-      getLatestUpdatedBlogsList(this.current, this.size).then((result) => {
+      getBlogsList(null, this.current, this.size).then((result) => {
         const res = result.data;
         this.articleData.push(...res.data);
         if (res.data.length < this.size) {
@@ -129,6 +141,7 @@ export default {
 .tips {
   margin: 78px auto 18px;
   max-width: 900px;
+  padding: 0 16px;
   color: var(--secondary-color);
 }
 .notebooks {

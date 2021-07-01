@@ -1,5 +1,4 @@
 /**
- * 传入时间戳，传出时间
  * @param {Number} time
  * @returns
  */

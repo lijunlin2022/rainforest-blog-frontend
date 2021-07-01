@@ -1,5 +1,5 @@
 <template>
-  <div class="notebook">
+  <div class="directory">
     <div class="name">
       <slot name="name"></slot>
     </div>
@@ -11,12 +11,12 @@
 
 <script>
 export default {
-  name: "BlogNotebook",
+  name: "BlogDirectory",
 };
 </script>
 
 <style scoped>
-.notebook {
+.directory {
   box-sizing: border-box;
   width: 280px;
   margin: 10px;
@@ -30,7 +30,7 @@ export default {
   cursor: pointer;
 }
 
-.notebook .name {
+.name {
   height: 30px;
   line-height: 30px;
   text-align: left;
@@ -43,7 +43,7 @@ export default {
   color: #0366d6;
 }
 
-.notebook .description {
+.description {
   height: 40px;
   margin: 10px 0;
   font-size: 12px;

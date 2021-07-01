@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { getBlogList } from "@/api/blogs.js";
+import { getBlogsList } from "@/api/blogs.js";
 import { getMonthDay } from "@/utils/timeUtils.js";
 
 export default {
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     handleGetBlogList() {
-      getBlogList().then((result) => {
+      getBlogsList().then((result) => {
         const res = result.data;
         this.archiveData = res.data;
       });

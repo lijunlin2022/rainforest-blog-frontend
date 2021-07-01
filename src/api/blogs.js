@@ -1,19 +1,41 @@
 import { request } from "../utils/request";
 
-export function getBlogList() {
+/**
+ * @param {Number} pid
+ * @param {Number} current
+ * @param {Number} size
+ * @param {String} author
+ * @param {String} keyword
+ * @returns
+ */
+export function getBlogsList(pid, current, size, author, keyword) {
   return request({
     url: "/blog/list",
     method: "get",
+    params: {
+      pid,
+      current,
+      size,
+      author,
+      keyword,
+    },
   });
 }
 
-export function getLatestUpdatedBlogsList(current, size) {
+/**
+ * @param {Number} id
+ * @param {Number} pid
+ * @param {String} title
+ * @returns
+ */
+export function getBlogDetail(id, pid, title) {
   return request({
-    url: "/blog/page",
+    url: "/blog/detail",
     method: "get",
     params: {
-      current,
-      size,
+      id,
+      pid,
+      title,
     },
   });
 }
@@ -32,16 +54,6 @@ export function getBlogListByPage(current, size) {
     params: {
       current,
       size,
-    },
-  });
-}
-
-export function getBlogDetail(id) {
-  return request({
-    url: "/blog/detail",
-    method: "get",
-    params: {
-      id,
     },
   });
 }

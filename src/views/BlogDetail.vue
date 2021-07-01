@@ -1,18 +1,36 @@
 <template>
   <div class="blog-detail">
+    <header>
+      <div class="title">
+        <div>
+          <span class="iconfont icon-edit"></span>
+          <span class>edit</span>
+        </div>
+        <div class="div">
+          <span class="iconfont icon-view"></span>
+          <span>浏览量</span>
+        </div>
+        <div class="div">
+          <span class="iconfont icon-comment"></span>
+          <span>评论</span>
+        </div>
+        <div>
+          <span class="iconfont icon-time"></span>
+          <span>{{ correctTime(created_time) }}</span>
+        </div>
+        <div>
+          <span class="iconfont icon-update"></span>
+          <span>{{ correctTime(updated_time) }}</span>
+        </div>
+        <div>
+          <span class="iconfont icon-back"></span>
+          <span>go back</span>
+        </div>
+      </div>
+    </header>
     <div class="preview">
       <v-md-preview :text="content" @copy-code-success="copyCodeSuccess()">
       </v-md-preview>
-    </div>
-    <div class="paging">
-      <!-- 如果 id 为 1, 则没有上一篇 -->
-      <blog-button @click="handlePreBtn" v-if="hasPrev">
-        <template v-slot:default>Prev</template>
-      </blog-button>
-      <!-- 如果 content 为 "", 则没有下一篇 -->
-      <blog-button @click="handleNextBtn" v-if="hasNext">
-        <template v-slot:default>Next</template>
-      </blog-button>
     </div>
   </div>
 </template>
@@ -20,69 +38,85 @@
 <script>
 import { getBlogDetail } from "@/api/blogs.js";
 import { htmlDecode } from "@/utils/htmlUtils.js";
-import BlogButton from "@/components/button/BlogButton.vue";
+import { getYearMonthDay } from "@/utils/timeUtils.js";
+// import BlogButton from "@/components/button/BlogButton.vue";
 
 export default {
   components: {
-    BlogButton,
+    // BlogButton,
   },
   data() {
     return {
-      id: this.$route.query.id,
+      id: null,
+      updated_time: null,
+      created_time: null,
       content: "",
-      hasPrev: true,
-      hasNext: true,
     };
   },
   methods: {
+    correctTime(time) {
+      return getYearMonthDay(time);
+    },
     copyCodeSuccess() {
       alert("复制成功");
     },
-    handleGetDetail() {
-      getBlogDetail(this.id).then((result) => {
-        const res = result.data;
-        console.log(res);
-        this.content = htmlDecode(res.data.content);
-        if (res.data.id === 1) {
-          this.hasPrev = false;
-        }
-      });
-    },
-    handlePreBtn() {
-      this.$router.push({
-        path: "/detail",
-        query: {
-          id: --this.id,
-        },
-      });
-      this.handleGetDetail();
-    },
-    handleNextBtn() {
-      this.$router.push({
-        path: "/detail",
-        query: {
-          id: ++this.id,
-        },
-      });
-      this.handleGetDetail();
-    },
   },
   created() {
-    this.handleGetDetail();
+    getBlogDetail(this.$route.query.id).then((result) => {
+      const res = result.data;
+      this.id = res.data.id;
+      this.updated_time = res.data.updated_time;
+      this.created_time = res.data.created_time;
+      this.content = htmlDecode(res.data.content);
+    });
   },
 };
 </script>
 
 <style scoped>
 .blog-detail {
+  box-sizing: border-box;
   max-width: 900px;
-  margin: 98px auto 38px;
+  margin: 100px auto 30px;
   padding: 10px;
   border: 1px solid var(--border-color);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
+.title {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  padding: 0 20px;
+  color: #6a737d;
+  font-size: 14px;
+}
+.title div {
+  width: 100px;
+  padding: 5px;
+}
+.title div span {
+  margin: 0 2px;
+}
+.title .icon-edit {
+  color: #fe898a;
+}
+.title .icon-view {
+  color: #2166d6;
+}
+.title .icon-comment {
+  color: #ffd33d;
+}
+.title .icon-time {
+  color: #d15704;
+}
+.title .icon-update {
+  color: #28a745;
+}
+.title .icon-back {
+  color: #e34c26;
+}
 .preview {
-  min-height: calc(100vh - 120px);
   background-color: var(--main-color);
 }
 .paging {
@@ -90,15 +124,5 @@ export default {
   justify-content: space-around;
   margin-top: 20px;
   height: 40px;
-}
-::v-deep(h1),
-::v-deep(h2),
-::v-deep(h3),
-::v-deep(h4),
-::v-deep(h5),
-::v-deep(h6),
-::v-deep(strong),
-::v-deep(p) {
-  color: var(--secondary-color);
 }
 </style>

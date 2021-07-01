@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-article">
+  <div class="blog-file">
     <div class="title">
       <slot name="title"></slot>
     </div>
@@ -26,12 +26,12 @@
 
 <script>
 export default {
-  name: "BlogArticle",
+  name: "BlogFile",
 };
 </script>
 
 <style scoped>
-.blog-article {
+.blog-file {
   box-sizing: border-box;
   max-width: 900px;
   padding: 16px;
@@ -53,7 +53,7 @@ export default {
   text-overflow: ellipsis; /* 文字用省略号代替超出的部分 */
   border-bottom: 1px solid var(--border-color);
 }
-.blog-article .abstract {
+.abstract {
   margin: 12px 0;
   font-size: 12px;
   line-height: 2;
@@ -84,19 +84,19 @@ export default {
   background-color: #e34c26;
   color: #e34c26;
 }
-.blog-article .label {
+.label {
   margin: 8px 8px 0 0;
   font-size: 12px;
   font-family: var(--text-font);
   text-align: center;
 }
-.blog-article .more-link {
+.more-link {
   margin: 8px 8px 0 0;
   font-size: 12px;
   font-family: var(--text-font);
   text-align: center;
 }
-.blog-article .more-link ::v-deep(a) {
+.more-link ::v-deep(a) {
   text-decoration: none;
   font-weight: bold;
   color: #0366d6;

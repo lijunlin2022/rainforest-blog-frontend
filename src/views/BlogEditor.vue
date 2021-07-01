@@ -1,6 +1,5 @@
 <template>
   <div class="blog-editor">
-    <div class="admin-navbar">编辑文章</div>
     <aside class="sidebar"></aside>
     <main>
       <input
@@ -10,32 +9,9 @@
         placeholder="请输入标题"
       />
       <v-md-editor class="md-editor" v-model="blogData.content"></v-md-editor>
-      <input type="text" v-model="blogData.abstract" placeholder="摘要" />
-      <input type="text" v-model="blogData.cover" placeholder="头图 URL" />
-      <blog-switch>
-        <template v-slot:title>
-          <span>置顶</span>
-        </template>
-        <template v-slot:checkbox>
-          <input type="checkbox" class="checkbox" v-model="blogData.ishot" />
-        </template>
-      </blog-switch>
-      <blog-switch>
-        <template v-slot:title>
-          <span>设置为独立界面</span>
-        </template>
-        <template v-slot:checkbox>
-          <input
-            type="checkbox"
-            class="checkbox"
-            v-model="blogData.isinterface"
-          />
-        </template>
-      </blog-switch>
+      <input type="text" v-model="blogData.abstract" placeholder="请输入摘要" />
       <div class="btn-container">
-        <button @click="handleNewBlog">提交</button>
-        <button @click="handleUpdateBlog">修改</button>
-        <button @click="handleReturn">查看效果</button>
+        <a-button type="primary" @click="handleNewBlog">提交</a-button>
       </div>
     </main>
   </div>
@@ -43,12 +19,8 @@
 
 <script>
 import { createNewBlog, getBlogDetail, updateBlog } from "@/api/blogs.js";
-import BlogSwitch from "@/components/switch/BlogSwitch.vue";
 export default {
   name: "BlogEditor",
-  components: {
-    BlogSwitch,
-  },
   data() {
     return {
       id: this.$route.query.id,
@@ -57,8 +29,6 @@ export default {
         abstract: "",
         cover: "",
         content: "",
-        ishot: false,
-        isinterface: false,
       },
     };
   },
@@ -118,43 +88,27 @@ export default {
 
 <style scoped>
 .blog-editor {
-  min-height: 100vh;
-  overflow: hidden;
+  box-sizing: border-box;
 }
-.blog-editor .admin-navbar {
-  height: 60px;
-  line-height: 60px;
-  background-color: var(--assist-color);
-  color: var(--main-color);
-  font-family: var(--text-font);
-  text-align: center;
-  font-size: 21.28px;
-  font-weight: bold;
-}
-
 input[type="text"] {
-  width: 100vw;
-  height: 120px;
+  height: 30px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #d1d5da;
   outline: none;
-  border: 1px solid var(--border-color);
-  text-align: center;
-  font-size: 18px;
+  text-align: left;
+  font-size: 14px;
 }
-button {
-  height: 50px;
-  min-width: 150px;
-  max-width: 200px;
-  outline: none;
-  border: 1px solid var(--border-color);
-  color: var(--main-color);
-  background-color: var(--assist-color);
-}
-button:hover {
-  background-color: var(--accent-color);
+.btn-container {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
 }
 .md-editor {
-  max-width: 100vw;
+  width: 100%;
   min-height: 500px;
+  box-shadow: none;
+  border: 1px solid #d1d5da;
 }
 .md-editor ::v-deep(.v-md-editor__toolbar) {
   display: none;

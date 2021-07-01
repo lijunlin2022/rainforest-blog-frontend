@@ -17,15 +17,13 @@
 </template>
 
 <script>
-import { getIdSetOfInterfaces } from "@/api/blogs.js";
-
 export default {
   name: "BlogHeader",
   data() {
     return {
       isActive: false,
       navItems: [
-        { path: "/content", title: "首页", id: null },
+        { path: "/overview", title: "首页", id: null },
         { path: "/archives", title: "归档", id: null },
       ],
     };
@@ -34,16 +32,6 @@ export default {
     toggle() {
       this.isActive = !this.isActive;
     },
-  },
-  created() {
-    getIdSetOfInterfaces().then((result) => {
-      const res = result.data;
-      let newItems = res.data;
-      for (let item of newItems) {
-        item.path = "/interface?id=" + item.id;
-      }
-      this.navItems.push(...newItems);
-    });
   },
 };
 </script>
