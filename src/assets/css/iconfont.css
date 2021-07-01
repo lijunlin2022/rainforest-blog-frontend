@@ -1,8 +1,6 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 2582781 */
-  src: url('//at.alicdn.com/t/font_2582781_ikfu9rvvuim.woff2?t=1622466149488') format('woff2'),
-       url('//at.alicdn.com/t/font_2582781_ikfu9rvvuim.woff?t=1622466149488') format('woff'),
-       url('//at.alicdn.com/t/font_2582781_ikfu9rvvuim.ttf?t=1622466149488') format('truetype');
+  font-family: "iconfont"; /* Project id  */
+  src: url('iconfont.ttf?t=1625106157372') format('truetype');
 }
 
 .iconfont {
@@ -13,14 +11,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-bianxie:before {
-  content: "\e622";
+.icon-update:before {
+  content: "\e674";
 }
 
-.icon-fix:before {
-  content: "\e607";
+.icon-create:before {
+  content: "\e679";
 }
 
-.icon-huo-copy:before {
-  content: "\e600";
-}

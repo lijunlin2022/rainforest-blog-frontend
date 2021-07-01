@@ -2,9 +2,7 @@
   <div class="blog-header">
     <div class="logo">
       <span class="iconfont icon-huo-copy">&nbsp;</span>
-      <router-link to="/login">
-        <span>Rainforest</span>
-      </router-link>
+      <router-link to="/login">Rainforest</router-link>
     </div>
     <div class="navbar">
       <input type="checkbox" id="nav" :checked="isActive" @click="toggle" />
@@ -72,8 +70,7 @@ export default {
 }
 .blog-header .logo a {
   text-decoration: none;
-  font-family: var(--text-font);
-  font-weight: bold;
+  font-style: italic;
   color: var(--assist-color);
   font-size: 21.28px;
 }
@@ -136,8 +133,7 @@ export default {
 }
 .blog-header .navbar ul li {
   width: 100%;
-  height: 58px;
-  border-bottom: 2px solid var(--border-color);
+  height: 60px;
   line-height: 60px;
   text-align: center;
   list-style: none;

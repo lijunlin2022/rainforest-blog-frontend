@@ -7,10 +7,14 @@ export function getBlogList() {
   });
 }
 
-export function getHotBlogList() {
+export function getLatestUpdatedBlogsList(current, size) {
   return request({
-    url: "/blog/hot",
+    url: "/blog/page",
     method: "get",
+    params: {
+      current,
+      size,
+    },
   });
 }
 

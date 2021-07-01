@@ -1,4 +1,6 @@
 :root {
+  --color-header-bg: #24292a;
+  --color-text-white: #fff;
   --main-color: #fff;
   --assist-color: #0aa679;
   --accent-color: #e63657;

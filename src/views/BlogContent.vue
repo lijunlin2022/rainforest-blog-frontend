@@ -1,34 +1,47 @@
 <template>
   <div class="blog-content">
-    <!------- 热点文章 ------->
-    <div class="top-posts">
-      <blog-post
-        v-for="item in postData"
+    <!------- 笔记本 ------->
+    <div class="tips">
+      <span>Popular Notebooks</span>
+    </div>
+    <div class="notebooks">
+      <blog-notebook
+        v-for="item in notebooksData"
         :key="item.id"
         @click="handleReadMore(item.id)"
       >
-        <template v-slot:default>
-          {{ item.title }}
+        <template v-slot:name>
+          {{ item.name }}
         </template>
-      </blog-post>
+        <template v-slot:description>
+          {{ item.description }}
+        </template>
+      </blog-notebook>
     </div>
 
     <!------- 文章列表 ------->
-    <blog-article v-for="item in articleData" :key="item.id">
-      <template v-slot:title>
-        {{ item.title }}
-      </template>
-      <template v-slot:abstract>
-        {{ item.abstract }}
-      </template>
-      <template v-slot:createtime>
-        {{ correctTime(item.createtime) }}
-        {{ item.author }}
-      </template>
-      <template v-slot:link>
-        <a @click="handleReadMore(item.id)">Read more ></a>
-      </template>
-    </blog-article>
+    <div class="tips">
+      <span>Recent Articles</span>
+    </div>
+    <div class="articles">
+      <blog-article v-for="item in articleData" :key="item.id">
+        <template v-slot:title>
+          {{ item.title }}
+        </template>
+        <template v-slot:abstract>
+          {{ item.abstract }}
+        </template>
+        <template v-slot:createdTime>
+          {{ correctTime(item.created_time) }}
+        </template>
+        <template v-slot:updatedTime>
+          {{ correctTime(item.updated_time) }}
+        </template>
+        <template v-slot:link>
+          <a @click="handleReadMore(item.id)">Read more ></a>
+        </template>
+      </blog-article>
+    </div>
 
     <!------- 下一页 ------->
     <div class="paging">
@@ -43,44 +56,45 @@
 </template>
 
 <script>
-import { getHotBlogList, getBlogListByPage } from "@/api/blogs.js";
+import { getLatestUpdatedBlogsList } from "@/api/blogs.js";
+import { getLatestUpdatedNotebooksList } from "@/api/notebooks.js";
 import { getYearMonthDay } from "@/utils/timeUtils.js";
+import BlogNotebook from "@/components/notebook/BlogNotebook.vue";
 import BlogArticle from "@/components/article/BlogArticle.vue";
 import BlogButton from "@/components/button/BlogButton.vue";
-import BlogPost from "@/components/post/BlogPost.vue";
 
 export default {
   name: "BlogContent",
   components: {
+    BlogNotebook,
     BlogArticle,
     BlogButton,
-    BlogPost,
   },
   data() {
     return {
       current: 0,
       size: 5,
       hasNext: true,
-      postData: [],
+      notebooksData: [],
       articleData: [],
     };
   },
   methods: {
     handleGetHotBlogList() {
-      getHotBlogList().then((result) => {
+      getLatestUpdatedNotebooksList(0, 6).then((result) => {
         const res = result.data;
-        this.postData = res.data;
+        this.notebooksData = res.data;
       });
     },
     handleGetListByPage() {
-      getBlogListByPage(this.current, this.size).then((result) => {
+      getLatestUpdatedBlogsList(this.current, this.size).then((result) => {
         const res = result.data;
         this.articleData = res.data;
       });
     },
     handleNextBtn() {
       this.current++;
-      getBlogListByPage(this.current, this.size).then((result) => {
+      getLatestUpdatedBlogsList(this.current, this.size).then((result) => {
         const res = result.data;
         this.articleData.push(...res.data);
         if (res.data.length < this.size) {
@@ -109,14 +123,27 @@ export default {
 
 <style scoped>
 .blog-content {
+  box-sizing: border-box;
   min-height: calc(100vh - 60px);
 }
-.top-posts {
-  margin: 98px auto 38px;
+.tips {
+  margin: 78px auto 18px;
+  max-width: 900px;
+  color: var(--secondary-color);
+}
+.notebooks {
+  margin: 30px auto 8px;
   max-width: 900px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  font-size: 14px;
+}
+.articles {
+  margin: 30px auto;
+  max-width: 900px;
+  /* display: flex;
+  flex-direction: column; */
 }
 .paging {
   display: flex;

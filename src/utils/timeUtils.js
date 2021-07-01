@@ -11,7 +11,7 @@ export function getYearMonthDay(time) {
       ? "0" + (date.getMonth() + 1)
       : date.getMonth() + 1;
   let day = date.getDate() + 1 < 10 ? "0" + date.getDate() : date.getDate();
-  return year + "-" + month + "-" + day;
+  return year + ":" + month + ":" + day;
 }
 
 export function getMonthDay(time) {
@@ -21,5 +21,5 @@ export function getMonthDay(time) {
       ? "0" + (date.getMonth() + 1)
       : date.getMonth() + 1;
   let day = date.getDate() + 1 < 10 ? "0" + date.getDate() : date.getDate();
-  return month + "-" + day;
+  return month + ":" + day;
 }
