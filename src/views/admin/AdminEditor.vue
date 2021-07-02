@@ -57,7 +57,6 @@ export default {
           });
         }
       }
-      alert("提交失败");
     },
     handleUpdateBlog() {
       if (this.blogData.content === "") {

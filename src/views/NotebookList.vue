@@ -7,11 +7,11 @@
         @change="onChange"
       >
       </a-input-search>
-      <a-button type="primary" @click="addNotebook">New</a-button>
+      <a-button type="primary">New</a-button>
     </header>
-    <a-list item-layout="vertical" size="large" :data-source="listData">
+    <a-list item-layout="vertical" :data-source="listData">
       <template #renderItem="{ item }">
-        <a-list-item key="item.name">
+        <a-list-item key="item.name" @click="openNotebook(item.id)">
           <a-list-item-meta :description="item.description">
             <template #title>
               <a>{{ item.name }}</a>
@@ -45,6 +45,15 @@ export default {
         this.listData = res.data;
       });
     },
+    openNotebook(id) {
+      console.log(id);
+      this.$router.push({
+        path: "/notebookDetail",
+        query: {
+          id,
+        },
+      });
+    },
   },
 };
 </script>
@@ -52,7 +61,7 @@ export default {
 <style scoped>
 .notebook-list {
   box-sizing: border-box;
-  max-width: 600px;
+  max-width: 500px;
   margin: 80px auto;
 }
 header {

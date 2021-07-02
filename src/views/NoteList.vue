@@ -7,11 +7,10 @@
         @change="onChange"
       >
       </a-input-search>
-      <a-button type="primary" @click="addNote">New</a-button>
     </header>
-    <a-list item-layout="vertical" size="large" :data-source="listData">
+    <a-list item-layout="vertical" :data-source="listData">
       <template #renderItem="{ item }">
-        <a-list-item key="item.title">
+        <a-list-item key="item.title" @click="openNote(item.id)">
           <a-list-item-meta :description="item.abstract">
             <template #title>
               <a>{{ item.title }}</a>
@@ -45,6 +44,14 @@ export default {
         this.listData = res.data;
       });
     },
+    openNote(id) {
+      this.$router.push({
+        path: "/detail",
+        query: {
+          id,
+        },
+      });
+    },
   },
 };
 </script>
@@ -54,12 +61,5 @@ export default {
   box-sizing: border-box;
   max-width: 600px;
   margin: 80px auto;
-}
-header {
-  display: flex;
-  flex-direction: row;
-}
-header > button {
-  margin: 0 10px;
 }
 </style>
