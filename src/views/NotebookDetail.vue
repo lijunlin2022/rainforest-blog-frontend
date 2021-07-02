@@ -1,6 +1,10 @@
 <template>
   <div class="blog-notebook">
     <!-- 笔记本中的所有文章 -->
+    <div class="notebook">
+      <div class="name">{{ notebookData.name }}</div>
+      <div class="description">{{ notebookData.description }}</div>
+    </div>
     <header>
       <div class="row-head">
         <div class="name">
@@ -65,22 +69,28 @@
 
 <script>
 import { getBlogsList, getBlogDetail } from "@/api/blogs.js";
+import { getNotebookDetail } from "@/api/notebooks.js";
 import { getYearMonthDay } from "@/utils/timeUtils.js";
 import { htmlDecode } from "@/utils/htmlUtils.js";
 export default {
   name: "NotebookDetail",
   data() {
     return {
+      notebookData: {},
       fileData: [],
       content: "There is no README.md",
     };
   },
   created() {
-    getBlogsList(this.$route.query.id).then((result) => {
+    const id = this.$route.query.id;
+    getNotebookDetail(id).then((result) => {
+      this.notebookData = result.data.data;
+    });
+    getBlogsList(id).then((result) => {
       const res = result.data;
       this.fileData = res.data;
     });
-    getBlogDetail(null, this.$route.query.id, "README").then((result) => {
+    getBlogDetail(null, id, "README").then((result) => {
       const res = result.data;
       this.content = htmlDecode(res.data.content);
     });
@@ -110,9 +120,20 @@ export default {
 <style scoped>
 .blog-notebook {
   max-width: 900px;
-  margin: 100px auto 30px;
+  margin: 60px auto 30px;
   min-height: calc(100vh - 130px - 60px);
   padding: 20px;
+}
+.notebook .name {
+  margin-bottom: 5px;
+  font-size: 20px;
+  color: #000;
+  font-weight: bold;
+}
+.notebook .description {
+  margin-bottom: 25px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.45);
 }
 header {
   margin-top: 10px;

@@ -17,3 +17,13 @@ export function getNotebooksList(current, size, keyword) {
     },
   });
 }
+
+export function getNotebookDetail(id) {
+  return request({
+    url: "/notebook/detail",
+    method: "get",
+    params: {
+      id,
+    },
+  });
+}
