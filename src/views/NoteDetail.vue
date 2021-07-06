@@ -2,9 +2,9 @@
   <div class="blog-detail">
     <header>
       <div class="title">
-        <div @click="changeMenu('/admin/edit')">
+        <div @click="changeMenu('/admin/note')">
           <span class="iconfont icon-edit"></span>
-          <span class>edit</span>
+          <span class>编辑文章</span>
         </div>
         <div class="div">
           <span class="iconfont icon-view"></span>

@@ -58,6 +58,10 @@
           <span class="iconfont icon-add"></span>
           <span>新增文章</span>
         </div>
+        <div @click="openNotebook">
+          <span class="iconfont icon-edit"></span>
+          <span class>编辑仓库</span>
+        </div>
       </div>
       <div class="preview">
         <v-md-preview :text="content" @copy-code-success="copyCodeSuccess()">
@@ -78,7 +82,7 @@ export default {
     return {
       notebookData: {},
       fileData: [],
-      content: "There is no README.md",
+      content: "# There is No README.md",
     };
   },
   created() {
@@ -107,9 +111,17 @@ export default {
     },
     addBlog() {
       this.$router.push({
-        path: "/admin/edit",
+        path: "/admin/note",
         query: {
           pid: this.$route.query.id,
+        },
+      });
+    },
+    openNotebook() {
+      this.$router.push({
+        path: "/admin/notebook",
+        query: {
+          id: this.$route.query.id,
         },
       });
     },
@@ -137,7 +149,7 @@ export default {
 }
 header {
   margin-top: 10px;
-  border: 1px solid #d1d5da;
+  border-radius: 20px;
 }
 header .row-head,
 header .row-body {
@@ -178,7 +190,8 @@ header .row-body:hover {
 /* README */
 section {
   margin-top: 30px;
-  border: 1px solid #d1d5da;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
 }
 section .title {
   display: flex;
@@ -198,5 +211,8 @@ section .title div span {
 }
 section .icon-add {
   color: #ffa500;
+}
+section .icon-edit {
+  color: #fe898a;
 }
 </style>

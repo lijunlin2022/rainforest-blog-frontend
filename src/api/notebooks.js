@@ -18,6 +18,10 @@ export function getNotebooksList(current, size, keyword) {
   });
 }
 
+/**
+ * @param {Number} id
+ * @returns
+ */
 export function getNotebookDetail(id) {
   return request({
     url: "/notebook/detail",
@@ -25,5 +29,30 @@ export function getNotebookDetail(id) {
     params: {
       id,
     },
+  });
+}
+
+/**
+ * @param {Object} notebookData
+ * @returns
+ */
+export function newNotebook(notebookData) {
+  return request({
+    url: "/notebook/new",
+    method: "post",
+    data: notebookData,
+  });
+}
+
+/**
+ * @param {Number} id
+ * @param {Object} notebookData
+ * @returns
+ */
+export function updateNotebook(id, notebookData) {
+  return request({
+    url: `/notebook/update?id=${id}`,
+    method: "post",
+    data: notebookData,
   });
 }

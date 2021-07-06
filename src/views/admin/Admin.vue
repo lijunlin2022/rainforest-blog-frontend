@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-manage">
+  <div class="admin">
     <a-layout>
       <a-layout-sider breakpoint="lg" collapsed-width="0">
         <div class="logo" />
@@ -8,7 +8,7 @@
             <folder-open-outlined />
             <span class="nav-text">新建笔记本</span>
           </a-menu-item>
-          <a-menu-item key="2" @click="changeMenu('/admin/edit')">
+          <a-menu-item key="2" @click="changeMenu('/admin/note')">
             <upload-outlined />
             <span class="nav-text">新建博客</span>
           </a-menu-item>

@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-editor">
+  <div class="admin-note">
     <aside class="sidebar"></aside>
     <main>
       <input
@@ -21,7 +21,7 @@
 <script>
 import { newBlog, getBlogDetail, updateBlog } from "@/api/blogs.js";
 export default {
-  name: "AdminEditor",
+  name: "AdminNote",
   data() {
     return {
       blogData: {
@@ -92,7 +92,7 @@ export default {
 </script>
 
 <style scoped>
-.blog-editor {
+.admin-note {
   box-sizing: border-box;
 }
 input[type="text"] {
