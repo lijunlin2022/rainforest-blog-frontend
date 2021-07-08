@@ -7,7 +7,9 @@
         @change="onChange"
       >
       </a-input-search>
-      <a-button type="primary">New</a-button>
+      <router-link :to="{ path: '/admin/notebook' }">
+        <a-button type="primary">New</a-button>
+      </router-link>
     </header>
     <a-list item-layout="vertical" :data-source="listData">
       <template #renderItem="{ item }">
@@ -68,7 +70,7 @@ header {
   display: flex;
   flex-direction: row;
 }
-header > button {
+header button {
   margin: 0 10px;
 }
 </style>

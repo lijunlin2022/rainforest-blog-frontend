@@ -82,7 +82,7 @@ export default {
     return {
       notebookData: {},
       fileData: [],
-      content: "# There is No README.md",
+      content: "# There is No README.md\n",
     };
   },
   created() {

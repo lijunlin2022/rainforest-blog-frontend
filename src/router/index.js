@@ -37,11 +37,6 @@ const routes = [
         name: "Archives",
         component: () => import("@/views/Archives.vue"),
       },
-      {
-        path: "/interface",
-        name: "BlogInterface",
-        component: () => import("@/views/BlogInterface.vue"),
-      },
     ],
   },
   {
@@ -49,6 +44,9 @@ const routes = [
     name: "Admin",
     component: () => import("@/views/admin/Admin.vue"),
     redirect: "/admin/notebook",
+    meta: {
+      requireAuth: true,
+    },
     children: [
       {
         path: "/admin/notebook",
@@ -72,6 +70,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to) => {
+  if (to.meta.requireAuth) {
+    return {
+      path: "/login",
+    };
+  }
 });
 
 export default router;
