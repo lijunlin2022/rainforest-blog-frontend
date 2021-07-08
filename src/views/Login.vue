@@ -5,11 +5,19 @@
         <div class="user signinBx">
           <div class="imgBx"><img src="../assets/img/1.webp" alt="" /></div>
           <div class="formBx">
-            <form action="">
+            <form>
               <h2>登录</h2>
-              <input type="text" placeholder="Username" />
-              <input type="password" placeholder="Password" />
-              <input type="submit" value="Login" />
+              <input
+                type="text"
+                v-model="userData.username"
+                placeholder="Username"
+              />
+              <input
+                type="password"
+                v-model="userData.password"
+                placeholder="Password"
+              />
+              <input type="button" value="Login" @click="handleLogin" />
               <p class="signup">
                 没有账号 ?<a @click="toggleForm()">注册</a> 或
                 <router-link to="/">直接浏览</router-link>
@@ -19,13 +27,13 @@
         </div>
         <div class="user signupBx">
           <div class="formBx">
-            <form action="">
+            <form>
               <h2>创建账号</h2>
               <input type="text" placeholder="Username" />
               <input type="eamil" placeholder="Username" />
               <input type="password" placeholder="Create Password" />
               <input type="password" placeholder="Confirm Password" />
-              <input type="submit" value="Sign Up" />
+              <input type="button" value="Sign Up" />
               <p class="signup">
                 已有账号 ?<a @click="toggleForm()">登录</a> 或
                 <router-link to="/">直接浏览</router-link>
@@ -40,14 +48,29 @@
 </template>
 
 <script>
+import { login } from "../api/users.js";
 export default {
-  name: "BlogLogin",
+  name: "Login",
   data() {
     return {
       isActive: false,
+      userData: {
+        username: "",
+        password: "",
+      },
     };
   },
   methods: {
+    handleLogin() {
+      login(this.userData).then((res) => {
+        if (res.data.code !== 200) {
+          alert(res.data.message);
+        } else {
+          console.log("登录成功");
+          this.$router.replace("/overview");
+        }
+      });
+    },
     toggleForm() {
       this.isActive = !this.isActive;
     },
@@ -133,7 +156,7 @@ section .container .user .formBx input {
   margin: 8px 0;
   font-size: 14px;
 }
-section .container .user .formBx input[type="submit"] {
+section .container .user .formBx input[type="button"] {
   max-width: 100px;
   background-color: var(--link-color);
   color: var(--main-color);
