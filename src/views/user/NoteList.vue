@@ -10,7 +10,7 @@
     </header>
     <a-list item-layout="vertical" :data-source="listData">
       <template #renderItem="{ item }">
-        <a-list-item key="item.title" @click="openNote(item.id)">
+        <a-list-item key="item.title" @click="$utils.changeRoute('/detail', item.id)">
           <a-list-item-meta :description="item.abstract">
             <template #title>
               <a>{{ item.title }}</a>
@@ -33,23 +33,13 @@ export default {
   },
   created() {
     getBlogsList().then((result) => {
-      const res = result.data;
-      this.listData = res.data;
+      this.listData = result.data.data;
     });
   },
   methods: {
     onChange() {
       getBlogsList(null, null, null, null, this.searchValue).then((result) => {
-        const res = result.data;
-        this.listData = res.data;
-      });
-    },
-    openNote(id) {
-      this.$router.push({
-        path: "/detail",
-        query: {
-          id,
-        },
+        this.listData = result.data.data;
       });
     },
   },

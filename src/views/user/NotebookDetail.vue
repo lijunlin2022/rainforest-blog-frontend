@@ -23,7 +23,7 @@
         class="row-body"
         v-for="item in fileData"
         v-bind:key="item.id"
-        @click="openBlog(item.id)"
+        @click="$utils.changeRoute('/detail', item.id)"
       >
         <div class="name">
           <span
@@ -42,10 +42,10 @@
         </div>
         <div class="time">
           <div class="created-time">
-            <span>{{ correctTime(item.created_time) }}</span>
+            <span>{{ $utils.getYearMonthDay(item.created_time) }}</span>
           </div>
           <div class="updated-time">
-            <span>{{ correctTime(item.updated_time) }}</span>
+            <span>{{ $utils.getYearMonthDay(item.updated_time) }}</span>
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@
           <span class="iconfont icon-add"></span>
           <span>新增文章</span>
         </div>
-        <div @click="openNotebook">
+        <div @click="$utils.changeRoute('/admin/notebook', id)">
           <span class="iconfont icon-edit"></span>
           <span class>编辑仓库</span>
         </div>
@@ -74,54 +74,34 @@
 <script>
 import { getBlogsList, getBlogDetail } from "@/api/blogs.js";
 import { getNotebookDetail } from "@/api/notebooks.js";
-import { getYearMonthDay } from "@/utils/timeUtils.js";
-import { htmlDecode } from "@/utils/htmlUtils.js";
 export default {
   name: "NotebookDetail",
   data() {
     return {
+      id: null,
       notebookData: {},
       fileData: [],
       content: "# There is No README.md\n",
     };
   },
   created() {
-    const id = this.$route.query.id;
-    getNotebookDetail(id).then((result) => {
+    this.id = this.$route.query.id;
+    getNotebookDetail(this.id).then((result) => {
       this.notebookData = result.data.data;
     });
-    getBlogsList(id).then((result) => {
-      const res = result.data;
-      this.fileData = res.data;
+    getBlogsList(this.id).then((result) => {
+      this.fileData = result.data.data;
     });
-    getBlogDetail(null, id, "README").then((result) => {
-      const res = result.data;
-      this.content = htmlDecode(res.data.content);
+    getBlogDetail(null, this.id, "README").then((result) => {
+      this.content = this.$utils.htmlDecode(result.data.data.content);
     });
   },
   methods: {
-    correctTime(time) {
-      return getYearMonthDay(time);
-    },
-    openBlog(id) {
-      this.$router.push({
-        path: "/detail",
-        query: { id },
-      });
-    },
     addBlog() {
       this.$router.push({
         path: "/admin/note",
         query: {
           pid: this.$route.query.id,
-        },
-      });
-    },
-    openNotebook() {
-      this.$router.push({
-        path: "/admin/notebook",
-        query: {
-          id: this.$route.query.id,
         },
       });
     },

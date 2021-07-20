@@ -4,38 +4,38 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import("@/views/Home.vue"),
+    component: () => import("@/views/user/Home.vue"),
     redirect: "/overview",
     children: [
       {
         path: "/overview",
         name: "Overview",
-        component: () => import("@/views/Overview.vue"),
+        component: () => import("@/views/user/Overview.vue"),
       },
       {
         path: "/notebookList",
         name: "NotebookList",
-        component: () => import("@/views/NotebookList.vue"),
+        component: () => import("@/views/user/NotebookList.vue"),
       },
       {
         path: "/notebookDetail",
         name: "NotebookDetail",
-        component: () => import("@/views/NotebookDetail.vue"),
+        component: () => import("@/views/user/NotebookDetail.vue"),
       },
       {
         path: "/list",
         name: "NoteList",
-        component: () => import("@/views/NoteList.vue"),
+        component: () => import("@/views/user/NoteList.vue"),
       },
       {
         path: "/detail",
         name: "NoteDetail",
-        component: () => import("@/views/NoteDetail.vue"),
+        component: () => import("@/views/user/NoteDetail.vue"),
       },
       {
         path: "/archives",
         name: "Archives",
-        component: () => import("@/views/Archives.vue"),
+        component: () => import("@/views/user/Archives.vue"),
       },
     ],
   },
@@ -63,7 +63,7 @@ const routes = [
   {
     path: "/login",
     name: "Login",
-    component: () => import("@/views/Login.vue"),
+    component: () => import("@/views/user/Login.vue"),
   },
 ];
 
@@ -72,12 +72,12 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to) => {
-  if (to.meta.requireAuth) {
-    return {
-      path: "/login",
-    };
-  }
-});
+// router.beforeEach((to) => {
+//   if (to.meta.requireAuth) {
+//     return {
+//       path: "/login",
+//     };
+//   }
+// });
 
 export default router;

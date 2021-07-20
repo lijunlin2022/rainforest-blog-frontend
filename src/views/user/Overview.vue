@@ -8,7 +8,7 @@
       <blog-directory
         v-for="item in notebooksData"
         :key="item.id"
-        @click="openNotebook(item.id)"
+        @click="$utils.changeRoute('/notebookDetail', item.id)"
       >
         <template v-slot:name>
           {{ item.name }}
@@ -32,13 +32,13 @@
           {{ item.abstract }}
         </template>
         <template v-slot:createdTime>
-          {{ correctTime(item.created_time) }}
+          {{ $utils.getYearMonthDay(item.created_time) }}
         </template>
         <template v-slot:updatedTime>
-          {{ correctTime(item.updated_time) }}
+          {{ $utils.getYearMonthDay(item.updated_time) }}
         </template>
         <template v-slot:link>
-          <a @click="openBlog(item.id)">Read more ></a>
+          <a @click="$utils.changeRoute('/detail', item.id)">Read more ></a>
         </template>
       </blog-file>
     </div>
@@ -58,7 +58,6 @@
 <script>
 import { getBlogsList } from "@/api/blogs.js";
 import { getNotebooksList } from "@/api/notebooks.js";
-import { getYearMonthDay } from "@/utils/timeUtils.js";
 import BlogDirectory from "@/components/directory/BlogDirectory.vue";
 import BlogFile from "@/components/file/BlogFile.vue";
 import BlogButton from "@/components/button/BlogButton.vue";
@@ -80,18 +79,6 @@ export default {
     };
   },
   methods: {
-    openNotebook(id) {
-      this.$router.push({
-        path: "/notebookDetail",
-        query: { id },
-      });
-    },
-    openBlog(id) {
-      this.$router.push({
-        path: "/detail",
-        query: { id },
-      });
-    },
     handleGetHotBlogList() {
       getNotebooksList(0, 6).then((result) => {
         const res = result.data;
@@ -112,17 +99,6 @@ export default {
         if (res.data.length < this.size) {
           this.hasNext = false;
         }
-      });
-    },
-    correctTime(time) {
-      return getYearMonthDay(time);
-    },
-    handleReadMore(id) {
-      this.$router.push({
-        path: "/detail",
-        query: {
-          id: id,
-        },
       });
     },
   },

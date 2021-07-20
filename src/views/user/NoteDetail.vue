@@ -2,7 +2,7 @@
   <div class="blog-detail">
     <header>
       <div class="title">
-        <div @click="changeMenu('/admin/note')">
+        <div @click="$utils.changeRoute('/admin/note', id)">
           <span class="iconfont icon-edit"></span>
           <span class>编辑文章</span>
         </div>
@@ -16,13 +16,13 @@
         </div>
         <div>
           <span class="iconfont icon-time"></span>
-          <span>{{ correctTime(created_time) }}</span>
+          <span>{{ $utils.getYearMonthDay(created_time) }}</span>
         </div>
         <div>
           <span class="iconfont icon-update"></span>
-          <span>{{ correctTime(updated_time) }}</span>
+          <span>{{ $utils.getYearMonthDay(updated_time) }}</span>
         </div>
-        <div @click="goBack">
+        <div @click="$router.go(-1)">
           <span class="iconfont icon-back"></span>
           <span>go back</span>
         </div>
@@ -37,8 +37,6 @@
 
 <script>
 import { getBlogDetail } from "@/api/blogs.js";
-import { htmlDecode } from "@/utils/htmlUtils.js";
-import { getYearMonthDay } from "@/utils/timeUtils.js";
 
 export default {
   data() {
@@ -51,32 +49,18 @@ export default {
     };
   },
   methods: {
-    correctTime(time) {
-      return getYearMonthDay(time);
-    },
     copyCodeSuccess() {
       alert("复制成功");
-    },
-    changeMenu(path) {
-      this.$router.push({
-        path,
-        query: {
-          id: this.$route.query.id,
-        },
-      });
-    },
-    goBack() {
-      this.$router.go(-1);
     },
   },
   created() {
     getBlogDetail(this.$route.query.id).then((result) => {
-      const res = result.data;
-      this.id = res.data.id;
-      this.pid = res.data.pid;
-      this.updated_time = res.data.updated_time;
-      this.created_time = res.data.created_time;
-      this.content = htmlDecode(res.data.content);
+      const { id, pid, updated_time, created_time, content } = result.data.data;
+      this.id = id;
+      this.pid = pid;
+      this.updated_time = updated_time;
+      this.created_time = created_time;
+      this.content = this.$utils.htmlDecode(content);
     });
   },
 };
