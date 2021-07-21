@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import store from "../store";
 
 const routes = [
   {
@@ -72,12 +73,12 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach((to) => {
-//   if (to.meta.requireAuth) {
-//     return {
-//       path: "/login",
-//     };
-//   }
-// });
+router.beforeEach((to) => {
+  if (to.meta.requireAuth && store.getters.getLoginStatus === false) {
+    return {
+      path: "/login",
+    };
+  }
+});
 
 export default router;

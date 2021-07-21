@@ -9,12 +9,10 @@
     <div class="label-more-link">
       <div class="label">
         <span class="dot-create"></span>
-        <span> create </span>
         <slot name="createdTime"></slot>
       </div>
       <div class="label">
         <span class="dot-update"></span>
-        <span> update </span>
         <slot name="updatedTime"></slot>
       </div>
       <div class="more-link">
@@ -67,9 +65,8 @@ export default {
 }
 .dot-create,
 .dot-update {
-  position: relative;
-  top: 1px;
   display: inline-block;
+  margin: 0 5px;
   height: 12px;
   width: 12px;
   border-radius: 50%;

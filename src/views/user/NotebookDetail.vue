@@ -151,6 +151,13 @@ header .row-body:hover {
   background-color: #fafafa;
 }
 
+header .name {
+  min-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* 时间 */
 .time {
   display: flex;

@@ -10,7 +10,10 @@
     </header>
     <a-list item-layout="vertical" :data-source="listData">
       <template #renderItem="{ item }">
-        <a-list-item key="item.title" @click="$utils.changeRoute('/detail', item.id)">
+        <a-list-item
+          key="item.title"
+          @click="$utils.changeRoute('/detail', item.id)"
+        >
           <a-list-item-meta :description="item.abstract">
             <template #title>
               <a>{{ item.title }}</a>

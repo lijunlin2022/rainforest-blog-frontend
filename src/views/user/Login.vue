@@ -66,8 +66,9 @@ export default {
         if (res.data.code !== 200) {
           alert(res.data.message);
         } else {
-          console.log("登录成功");
+          this.$store.commit("login");
           this.$router.replace("/overview");
+          alert("登录成功");
         }
       });
     },

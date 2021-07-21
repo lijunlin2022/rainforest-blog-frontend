@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import App from "@/App.vue";
 import router from "@/router";
+import store from "@/store";
 import VueMarkdownEditor from "./mdEditor.js";
 import VMdPreview from "./mdPreview.js";
 import utils from "./utils";
@@ -9,6 +10,7 @@ import "ant-design-vue/dist/antd.css";
 
 const app = createApp(App);
 app.use(router);
+app.use(store);
 app.use(VueMarkdownEditor);
 app.use(VMdPreview);
 app.use(Antd);
