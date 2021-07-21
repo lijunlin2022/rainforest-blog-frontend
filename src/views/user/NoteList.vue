@@ -54,5 +54,6 @@ export default {
   box-sizing: border-box;
   max-width: 600px;
   margin: 80px auto;
+  padding: 0 10px;
 }
 </style>
