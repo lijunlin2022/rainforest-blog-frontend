@@ -12,7 +12,7 @@
       <input type="text" v-model="blogData.abstract" placeholder="请输入摘要" />
       <div class="btn-container">
         <a-button type="primary" @click="submit">提交</a-button>
-        <a-button type="primary" @click="goBack">返回</a-button>
+        <a-button type="primary" @click="$router.go(-1)">返回</a-button>
       </div>
     </main>
   </div>
@@ -71,9 +71,6 @@ export default {
           alert("修改失败");
         }
       });
-    },
-    goBack() {
-      this.$router.go(-1);
     },
   },
   created() {

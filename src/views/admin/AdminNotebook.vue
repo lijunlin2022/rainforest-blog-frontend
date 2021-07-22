@@ -13,7 +13,7 @@
       />
       <div class="btn-container">
         <a-button type="primary" @click="submit">提交</a-button>
-        <a-button type="primary" @click="goBack">返回</a-button>
+        <a-button type="primary" @click="$router.go(-1)">返回</a-button>
       </div>
     </main>
   </div>
@@ -58,9 +58,6 @@ export default {
           });
         }
       }
-    },
-    goBack() {
-      this.$router.go(-1);
     },
   },
   created() {

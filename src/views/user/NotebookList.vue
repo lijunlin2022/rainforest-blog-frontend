@@ -57,7 +57,7 @@ export default {
   box-sizing: border-box;
   max-width: 500px;
   margin: 80px auto;
-  padding: 0 10px;
+  padding: 0 20px;
 }
 header {
   display: flex;

@@ -33,11 +33,6 @@ const routes = [
         name: "NoteDetail",
         component: () => import("@/views/user/NoteDetail.vue"),
       },
-      {
-        path: "/archives",
-        name: "Archives",
-        component: () => import("@/views/user/Archives.vue"),
-      },
     ],
   },
   {

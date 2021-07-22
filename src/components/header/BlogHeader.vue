@@ -25,7 +25,6 @@ export default {
         { path: "/overview", title: "Overview", id: null },
         { path: "/notebookList", title: "Notebooks", id: null },
         { path: "/list", title: "Articles", id: null },
-        { path: "/archives", title: "Archives", id: null },
       ],
     };
   },
