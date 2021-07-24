@@ -11,7 +11,7 @@
         <a-button type="primary">New</a-button>
       </router-link>
     </header>
-    <a-list item-layout="vertical" :data-source="listData">
+    <a-list item-layout="vertical" :data-source="listArray">
       <template #renderItem="{ item }">
         <a-list-item
           key="item.name"
@@ -34,18 +34,24 @@ export default {
   data() {
     return {
       searchValue: "",
-      listData: [],
+      listArray: [],
     };
   },
   created() {
     getNotebooksList().then((result) => {
-      this.listData = result.data.data;
+      let array = result.data.data.map((item) => {
+        return this.$utils.htmlDecodeObject(item);
+      });
+      this.listArray = array;
     });
   },
   methods: {
     onChange() {
       getNotebooksList(null, null, this.searchValue).then((result) => {
-        this.listData = result.data.data;
+        let array = result.data.data.map((item) => {
+          return this.$utils.htmlDecodeObject(item);
+        });
+        this.listArray = array;
       });
     },
   },

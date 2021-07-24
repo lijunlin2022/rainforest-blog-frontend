@@ -21,7 +21,7 @@
       </div>
       <div
         class="row-body"
-        v-for="item in fileData"
+        v-for="item in fileArray"
         v-bind:key="item.id"
         @click="$utils.changeRoute('/detail', item.id)"
       >
@@ -80,17 +80,20 @@ export default {
     return {
       id: null,
       notebookData: {},
-      fileData: [],
+      fileArray: [],
       content: "# There is No README.md\n",
     };
   },
   created() {
     this.id = this.$route.query.id;
     getNotebookDetail(this.id).then((result) => {
-      this.notebookData = result.data.data;
+      this.notebookData = this.$utils.htmlDecodeObject(result.data.data);
     });
     getBlogsList(this.id).then((result) => {
-      this.fileData = result.data.data;
+      let array = result.data.data.map((item) => {
+        return this.$utils.htmlDecodeObject(item);
+      });
+      this.fileArray = array;
     });
     getBlogDetail(null, this.id, "README").then((result) => {
       this.content = this.$utils.htmlDecode(result.data.data.content);

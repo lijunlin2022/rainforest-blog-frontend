@@ -77,8 +77,7 @@ export default {
     const { id, pid } = this.$route.query;
     if (id) {
       getBlogDetail(id).then((result) => {
-        const res = result.data;
-        this.blogData = res.data;
+        this.blogData = this.$utils.htmlDecodeObject(result.data.data);
       });
     }
     if (pid) {

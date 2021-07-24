@@ -6,7 +6,7 @@
     </div>
     <div class="notebooks">
       <blog-directory
-        v-for="item in notebooksData"
+        v-for="item in notebookArray"
         :key="item.id"
         @click="$utils.changeRoute('/notebookDetail', item.id)"
       >
@@ -24,7 +24,7 @@
       <span>Recent Articles</span>
     </div>
     <div class="articles">
-      <blog-file v-for="item in articleData" :key="item.id">
+      <blog-file v-for="item in articleArray" :key="item.id">
         <template v-slot:title>
           {{ item.title }}
         </template>
@@ -74,29 +74,36 @@ export default {
       current: 0,
       size: 5,
       hasNext: true,
-      notebooksData: [],
-      articleData: [],
+      notebookArray: [],
+      articleArray: [],
     };
   },
   methods: {
     handleGetHotBlogList() {
       getNotebooksList(0, 6).then((result) => {
-        const res = result.data;
-        this.notebooksData = res.data;
+        let array = result.data.data.map((item) => {
+          return this.$utils.htmlDecodeObject(item);
+        });
+        this.notebookArray = array;
       });
     },
     handleGetListByPage() {
       getBlogsList(null, this.current, this.size).then((result) => {
-        const res = result.data;
-        this.articleData = res.data;
+        let array = result.data.data.map((item) => {
+          return this.$utils.htmlDecodeObject(item);
+        });
+        this.articleArray = array;
       });
     },
     handleNextBtn() {
       this.current++;
       getBlogsList(null, this.current, this.size).then((result) => {
-        const res = result.data;
-        this.articleData.push(...res.data);
-        if (res.data.length < this.size) {
+        let array = result.data.data.map((item) => {
+          return this.$utils.htmlDecodeObject(item);
+        });
+
+        this.articleArray.push(...array);
+        if (result.data.data.length < this.size) {
           this.hasNext = false;
         }
       });

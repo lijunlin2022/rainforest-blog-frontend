@@ -2,7 +2,7 @@
   <div class="blog-detail">
     <header>
       <div class="title">
-        <div @click="$utils.changeRoute('/admin/note', id)">
+        <div @click="$utils.changeRoute('/admin/note', blogData.id)">
           <span class="iconfont icon-edit"></span>
           <span class>编辑文章</span>
         </div>
@@ -16,11 +16,11 @@
         </div>
         <div>
           <span class="iconfont icon-time"></span>
-          <span>{{ $utils.getYearMonthDay(created_time) }}</span>
+          <span>{{ $utils.getYearMonthDay(blogData.created_time) }}</span>
         </div>
         <div>
           <span class="iconfont icon-update"></span>
-          <span>{{ $utils.getYearMonthDay(updated_time) }}</span>
+          <span>{{ $utils.getYearMonthDay(blogData.updated_time) }}</span>
         </div>
         <div @click="$router.go(-1)">
           <span class="iconfont icon-back"></span>
@@ -29,7 +29,10 @@
       </div>
     </header>
     <div class="preview">
-      <v-md-preview :text="content" @copy-code-success="copyCodeSuccess()">
+      <v-md-preview
+        :text="blogData.content"
+        @copy-code-success="copyCodeSuccess()"
+      >
       </v-md-preview>
     </div>
   </div>
@@ -41,11 +44,13 @@ import { getBlogDetail } from "@/api/blogs.js";
 export default {
   data() {
     return {
-      id: null,
-      pid: null,
-      updated_time: null,
-      created_time: null,
-      content: "",
+      blogData: {
+        id: null,
+        pid: null,
+        updated_time: null,
+        created_time: null,
+        content: "",
+      },
     };
   },
   methods: {
@@ -55,12 +60,7 @@ export default {
   },
   created() {
     getBlogDetail(this.$route.query.id).then((result) => {
-      const { id, pid, updated_time, created_time, content } = result.data.data;
-      this.id = id;
-      this.pid = pid;
-      this.updated_time = updated_time;
-      this.created_time = created_time;
-      this.content = this.$utils.htmlDecode(content);
+      this.blogData = this.$utils.htmlDecodeObject(result.data.data);
     });
   },
 };

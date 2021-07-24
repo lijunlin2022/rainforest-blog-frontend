@@ -30,6 +30,7 @@ export default {
   data() {
     return {
       notebookData: {
+        id: null,
         name: "",
         description: "",
       },
@@ -42,9 +43,8 @@ export default {
         this.notebookData.description !== ""
       ) {
         // 有 id 证明是更新操作
-        const id = this.$route.query.id;
-        if (id) {
-          updateNotebook(id, this.notebookData).then((result) => {
+        if (this.id) {
+          updateNotebook(this.id, this.notebookData).then((result) => {
             if (result.data.code === 200) {
               alert("更新成功");
             }
@@ -61,10 +61,10 @@ export default {
     },
   },
   created() {
-    const { id } = this.$route.query;
-    if (id) {
-      getNotebookDetail(id).then((result) => {
-        this.notebookData = result.data.data;
+    this.id = this.$route.query.id;
+    if (this.id) {
+      getNotebookDetail(this.id).then((result) => {
+        this.notebookData = this.$utils.htmlDecodeObject(result.data.data);
       });
     }
   },
