@@ -45,12 +45,8 @@
 
     <!------- 下一页 ------->
     <div class="paging">
-      <blog-button v-if="hasNext" @click="handleNextBtn">
-        <template v-slot:default>Next</template>
-      </blog-button>
-      <blog-button v-else>
-        <template v-slot:default>No more...</template>
-      </blog-button>
+      <a-button v-if="hasNext" @click="handleNextBtn">Next</a-button>
+      <a-button v-else>No more...</a-button>
     </div>
   </div>
 </template>
@@ -60,14 +56,12 @@ import { getBlogsList } from "@/api/blogs.js";
 import { getNotebooksList } from "@/api/notebooks.js";
 import BlogDirectory from "@/components/directory/BlogDirectory.vue";
 import BlogFile from "@/components/file/BlogFile.vue";
-import BlogButton from "@/components/button/BlogButton.vue";
 
 export default {
   name: "Overview",
   components: {
     BlogDirectory,
     BlogFile,
-    BlogButton,
   },
   data() {
     return {

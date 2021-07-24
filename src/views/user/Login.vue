@@ -3,7 +3,11 @@
     <section>
       <div :class="{ container: true, active: isActive }">
         <div class="user signinBx">
-          <div class="imgBx"><img src="../../assets/img/1.webp" alt="" /></div>
+          <div class="imgBx">
+            <img
+              src="https://gitee.com/Li-Jun-Lin/figure/raw/master/background/forest.png"
+            />
+          </div>
           <div class="formBx">
             <form>
               <h2>登录</h2>
@@ -40,7 +44,11 @@
               </p>
             </form>
           </div>
-          <div class="imgBx"><img src="../../assets/img/2.webp" alt="" /></div>
+          <div class="imgBx">
+            <img
+              src="https://gitee.com/Li-Jun-Lin/figure/raw/master/background/jungle.png"
+            />
+          </div>
         </div>
       </div>
     </section>

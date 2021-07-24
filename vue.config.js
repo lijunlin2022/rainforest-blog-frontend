@@ -1,3 +1,5 @@
+const compressionPlugin = require("compression-webpack-plugin");
+
 module.exports = {
   devServer: {
     port: 9000,
@@ -19,6 +21,18 @@ module.exports = {
         args[0].title = "计算机专业资料分享";
         return args;
       });
+  },
+  // 配置 gzip 压缩
+  configureWebpack: config => {
+    return {
+      plugins: [
+        new compressionPlugin({
+          test: /\.js$|\.html$|\.css/,
+          threshold: 10240,
+          deleteOriginalAssets: false
+        })
+      ]
+    };
   },
   productionSourceMap: false,
 };
