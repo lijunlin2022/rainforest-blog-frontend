@@ -67,7 +67,7 @@ export default {
           alert(res.data.message);
         } else {
           this.$store.commit("login");
-          this.$router.replace("/overview");
+          this.$router.go(-1);
           alert("登录成功");
         }
       });
