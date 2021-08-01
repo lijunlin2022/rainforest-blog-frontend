@@ -23,7 +23,7 @@ export default {
       isActive: false,
       navItems: [
         { path: "/overview", title: "Overview", id: null },
-        { path: "/notebookList", title: "Notebooks", id: null },
+        { path: "/nList", title: "Notebooks", id: null },
         { path: "/list", title: "Articles", id: null },
       ],
     };

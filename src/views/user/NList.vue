@@ -1,5 +1,6 @@
 <template>
   <div class="notebook-list">
+    <!-- 搜索栏 -->
     <header>
       <a-input-search
         placeholder="Find a notebook..."
@@ -11,11 +12,13 @@
         <a-button type="primary">New</a-button>
       </router-link>
     </header>
+
+    <!-- 列表栏 -->
     <a-list item-layout="vertical" :data-source="listArray">
       <template #renderItem="{ item }">
         <a-list-item
           key="item.name"
-          @click="$utils.changeRoute('/notebookDetail', item.id)"
+          @click="$utils.changeRoute('/nDetail', item.id)"
         >
           <a-list-item-meta :description="item.description">
             <template #title>
@@ -37,21 +40,17 @@ export default {
       listArray: [],
     };
   },
-  created() {
-    getNotebooksList().then((result) => {
-      let array = result.data.data.map((item) => {
-        return this.$utils.htmlDecodeObject(item);
-      });
-      this.listArray = array;
+  async created() {
+    let result = await getNotebooksList();
+    this.listArray = result.data.data.map((item) => {
+      return this.$utils.htmlDecodeObject(item);
     });
   },
   methods: {
     onChange() {
-      getNotebooksList(null, null, this.searchValue).then((result) => {
-        let array = result.data.data.map((item) => {
-          return this.$utils.htmlDecodeObject(item);
-        });
-        this.listArray = array;
+      let result = getNotebooksList(null, null, this.searchValue);
+      this.listArray = result.data.data.map((item) => {
+        return this.$utils.htmlDecodeObject(item);
       });
     },
   },
@@ -62,7 +61,7 @@ export default {
 .notebook-list {
   box-sizing: border-box;
   max-width: 500px;
-  margin: 80px auto;
+  margin: 20px auto;
   padding: 0 20px;
 }
 header {

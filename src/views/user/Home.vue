@@ -1,35 +1,27 @@
 <template>
-  <div class="home">
+  <div>
     <header>
-      <blog-header></blog-header>
+      <b-header></b-header>
     </header>
-    <div class="main">
+    <main>
       <router-view />
-    </div>
+    </main>
     <a-back-top />
   </div>
 </template>
 
 <script>
-import BlogHeader from "@/components/header/BlogHeader.vue";
+import BHeader from "@/components/header/BHeader.vue";
 export default {
   components: {
-    BlogHeader,
+    BHeader,
   },
-  name: "Home",
 };
 </script>
 
 <style scoped>
-.home {
-  width: 100%;
-}
-.main {
-  width: 100%;
+main {
   margin-top: 60px;
-  background-color: var(--main-color);
-}
-.sidebar {
-  display: none;
+  padding: 10px 0;
 }
 </style>

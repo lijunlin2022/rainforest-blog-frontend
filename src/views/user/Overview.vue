@@ -20,10 +20,10 @@
         <span>Popular Notebooks</span>
       </div>
       <div class="notebooks">
-        <blog-directory
+        <notebook
           v-for="item in notebookArray"
           :key="item.id"
-          @click="$utils.changeRoute('/notebookDetail', item.id)"
+          @click="$utils.changeRoute('/nDetail', item.id)"
         >
           <template v-slot:name>
             {{ item.name }}
@@ -31,7 +31,7 @@
           <template v-slot:description>
             {{ item.description }}
           </template>
-        </blog-directory>
+        </notebook>
       </div>
 
       <!------- 文章列表 ------->
@@ -39,7 +39,7 @@
         <span>Recent Articles</span>
       </div>
       <div class="articles">
-        <blog-file v-for="item in articleArray" :key="item.id">
+        <note v-for="item in articleArray" :key="item.id">
           <template v-slot:title>
             {{ item.title }}
           </template>
@@ -55,7 +55,7 @@
           <template v-slot:link>
             <a @click="$utils.changeRoute('/detail', item.id)">Read more ></a>
           </template>
-        </blog-file>
+        </note>
       </div>
 
       <!------- 下一页 ------->
@@ -70,14 +70,14 @@
 <script>
 import { getBlogsList, getBlogDetail } from "@/api/blogs.js";
 import { getNotebooksList } from "@/api/notebooks.js";
-import BlogDirectory from "@/components/directory/BlogDirectory.vue";
-import BlogFile from "@/components/file/BlogFile.vue";
+import Notebook from "@/components/notebook/Notebook.vue";
+import Note from "@/components/note/Note.vue";
 
 export default {
   name: "Overview",
   components: {
-    BlogDirectory,
-    BlogFile,
+    Notebook,
+    Note,
   },
   data() {
     return {
@@ -127,7 +127,6 @@ export default {
   min-height: calc(100vh - 60px);
 }
 .center {
-  border-top: 1px solid #fff;
   max-width: 900px;
   margin: auto;
 }
@@ -140,13 +139,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: var(--secondary-color);
 }
 .profile > img {
   width: 100px;
-}
-.profile > div {
-  padding: 20px;
-  font-size: 14px;
 }
 @media screen and (min-width: 992px) {
   .profile {

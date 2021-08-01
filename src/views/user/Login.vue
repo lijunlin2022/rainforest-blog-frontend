@@ -69,16 +69,16 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
-      login(this.userData).then((res) => {
-        if (res.data.code !== 200) {
-          alert(res.data.message);
-        } else {
-          this.$store.commit("login");
-          this.$router.go(-1);
-          alert("登录成功");
-        }
-      });
+    async handleLogin() {
+      const result = await login(this.userData);
+      const res = result.data;
+      if (res.code !== 200) {
+        alert(res.message);
+      } else {
+        this.$store.commit("login");
+        this.$router.go(-1);
+        alert("登录成功");
+      }
     },
     toggleForm() {
       this.isActive = !this.isActive;

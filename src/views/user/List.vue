@@ -34,21 +34,17 @@ export default {
       listArray: [],
     };
   },
-  created() {
-    getBlogsList().then((result) => {
-      let array = result.data.data.map((item) => {
-        return this.$utils.htmlDecodeObject(item);
-      });
-      this.listArray = array;
+  async created() {
+    let result = await getBlogsList();
+    this.listArray = result.data.data.map((item) => {
+      return this.$utils.htmlDecodeObject(item);
     });
   },
   methods: {
-    onChange() {
-      getBlogsList(null, null, null, null, this.searchValue).then((result) => {
-        let array = result.data.data.map((item) => {
-          return this.$utils.htmlDecodeObject(item);
-        });
-        this.listArray = array;
+    async onChange() {
+      let result = await getBlogsList(null, null, null, null, this.searchValue);
+      this.listArray = result.data.data.map((item) => {
+        return this.$utils.htmlDecodeObject(item);
       });
     },
   },
@@ -59,7 +55,7 @@ export default {
 .note-list {
   box-sizing: border-box;
   max-width: 600px;
-  margin: 80px auto;
+  margin: 20px auto;
   padding: 0 20px;
 }
 </style>

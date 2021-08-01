@@ -1,10 +1,12 @@
 <template>
   <div class="blog-notebook">
-    <!-- 笔记本中的所有文章 -->
+    <!-- 笔记本介绍 -->
     <div class="notebook">
       <div class="name">{{ notebookData.name }}</div>
       <div class="description">{{ notebookData.description }}</div>
     </div>
+
+    <!-- 笔记本文章列表 -->
     <header>
       <div class="row-head">
         <div class="name">
@@ -21,7 +23,7 @@
       </div>
       <div
         class="row-body"
-        v-for="item in fileArray"
+        v-for="item in blogArray"
         v-bind:key="item.id"
         @click="$utils.changeRoute('/detail', item.id)"
       >
@@ -80,24 +82,24 @@ export default {
     return {
       id: null,
       notebookData: {},
-      fileArray: [],
+      blogArray: [],
       content: "# There is No README.md\n",
     };
   },
-  created() {
+  async created() {
     this.id = this.$route.query.id;
-    getNotebookDetail(this.id).then((result) => {
-      this.notebookData = this.$utils.htmlDecodeObject(result.data.data);
-    });
-    getBlogsList(this.id).then((result) => {
-      let array = result.data.data.map((item) => {
+    try {
+      const notebook = await getNotebookDetail(this.id);
+      const blogList = await getBlogsList(this.id);
+      const readme = await getBlogDetail(null, this.id, "README");
+      this.notebookData = this.$utils.htmlDecodeObject(notebook.data.data);
+      this.blogArray = blogList.data.data.map((item) => {
         return this.$utils.htmlDecodeObject(item);
       });
-      this.fileArray = array;
-    });
-    getBlogDetail(null, this.id, "README").then((result) => {
-      this.content = this.$utils.htmlDecode(result.data.data.content);
-    });
+      this.content = this.$utils.htmlDecode(readme.data.data.content);
+    } catch {
+      console.error("网络请求失败");
+    }
   },
   methods: {
     addBlog() {
@@ -115,24 +117,22 @@ export default {
 <style scoped>
 .blog-notebook {
   max-width: 900px;
-  margin: 60px auto 30px;
-  min-height: calc(100vh - 130px - 60px);
-  padding: 20px;
+  margin: 20px auto;
+  padding: 0 20px;
 }
 .notebook .name {
-  margin-bottom: 5px;
+  margin: 5px 0;
   font-size: 20px;
   color: #000;
   font-weight: bold;
 }
 .notebook .description {
-  margin-bottom: 25px;
+  margin: 10px 0 20px 0;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.45);
 }
 header {
-  margin-top: 10px;
-  border-radius: 20px;
+  margin: 30px 0;
 }
 header .row-head,
 header .row-body {
@@ -179,9 +179,7 @@ header .name {
 }
 /* README */
 section {
-  margin-top: 30px;
   border: 1px solid #d9d9d9;
-  border-radius: 10px;
 }
 section .title {
   display: flex;
