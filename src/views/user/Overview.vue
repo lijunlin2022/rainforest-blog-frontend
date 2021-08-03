@@ -7,9 +7,7 @@
       </div>
 
       <div class="profile">
-        <img
-          src="https://gitee.com/Li-Jun-Lin/figure/raw/master/avater/trees.png"
-        />
+        <div class="logo">霖</div>
         <div>
           <v-md-preview :text="profileContent"></v-md-preview>
         </div>
@@ -141,15 +139,20 @@ export default {
   align-items: center;
   color: var(--secondary-color);
 }
-.profile > img {
+.profile .logo {
   width: 100px;
+  margin: 0 50px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  background-color: #fec41c;
+  border-radius: 50%;
+  font-size: 50px;
+  color: #fff;
 }
 @media screen and (min-width: 992px) {
   .profile {
     flex-direction: row;
-  }
-  .profile > img {
-    width: 200px;
   }
 }
 .notebooks {
