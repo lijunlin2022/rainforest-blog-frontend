@@ -1,8 +1,8 @@
 <template>
-  <div class="blog-detail">
+  <div class="note-detail">
     <!-- 工具栏 -->
     <header class="toolbar">
-      <div @click="$utils.changeRoute('/admin/note', blogData.id)">
+      <div @click="$utils.changeRoute('/admin/note', noteData.id)">
         <span class="iconfont icon-edit"></span>
         <span class>编辑文章</span>
       </div>
@@ -16,11 +16,11 @@
       </div>
       <div>
         <span class="iconfont icon-time"></span>
-        <span>{{ $utils.getYearMonthDay(blogData.created_time) }}</span>
+        <span>{{ $utils.getYearMonthDay(noteData.created_time) }}</span>
       </div>
       <div>
         <span class="iconfont icon-update"></span>
-        <span>{{ $utils.getYearMonthDay(blogData.updated_time) }}</span>
+        <span>{{ $utils.getYearMonthDay(noteData.updated_time) }}</span>
       </div>
       <div @click="$router.go(-1)">
         <span class="iconfont icon-back"></span>
@@ -30,7 +30,7 @@
 
     <!-- 文章预览 -->
     <v-md-preview
-      :text="blogData.content"
+      :text="noteData.content"
       @copy-code-success="copyCodeSuccess()"
     >
     </v-md-preview>
@@ -38,12 +38,12 @@
 </template>
 
 <script>
-import { getBlogDetail } from "@/api/blogs.js";
+import { getNoteDetail } from "@/api/notes.js";
 
 export default {
   data() {
     return {
-      blogData: {
+      noteData: {
         id: null,
         pid: null,
         updated_time: null,
@@ -58,14 +58,14 @@ export default {
     },
   },
   async created() {
-    const result = await getBlogDetail(this.$route.query.id);
-    this.blogData = this.$utils.htmlDecodeObject(result.data.data);
+    const result = await getNoteDetail(this.$route.params.id);
+    this.noteData = this.$utils.htmlDecodeObject(result.data.data);
   },
 };
 </script>
 
 <style scoped>
-.blog-detail {
+.note-detail {
   box-sizing: border-box;
   max-width: 900px;
   margin: 20px auto;

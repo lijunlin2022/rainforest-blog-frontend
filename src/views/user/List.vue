@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { getBlogsList } from "@/api/blogs.js";
+import { getNoteList } from "@/api/notes.js";
 export default {
   data() {
     return {
@@ -35,14 +35,16 @@ export default {
     };
   },
   async created() {
-    let result = await getBlogsList();
+    let result = await getNoteList();
     this.listArray = result.data.data.map((item) => {
       return this.$utils.htmlDecodeObject(item);
     });
   },
   methods: {
     async onChange() {
-      let result = await getBlogsList(null, null, null, null, this.searchValue);
+      const queryBody = {};
+      queryBody.keyword = this.searchValue;
+      let result = await getNoteList(queryBody);
       this.listArray = result.data.data.map((item) => {
         return this.$utils.htmlDecodeObject(item);
       });

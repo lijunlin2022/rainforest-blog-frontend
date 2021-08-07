@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import store from "../store";
+// import store from "../store";
 
 const routes = [
   {
@@ -19,7 +19,7 @@ const routes = [
         component: () => import("@/views/user/NList.vue"),
       },
       {
-        path: "/nDetail",
+        path: "/nDetail/:id",
         name: "NDetail",
         component: () => import("@/views/user/NDetail.vue"),
       },
@@ -29,7 +29,7 @@ const routes = [
         component: () => import("@/views/user/List.vue"),
       },
       {
-        path: "/detail",
+        path: "/detail/:id",
         name: "Detail",
         component: () => import("@/views/user/Detail.vue"),
       },
@@ -42,22 +42,14 @@ const routes = [
   },
   {
     path: "/admin",
-    name: "Admin",
-    component: () => import("@/views/admin/Admin.vue"),
-    redirect: "/admin/notebook",
-    meta: {
-      requireAuth: true,
-    },
+    name: "AHome",
+    component: () => import("@/views/admin/AHome.vue"),
+    redirect: "/admin/nList",
     children: [
       {
-        path: "/admin/notebook",
-        name: "AdminNotebook",
-        component: () => import("@/views/admin/AdminNotebook.vue"),
-      },
-      {
-        path: "/admin/note",
-        name: "AdminNote",
-        component: () => import("@/views/admin/AdminNote.vue"),
+        path: "nList",
+        name: "ANList",
+        component: () => import("@/views/admin/ANList.vue"),
       },
     ],
   },
@@ -73,12 +65,12 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to) => {
-  if (to.meta.requireAuth && store.getters.getLoginStatus === false) {
-    return {
-      path: "/login",
-    };
-  }
-});
+// router.beforeEach((to) => {
+//   if (to.meta.requireAuth && store.getters.getLoginStatus === false) {
+//     return {
+//       path: "/login",
+//     };
+//   }
+// });
 
 export default router;

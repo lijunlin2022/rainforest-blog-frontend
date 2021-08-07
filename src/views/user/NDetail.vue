@@ -23,9 +23,9 @@
       </div>
       <div
         class="row-body"
-        v-for="item in blogArray"
+        v-for="item in noteArray"
         v-bind:key="item.id"
-        @click="$utils.changeRoute('/detail', item.id)"
+        @click="$utils.changeRoute(`/detail/${item.id}`)"
       >
         <div class="name">
           <span
@@ -56,7 +56,7 @@
     <!-- README 文档 -->
     <section>
       <div class="title">
-        <div @click="addBlog">
+        <div @click="newNote">
           <span class="iconfont icon-add"></span>
           <span>新增文章</span>
         </div>
@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { getBlogsList, getBlogDetail } from "@/api/blogs.js";
+import { getNoteList, getNoteDetail } from "@/api/notes.js";
 import { getNotebookDetail } from "@/api/notebooks.js";
 export default {
   name: "NotebookDetail",
@@ -82,18 +82,20 @@ export default {
     return {
       id: null,
       notebookData: {},
-      blogArray: [],
+      noteArray: [],
       content: "# There is No README.md\n",
     };
   },
   async created() {
-    this.id = this.$route.query.id;
+    this.id = this.$route.params.id;
     try {
       const notebook = await getNotebookDetail(this.id);
-      const blogList = await getBlogsList(this.id);
-      const readme = await getBlogDetail(null, this.id, "README");
+      const queryNoteData = {};
+      queryNoteData.pid = this.id;
+      const notes = await getNoteList(queryNoteData);
+      const readme = await getNoteDetail(null, this.id, "README");
       this.notebookData = this.$utils.htmlDecodeObject(notebook.data.data);
-      this.blogArray = blogList.data.data.map((item) => {
+      this.noteArray = notes.data.data.map((item) => {
         return this.$utils.htmlDecodeObject(item);
       });
       this.content = this.$utils.htmlDecode(readme.data.data.content);
@@ -102,7 +104,7 @@ export default {
     }
   },
   methods: {
-    addBlog() {
+    newNote() {
       this.$router.push({
         path: "/admin/note",
         query: {

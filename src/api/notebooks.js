@@ -6,7 +6,7 @@ import { request } from "./request";
  * @param {String} keyword
  * @returns
  */
-export function getNotebooksList(current, size, keyword) {
+export function getNotebookList(current, size, keyword) {
   return request({
     url: "/notebook/list",
     method: "get",

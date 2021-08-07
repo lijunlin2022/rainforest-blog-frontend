@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { getNotebooksList } from "@/api/notebooks.js";
+import { getNotebookList } from "@/api/notebooks.js";
 export default {
   data() {
     return {
@@ -41,14 +41,14 @@ export default {
     };
   },
   async created() {
-    let result = await getNotebooksList();
+    let result = await getNotebookList();
     this.listArray = result.data.data.map((item) => {
       return this.$utils.htmlDecodeObject(item);
     });
   },
   methods: {
     onChange() {
-      let result = getNotebooksList(null, null, this.searchValue);
+      let result = getNotebookList(null, null, this.searchValue);
       this.listArray = result.data.data.map((item) => {
         return this.$utils.htmlDecodeObject(item);
       });

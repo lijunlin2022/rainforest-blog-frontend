@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-content">
+  <div class="note-content">
     <div class="center">
       <!-- 简介 -->
       <div class="title">
@@ -21,7 +21,7 @@
         <notebook
           v-for="item in notebookArray"
           :key="item.id"
-          @click="$utils.changeRoute('/nDetail', item.id)"
+          @click="$utils.changeRoute(`/nDetail/${item.id}`)"
         >
           <template v-slot:name>
             {{ item.name }}
@@ -34,10 +34,10 @@
 
       <!------- 文章列表 ------->
       <div class="title">
-        <span>Recent Articles</span>
+        <span>Recent Notes</span>
       </div>
       <div class="articles">
-        <note v-for="item in articleArray" :key="item.id">
+        <note v-for="item in noteArray" :key="item.id">
           <template v-slot:title>
             {{ item.title }}
           </template>
@@ -66,8 +66,8 @@
 </template>
 
 <script>
-import { getBlogsList, getBlogDetail } from "@/api/blogs.js";
-import { getNotebooksList } from "@/api/notebooks.js";
+import { getNoteList, getNoteDetail } from "@/api/notes.js";
+import { getNotebookList } from "@/api/notebooks.js";
 import Notebook from "@/components/notebook/Notebook.vue";
 import Note from "@/components/note/Note.vue";
 
@@ -84,17 +84,17 @@ export default {
       hasNext: true,
       profileContent: "",
       notebookArray: [],
-      articleArray: [],
+      noteArray: [],
     };
   },
   methods: {
     async handleNextBtn() {
       this.current++;
-      const res = await getBlogsList(null, this.current, this.size);
+      const res = await getNoteList(null, this.current, this.size);
       let array = res.data.data.map((item) => {
         return this.$utils.htmlDecodeObject(item);
       });
-      this.articleArray.push(...array);
+      this.noteArray.push(...array);
       if (res.data.data.length < this.size) {
         this.hasNext = false;
       }
@@ -102,14 +102,17 @@ export default {
   },
   async created() {
     try {
-      const profile = await getBlogDetail(null, 1, "PROFILE");
-      const notebooks = await getNotebooksList(0, 6);
-      const articles = await getBlogsList(null, this.current, this.size);
+      const profile = await getNoteDetail(1);
+      const notebooks = await getNotebookList(0, 6);
+      const queryNoteData = {};
+      queryNoteData.current = this.current;
+      queryNoteData.size = this.size;
+      const notes = await getNoteList(queryNoteData);
       this.profileContent = this.$utils.htmlDecode(profile.data.data.content);
       this.notebookArray = notebooks.data.data.map((item) => {
         return this.$utils.htmlDecodeObject(item);
       });
-      this.articleArray = articles.data.data.map((item) => {
+      this.noteArray = notes.data.data.map((item) => {
         return this.$utils.htmlDecodeObject(item);
       });
     } catch (error) {
@@ -120,7 +123,7 @@ export default {
 </script>
 
 <style scoped>
-.blog-content {
+.note-content {
   box-sizing: border-box;
   min-height: calc(100vh - 60px);
 }

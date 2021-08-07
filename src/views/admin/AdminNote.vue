@@ -5,11 +5,11 @@
       <input
         type="text"
         class="title"
-        v-model="blogData.title"
+        v-model="noteData.title"
         placeholder="请输入标题"
       />
-      <v-md-editor class="md-editor" v-model="blogData.content"></v-md-editor>
-      <input type="text" v-model="blogData.abstract" placeholder="请输入摘要" />
+      <v-md-editor class="md-editor" v-model="noteData.content"></v-md-editor>
+      <input type="text" v-model="noteData.abstract" placeholder="请输入摘要" />
       <div class="btn-container">
         <a-button type="primary" @click="submit">提交</a-button>
         <a-button type="primary" @click="$router.go(-1)">返回</a-button>
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import { newBlog, getBlogDetail, updateBlog } from "@/api/blogs.js";
+import { newNote, getNoteDetail, updateNote } from "@/api/notes.js";
 export default {
   name: "AdminNote",
   data() {
     return {
-      blogData: {
+      noteData: {
         pid: null,
         title: "",
         abstract: "",
@@ -35,22 +35,22 @@ export default {
   methods: {
     submit() {
       if (
-        this.blogData.content !== "" &&
-        this.blogData.title !== "" &&
-        this.blogData.abstract !== ""
+        this.noteData.content !== "" &&
+        this.noteData.title !== "" &&
+        this.noteData.abstract !== ""
       ) {
         // 有 id 证明是更新操作
         const id = this.$route.query.id;
         if (id) {
-          updateBlog(id, this.blogData).then((result) => {
+          updateNote(id, this.noteData).then((result) => {
             if (result.data.code === 200) {
               alert("更新成功");
             }
           });
         } else {
           // 没有 id 证明是新增操作
-          this.blogData.pid = this.$route.query.pid;
-          newBlog(this.blogData).then((result) => {
+          this.noteData.pid = this.$route.query.pid;
+          newNote(this.noteData).then((result) => {
             if (result.data.code === 200) {
               alert("新增成功");
             }
@@ -58,12 +58,12 @@ export default {
         }
       }
     },
-    handleUpdateBlog() {
-      if (this.blogData.content === "") {
+    handleUpdateNote() {
+      if (this.noteData.content === "") {
         alert("输入为空, 不可以发送博客");
         return;
       }
-      updateBlog(this.id, this.blogData).then((result) => {
+      updateNote(this.id, this.noteData).then((result) => {
         const res = result.data;
         if (res.errno === 0) {
           alert("修改成功");
@@ -76,12 +76,12 @@ export default {
   created() {
     const { id, pid } = this.$route.query;
     if (id) {
-      getBlogDetail(id).then((result) => {
-        this.blogData = this.$utils.htmlDecodeObject(result.data.data);
+      getNoteDetail(id).then((result) => {
+        this.noteData = this.$utils.htmlDecodeObject(result.data.data);
       });
     }
     if (pid) {
-      this.blogData.content = "# 请输入博客内容\n";
+      this.noteData.content = "# 请输入博客内容\n";
     }
   },
 };
