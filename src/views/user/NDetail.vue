@@ -1,5 +1,6 @@
 <template>
   <div class="blog-notebook">
+    <b-breadcrumb></b-breadcrumb>
     <!-- 笔记本介绍 -->
     <div class="notebook">
       <div class="name">{{ notebookData.name }}</div>
@@ -76,8 +77,13 @@
 <script>
 import { getNoteList, getNoteDetail } from "@/api/notes.js";
 import { getNotebookDetail } from "@/api/notebooks.js";
+import BBreadcrumb from "@/components/breadcrumb/BBreadcrumb.vue";
+
 export default {
   name: "NotebookDetail",
+  components: {
+    BBreadcrumb,
+  },
   data() {
     return {
       id: null,
@@ -123,7 +129,7 @@ export default {
   padding: 0 20px;
 }
 .notebook .name {
-  margin: 5px 0;
+  margin: 20px 0 10px;
   font-size: 20px;
   color: #000;
   font-weight: bold;

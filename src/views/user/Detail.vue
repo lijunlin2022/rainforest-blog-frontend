@@ -1,5 +1,6 @@
 <template>
   <div class="note-detail">
+    <b-breadcrumb></b-breadcrumb>
     <!-- 工具栏 -->
     <header class="toolbar">
       <div @click="$utils.changeRoute('/admin/note', noteData.id)">
@@ -39,8 +40,12 @@
 
 <script>
 import { getNoteDetail } from "@/api/notes.js";
+import BBreadcrumb from "@/components/breadcrumb/BBreadcrumb.vue";
 
 export default {
+  components: {
+    BBreadcrumb,
+  },
   data() {
     return {
       noteData: {
@@ -60,6 +65,7 @@ export default {
   async created() {
     const result = await getNoteDetail(this.$route.params.id);
     this.noteData = this.$utils.htmlDecodeObject(result.data.data);
+    console.log(this.$route);
   },
 };
 </script>
@@ -71,6 +77,9 @@ export default {
   margin: 20px auto;
   padding: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.b-breadcrumb {
+  margin: 25px;
 }
 .toolbar {
   display: flex;

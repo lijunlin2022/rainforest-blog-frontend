@@ -51,7 +51,7 @@
             {{ $utils.getYearMonthDay(item.updated_time) }}
           </template>
           <template v-slot:link>
-            <a @click="$utils.changeRoute('/detail', item.id)">Read more ></a>
+            <a @click="$utils.changeRoute(`/detail/${item.id}`)">Read more ></a>
           </template>
         </note>
       </div>
@@ -103,7 +103,7 @@ export default {
   async created() {
     try {
       const profile = await getNoteDetail(1);
-      const notebooks = await getNotebookList(0, 6);
+      const notebooks = await getNotebookList({});
       const queryNoteData = {};
       queryNoteData.current = this.current;
       queryNoteData.size = this.size;

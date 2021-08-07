@@ -4,9 +4,11 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
     path: "/",
-    name: "Home",
     component: () => import("@/views/user/Home.vue"),
     redirect: "/overview",
+    meta: {
+      title: "Home",
+    },
     children: [
       {
         path: "/overview",
@@ -14,24 +16,30 @@ const routes = [
         component: () => import("@/views/user/Overview.vue"),
       },
       {
-        path: "/nList",
-        name: "NList",
-        component: () => import("@/views/user/NList.vue"),
+        path: "/nDetail/:id",
+        component: () => import("@/views/user/NDetail.vue"),
+        meta: {
+          title: "Notebook",
+        },
       },
       {
-        path: "/nDetail/:id",
-        name: "NDetail",
-        component: () => import("@/views/user/NDetail.vue"),
+        path: "/detail/:id",
+        component: () => import("@/views/user/Detail.vue"),
+        meta: {
+          title: "Note",
+        },
+      },
+      {
+        path: "/nList",
+        component: () => import("@/views/user/NList.vue"),
+        meta: {
+          title: "Note",
+        },
       },
       {
         path: "/list",
         name: "List",
         component: () => import("@/views/user/List.vue"),
-      },
-      {
-        path: "/detail/:id",
-        name: "Detail",
-        component: () => import("@/views/user/Detail.vue"),
       },
       {
         path: "/:pathMatch(.*)*",

@@ -1,13 +1,12 @@
 <template>
-  <a-table :columns="columns" :data-source="data">
+  <a-table :columns="columns" :data-source="notebooksArray">
     <template #action>
       <a>Delete</a>
     </template>
   </a-table>
 </template>
 <script>
-import { defineComponent } from "vue";
-
+import { getNotebookList } from "@/api/notebooks.js";
 const columns = [
   {
     title: "Name",
@@ -15,53 +14,34 @@ const columns = [
     key: "name",
   },
   {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
+    title: "Description",
+    dataIndex: "description",
+    key: "description",
   },
   {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
-  },
-  {
-    title: "Action",
-    dataIndex: "",
-    key: "x",
+    title: "operation",
+    dataIndex: "operation",
     slots: {
-      customRender: "action",
+      customRender: "operation",
     },
   },
 ];
-const data = [
-  {
-    key: 1,
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    description: "My name is John Brown",
-  },
-  {
-    key: 2,
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    description: "My name is Jim Green",
-  },
-  {
-    key: 3,
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    description: "My name is Joe Black",
-  },
-];
-export default defineComponent({
-  setup() {
+export default {
+  name: "Overview",
+  data() {
     return {
-      data,
       columns,
+      notebooksArray: [],
     };
   },
-});
+  async created() {
+    const queryData = {};
+    queryData.current = null;
+    queryData.size = null;
+    const notebooks = await getNotebookList(queryData);
+    this.notebooksArray = notebooks.data.data.map((item) => {
+      return this.$utils.htmlDecodeObject(item);
+    });
+  },
+};
 </script>
