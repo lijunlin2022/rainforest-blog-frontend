@@ -1,9 +1,9 @@
 <template>
-  <a-breadcrumb class="b-breadcrumb">
-    <a-breadcrumb-item v-for="item in list" :key="item.path">
-      <router-link :to="item.path">{{ item.meta.title }}</router-link>
-    </a-breadcrumb-item>
-  </a-breadcrumb>
+  <el-breadcrumb class="b-breadcrumb" separator-class="el-icon-arrow-right">
+    <el-breadcrumb-item v-for="item in list" :key="item.path" :to="item.path">
+      {{ item.meta.title }}
+    </el-breadcrumb-item>
+  </el-breadcrumb>
 </template>
 
 <script>
@@ -18,7 +18,7 @@ export default {
 
 <style scoped>
 .b-breadcrumb {
-  margin: 20px 0;
+  margin: 30px 0;
   font-size: 18px;
 }
 </style>

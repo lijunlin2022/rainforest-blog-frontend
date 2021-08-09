@@ -17,14 +17,14 @@ export default {
       timer: 5,
     };
   },
-  created() {
-    setInterval(() => {
-      this.timer--;
-      if (this.timer === 0) {
-        this.$router.replace("/");
-      }
-    }, 1000);
-  },
+  // created() {
+  //   setInterval(() => {
+  //     this.timer--;
+  //     if (this.timer === 0) {
+  //       this.$router.replace("/");
+  //     }
+  //   }, 1000);
+  // },
 };
 </script>
 

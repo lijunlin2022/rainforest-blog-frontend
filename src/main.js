@@ -5,6 +5,19 @@ import store from "@/store";
 import VueMarkdownEditor from "./mdEditor.js";
 import VMdPreview from "./mdPreview.js";
 import utils from "./utils";
+// import ElementPlus from "element-plus";
+import "element-plus/lib/theme-chalk/index.css";
+
+import {
+  ElBacktop,
+  ElButton,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElIcon,
+  ElInput,
+  ElOption,
+  ElSelect,
+} from "element-plus";
 import {
   BackTop,
   Breadcrumb,
@@ -37,5 +50,14 @@ app.use(Layout);
 app.use(List);
 app.use(Menu);
 app.use(Table);
+app.use(ElBacktop);
+app.use(ElBreadcrumb);
+app.use(ElBreadcrumbItem);
+app.use(ElButton);
+app.use(ElIcon);
+app.use(ElInput);
+app.use(ElOption);
+app.use(ElSelect);
+// app.use(ElementPlus);
 app.config.globalProperties.$utils = utils;
 app.mount("#app");

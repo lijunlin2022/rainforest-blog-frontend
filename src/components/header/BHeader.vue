@@ -22,9 +22,10 @@ export default {
     return {
       isActive: false,
       navItems: [
-        { path: "/overview", title: "Overview", id: null },
-        { path: "/nList", title: "Notebooks", id: null },
-        { path: "/list", title: "Notes", id: null },
+        { path: "/overview", title: "主页" },
+        { path: "/search", title: "搜索" },
+        { path: "/list", title: "笔记", id: null },
+        { path: "/whimsy", title: "随想" },
       ],
     };
   },

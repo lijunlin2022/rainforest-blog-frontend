@@ -131,7 +131,7 @@ export default {
 .notebook .name {
   margin: 20px 0 10px;
   font-size: 20px;
-  color: #000;
+  color: #229045;
   font-weight: bold;
 }
 .notebook .description {

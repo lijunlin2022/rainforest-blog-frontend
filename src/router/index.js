@@ -7,13 +7,16 @@ const routes = [
     component: () => import("@/views/user/Home.vue"),
     redirect: "/overview",
     meta: {
-      title: "Home",
+      title: "Overview",
     },
     children: [
       {
         path: "/overview",
-        name: "Overview",
-        component: () => import("@/views/user/Overview.vue"),
+        component: () => import("@/views/user/overview/Overview.vue"),
+      },
+      {
+        path: "/search",
+        component: () => import("@/views/user/search/Search.vue"),
       },
       {
         path: "/nDetail/:id",
@@ -28,18 +31,6 @@ const routes = [
         meta: {
           title: "Note",
         },
-      },
-      {
-        path: "/nList",
-        component: () => import("@/views/user/NList.vue"),
-        meta: {
-          title: "Note",
-        },
-      },
-      {
-        path: "/list",
-        name: "List",
-        component: () => import("@/views/user/List.vue"),
       },
       {
         path: "/:pathMatch(.*)*",

@@ -2,7 +2,7 @@ import VMdPreview from "@kangc/v-md-editor/lib/preview";
 import "@kangc/v-md-editor/lib/style/preview.css";
 import githubTheme from "@kangc/v-md-editor/lib/theme/github.js";
 import "@kangc/v-md-editor/lib/theme/style/github.css";
-import createMermaidPlugin from "@kangc/v-md-editor/lib/plugins/mermaid/cdn";
+// import createMermaidPlugin from "@kangc/v-md-editor/lib/plugins/mermaid/cdn";
 import "@kangc/v-md-editor/lib/plugins/mermaid/mermaid.css";
 import createCopyCodePlugin from "@kangc/v-md-editor/lib/plugins/copy-code/index";
 import "@kangc/v-md-editor/lib/plugins/copy-code/copy-code.css";
@@ -26,7 +26,7 @@ VMdPreview.use(githubTheme, {
     hljs.registerLanguage("sql", sql);
   },
 });
-VMdPreview.use(createMermaidPlugin());
+// VMdPreview.use(createMermaidPlugin());
 VMdPreview.use(createCopyCodePlugin());
 VMdPreview.use(createTodoListPlugin());
 
