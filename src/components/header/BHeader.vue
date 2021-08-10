@@ -24,8 +24,6 @@ export default {
       navItems: [
         { path: "/overview", title: "主页" },
         { path: "/search", title: "搜索" },
-        { path: "/list", title: "笔记", id: null },
-        { path: "/whimsy", title: "随想" },
       ],
     };
   },

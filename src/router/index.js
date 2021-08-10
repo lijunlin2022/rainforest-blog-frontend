@@ -43,14 +43,14 @@ const routes = [
     path: "/admin",
     name: "AHome",
     component: () => import("@/views/admin/AHome.vue"),
-    redirect: "/admin/nList",
-    children: [
-      {
-        path: "nList",
-        name: "ANList",
-        component: () => import("@/views/admin/ANList.vue"),
-      },
-    ],
+    // redirect: "/admin/nList",
+    // children: [
+    //   {
+    //     path: "nList",
+    //     name: "ANList",
+    //     component: () => import("@/views/admin/ANList.vue"),
+    //   },
+    // ],
   },
   {
     path: "/login",

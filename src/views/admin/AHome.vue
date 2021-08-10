@@ -1,22 +1,19 @@
 <template>
-  <a-layout class="layout">
-    <a-layout-header>
-      <div class="logo" />
-      <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-        <a-menu-item key="1">nav 1</a-menu-item>
-        <a-menu-item key="2">nav 2</a-menu-item>
-        <a-menu-item key="3">nav 3</a-menu-item>
-      </a-menu>
-    </a-layout-header>
-    <a-layout-content>
-      <div
-        :style="{
-          background: '#fff',
-          minHeight: 'calc(100vh - 64px)',
-        }"
-      >
-        <router-view />
-      </div>
-    </a-layout-content>
-  </a-layout>
+  <el-menu mode="horizontal" class="menu">
+    <el-menu-item class="menu-item">笔记本管理</el-menu-item>
+    <router-view />
+  </el-menu>
 </template>
+
+<style scoped>
+.menu {
+  background-color: #24292a;
+}
+.menu-item {
+  font-size: 18px;
+}
+.menu-item:hover {
+  background-color: #24292a !important;
+  color: #fff !important;
+}
+</style>
