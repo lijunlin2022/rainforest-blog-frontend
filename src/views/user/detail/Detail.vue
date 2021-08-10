@@ -1,8 +1,13 @@
 <template>
   <div class="note-detail">
     <b-breadcrumb></b-breadcrumb>
-    <tool-bar></tool-bar>
+    <tool-bar
+      :createdTime="noteData.created_time"
+      :updatedTime="noteData.updated_time"
+    >
+    </tool-bar>
     <v-md-preview
+      class="preview"
       :text="noteData.content"
       @copy-code-success="copyCodeSuccess()"
     >
@@ -22,13 +27,7 @@ export default {
   },
   data() {
     return {
-      noteData: {
-        id: null,
-        pid: null,
-        updated_time: null,
-        created_time: null,
-        content: "",
-      },
+      noteData: {},
     };
   },
   methods: {
@@ -54,5 +53,8 @@ export default {
 }
 .b-breadcrumb {
   margin: 25px;
+}
+.preview {
+  padding-top: 0px;
 }
 </style>

@@ -18,7 +18,7 @@ export default {
 
 <style scoped>
 .b-breadcrumb {
-  margin: 30px 0;
+  margin: 40px 0;
   font-size: 16px;
 }
 </style>

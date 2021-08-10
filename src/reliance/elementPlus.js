@@ -10,6 +10,11 @@ import {
   ElOption,
   ElSelect,
   ElSubmenu,
+  ElTable,
+  ElTableColumn,
+  ElDrawer,
+  ElForm,
+  ElFormItem,
 } from "element-plus";
 import "element-plus/lib/theme-chalk/index.css";
 
@@ -18,6 +23,9 @@ const components = [
   ElButton,
   ElBreadcrumb,
   ElBreadcrumbItem,
+  ElDrawer,
+  ElForm,
+  ElFormItem,
   ElIcon,
   ElInput,
   ElMenu,
@@ -25,6 +33,8 @@ const components = [
   ElOption,
   ElSelect,
   ElSubmenu,
+  ElTable,
+  ElTableColumn,
 ];
 
 export default components;

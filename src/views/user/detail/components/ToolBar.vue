@@ -14,11 +14,11 @@
     </div>
     <div>
       <span class="iconfont icon-time"></span>
-      <span>{{ $utils.getYearMonthDay(noteData.created_time) }}</span>
+      <span>{{ $utils.getYearMonthDay(createdTime) }}</span>
     </div>
     <div>
       <span class="iconfont icon-update"></span>
-      <span>{{ $utils.getYearMonthDay(noteData.updated_time) }}</span>
+      <span>{{ $utils.getYearMonthDay(updatedTime) }}</span>
     </div>
     <div @click="$router.go(-1)">
       <span class="iconfont icon-back"></span>
@@ -27,6 +27,14 @@
   </header>
 </template>
 
+<script>
+export default {
+  props: {
+    createdTime: Number,
+    updatedTime: Number,
+  },
+};
+</script>
 <style scoped>
 header {
   display: flex;

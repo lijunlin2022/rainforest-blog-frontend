@@ -54,11 +54,6 @@ export default {
   max-width: 900px;
   margin: 20px auto;
 }
-main {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
 .readme {
   padding-top: 0;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
