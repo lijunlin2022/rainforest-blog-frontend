@@ -32,6 +32,7 @@
 
 .icon-file:before {
   content: "\e678";
+  color: #00a1e3;
 }
 
 .icon-view:before {

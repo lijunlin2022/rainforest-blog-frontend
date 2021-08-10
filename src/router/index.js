@@ -20,7 +20,7 @@ const routes = [
       },
       {
         path: "/nDetail/:id",
-        component: () => import("@/views/user/NDetail.vue"),
+        component: () => import("@/views/user/nDetail/NDetail.vue"),
         meta: {
           title: "Notebook",
         },
