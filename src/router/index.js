@@ -27,7 +27,7 @@ const routes = [
       },
       {
         path: "/detail/:id",
-        component: () => import("@/views/user/Detail.vue"),
+        component: () => import("@/views/user/detail/Detail.vue"),
         meta: {
           title: "Note",
         },
