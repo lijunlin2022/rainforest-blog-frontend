@@ -43,12 +43,25 @@ const routes = [
     path: "/admin",
     name: "AHome",
     component: () => import("@/views/admin/AHome.vue"),
+    meta: {
+      title: "Admin",
+    },
     redirect: "/admin/nList",
     children: [
       {
         path: "nList",
         name: "ANList",
-        component: () => import("@/views/admin/aList/ANList.vue"),
+        component: () => import("@/views/admin/aNList/ANList.vue"),
+        meta: {
+          title: "NotebookList",
+        },
+      },
+      {
+        path: "list/:id",
+        component: () => import("@/views/admin/aList/AList.vue"),
+        meta: {
+          title: "NoteList",
+        },
       },
     ],
   },

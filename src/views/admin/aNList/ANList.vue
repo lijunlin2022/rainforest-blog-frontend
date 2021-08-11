@@ -13,7 +13,13 @@
         <el-button type="danger" @click="openDialog(scope)" size="small">
           编辑
         </el-button>
-        <el-button type="primary" size="small">查看</el-button>
+        <el-button
+          type="primary"
+          size="small"
+          @click="$utils.changeRoute(`/admin/list/${scope.row.id}`)"
+        >
+          查看
+        </el-button>
       </template>
     </el-table-column>
   </el-table>

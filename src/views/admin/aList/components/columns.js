@@ -1,11 +1,11 @@
 const columns = [
   {
-    label: "名字",
-    prop: "name",
+    label: "标题",
+    prop: "title",
   },
   {
-    label: "描述",
-    prop: "description",
+    label: "摘要",
+    prop: "abstract",
   },
 ];
 
