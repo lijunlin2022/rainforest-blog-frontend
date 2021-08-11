@@ -14,8 +14,8 @@ export function newNotebook(notebookData) {
 // 修改
 export function updateNotebook(id, notebookData) {
   return request({
-    url: `/notebook/update?id=${id}`,
-    method: "post",
+    url: `/notebook/update/${id}`,
+    method: "patch",
     data: notebookData,
   });
 }
