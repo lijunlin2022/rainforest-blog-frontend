@@ -1,6 +1,10 @@
 <template>
   <div class="profile">
-    <div class="logo">霖</div>
+    <div class="logo">
+      <img
+        src="https://gitee.com/Li-Jun-Lin/figure/raw/master/avater/tutu.png"
+      />
+    </div>
     <div>
       <v-md-preview :text="profileContent"></v-md-preview>
     </div>
@@ -17,7 +21,7 @@ export default {
   },
   async created() {
     try {
-      const profile = await getNoteDetail(1);
+      const profile = await getNoteDetail({ id: 1 });
       this.profileContent = this.$utils.htmlDecode(profile.data.data.content);
     } catch (error) {
       console.error("Profile 请求失败");
@@ -37,12 +41,10 @@ export default {
   width: 100px;
   margin: 0 50px;
   height: 100px;
-  line-height: 100px;
-  text-align: center;
-  background-color: #fec41c;
-  border-radius: 50%;
-  font-size: 50px;
-  color: #fff;
+}
+.profile .logo > img {
+  width: 100px;
+  height: 100px;
 }
 @media screen and (min-width: 992px) {
   .profile {

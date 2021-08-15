@@ -29,22 +29,16 @@ export default {
   },
   async created() {
     try {
-      const readme = await getNoteDetail(null, this.id, "README");
+      const readme = await getNoteDetail({
+        id: null,
+        pid: this.$route.params.id,
+        title: "README",
+      });
       this.content = this.$utils.htmlDecode(readme.data.data.content);
-    } catch {
+    } catch (e) {
       this.hasReadme = false;
       console.error("获取 README 失败");
     }
-  },
-  methods: {
-    newNote() {
-      this.$router.push({
-        path: "/admin/note",
-        query: {
-          pid: this.$route.query.id,
-        },
-      });
-    },
   },
 };
 </script>
@@ -55,6 +49,7 @@ export default {
   margin: 20px auto;
 }
 .readme {
+  margin-top: 30px;
   padding-top: 0;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }

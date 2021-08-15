@@ -36,7 +36,7 @@ export default {
     },
   },
   async created() {
-    const result = await getNoteDetail(this.$route.params.id);
+    const result = await getNoteDetail({ id: this.$route.params.id });
     this.noteData = this.$utils.htmlDecodeObject(result.data.data);
     console.log(this.$route);
   },

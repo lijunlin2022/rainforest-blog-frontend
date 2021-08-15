@@ -31,10 +31,11 @@ export function updateNote(id, noteData) {
 }
 
 // 查询单个
-export function getNoteDetail(id) {
+export function getNoteDetail(queryData) {
   return request({
-    url: `/note/${id}`,
-    method: "get",
+    url: `/note/`,
+    method: "post",
+    data: queryData,
   });
 }
 
