@@ -12,18 +12,11 @@
         <el-button
           type="primary"
           size="small"
-          @click="$utils.changeRoute(`/admin/nList`)"
+          @click="$utils.changeRoute(`/admin/list/${pid}`)"
         >
-          回到 Notebook
+          回到 List
         </el-button>
         <el-button type="danger" size="small" @click="submit">提交</el-button>
-        <el-button
-          type="success"
-          size="small"
-          @click="$utils.changeRoute(`/detail/${id}`)"
-        >
-          查看效果
-        </el-button>
       </div>
     </main>
   </div>
@@ -38,6 +31,7 @@ export default {
       id: null,
       pid: null,
       noteData: {
+        pid: null,
         title: "",
         abstract: "",
         content: "",
@@ -57,14 +51,13 @@ export default {
     async submit() {
       this.valid();
       try {
-        this.id = this.$route.params.id;
-        this.pid = this.$route.params.pid;
-        if (this.id) {
-          // 有 id 证明是更新操作
+        if (this.id !== "0") {
+          // id !== "0" 证明是更新操作
           await updateNote(this.id, this.noteData);
         } else {
-          // 没有 id 证明是新增操作
-          await newNote(this.noteData);
+          // id === "0" 证明是新增操作
+          const res = await newNote(this.noteData);
+          this.id = res.data.data.id;
         }
         this.$message.success("提交成功");
       } catch (e) {
@@ -74,9 +67,13 @@ export default {
   },
   async created() {
     this.id = this.$route.params.id;
-    if (this.id) {
+    this.pid = this.$route.params.pid;
+    if (this.id !== "0") {
       const note = await getNoteDetail(this.id);
       this.noteData = this.$utils.htmlDecodeObject(note.data.data);
+    } else {
+      this.noteData.pid = this.pid;
+      this.noteData.content = "# 请输入内容\n";
     }
   },
 };

@@ -1,6 +1,7 @@
 <template>
   <el-menu mode="horizontal" class="menu">
     <el-menu-item class="menu-item">笔记本管理</el-menu-item>
+    <el-menu-item class="menu-item" @click="logout">退出</el-menu-item>
   </el-menu>
   <b-breadcrumb></b-breadcrumb>
   <router-view />
@@ -12,6 +13,11 @@ export default {
   components: {
     BBreadcrumb,
   },
+  methods: {
+    logout() {
+      this.$utils.changeRoute("/overview");
+    },
+  },
 };
 </script>
 <style scoped>
@@ -22,7 +28,8 @@ export default {
   font-size: 18px;
   color: #aaa !important;
 }
-.menu-item:hover {
+.menu-item:hover,
+.menu-item:focus {
   background-color: #24292a !important;
   color: #fff !important;
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="blog-header">
     <div class="logo">
-      <router-link to="/login">Rainforest</router-link>
+      <a href="/nDetail/1">Rainforest</a>
     </div>
     <div class="navbar">
       <input type="checkbox" id="nav" :checked="isActive" @click="toggle" />
@@ -10,6 +10,7 @@
         <li v-for="item in navItems" :key="item" @click="toggle">
           <router-link :to="item.path">{{ item.title }}</router-link>
         </li>
+        <li @click="$router.push('/login')"><a>登录</a></li>
       </ul>
     </div>
   </div>

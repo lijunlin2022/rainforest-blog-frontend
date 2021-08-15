@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="notebooksArray" style="font-size: 16px" stripe>
+  <el-table :data="notebooksArray" stripe border height="500">
     <el-table-column
       v-for="item in columns"
       :label="item.label"
@@ -37,14 +37,21 @@
         type="textarea"
         autosize
       />
-      <el-button @click="dialog = false">取消</el-button>
-      <el-button type="primary" @click="handleUpdate">提交</el-button>
+      <el-button @click="dialog = false" size="small">取消</el-button>
+      <el-button type="primary" @click="submit" size="small">提交</el-button>
     </div>
   </el-drawer>
+  <div class="btn-container">
+    <button @click="dialog = true">新增</button>
+  </div>
 </template>
 
 <script>
-import { getNotebookList, updateNotebook } from "@/api/notebooks.js";
+import {
+  getNotebookList,
+  updateNotebook,
+  newNotebook,
+} from "@/api/notebooks.js";
 import columns from "./components/columns.js";
 export default {
   name: "Overview",
@@ -72,6 +79,27 @@ export default {
       this.form = { id, name, description };
       this.dialog = true;
     },
+    submit() {
+      if (this.form.id === null) {
+        this.handleAdd();
+      } else {
+        this.handleUpdate();
+      }
+    },
+    async handleAdd() {
+      try {
+        await newNotebook(this.form);
+        // 新增成功后重新调用获取表格的接口
+        const notebooks = await getNotebookList({ current: null, size: null });
+        this.notebooksArray = notebooks.data.data.map((item) => {
+          return this.$utils.htmlDecodeObject(item);
+        });
+        this.dialog = false;
+        this.$message.success("新增成功");
+      } catch (e) {
+        this.$message.error("新增失败");
+      }
+    },
     async handleUpdate() {
       try {
         await updateNotebook(this.form.id, this.form);
@@ -80,8 +108,8 @@ export default {
         this.notebooksArray = notebooks.data.data.map((item) => {
           return this.$utils.htmlDecodeObject(item);
         });
-        this.$message.success("更新成功");
         this.dialog = false;
+        this.$message.success("更新成功");
       } catch (e) {
         this.$message.error("更新失败");
       }
@@ -92,11 +120,18 @@ export default {
 
 <style scoped>
 .form-container {
-  padding: 0 20px;
-  display: flex;
-  flex-wrap: wrap;
+  padding: 10px;
 }
-.description {
-  margin: 40px 0;
+.form-container .description {
+  margin: 20px 0;
+}
+.btn-container {
+  padding: 10px;
+}
+.btn-container button {
+  width: 200px;
+  height: 40px;
+  outline: none;
+  border: none;
 }
 </style>

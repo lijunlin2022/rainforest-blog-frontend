@@ -1,5 +1,11 @@
 <template>
-  <el-table :data="noteArray" style="font-size: 16px" stripe>
+  <el-table
+    :data="noteArray"
+    style="font-size: 16px"
+    stripe
+    border
+    height="500"
+  >
     <el-table-column
       v-for="item in columns"
       :label="item.label"
@@ -26,6 +32,12 @@
       </template>
     </el-table-column>
   </el-table>
+
+  <div class="btn-container">
+    <button @click="$utils.changeRoute(`/admin/detail/${id}/${0}`)">
+      新建
+    </button>
+  </div>
 </template>
 
 <script>
@@ -35,16 +47,18 @@ export default {
   name: "Overview",
   data() {
     return {
+      id: null,
       columns,
       noteArray: [],
     };
   },
   async created() {
-    const queryData = {};
-    queryData.pid = this.$route.params.id;
-    queryData.current = null;
-    queryData.size = null;
-    const notes = await getNoteList(queryData);
+    this.id = this.$route.params.id;
+    const notes = await getNoteList({
+      pid: this.id,
+      current: null,
+      size: null,
+    });
     this.noteArray = notes.data.data.map((item) => {
       return this.$utils.htmlDecodeObject(item);
     });
@@ -56,3 +70,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.btn-container {
+  padding: 10px;
+}
+.btn-container button {
+  width: 200px;
+  height: 40px;
+  outline: none;
+  border: none;
+}
+</style>
