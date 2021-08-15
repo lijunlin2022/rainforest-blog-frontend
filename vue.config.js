@@ -15,23 +15,22 @@ module.exports = {
     },
   },
   // 修改  index.html 里面的 html-webpack-plugin 的值
-  chainWebpack: config => {
-    config.plugin("html")
-      .tap(args => {
-        args[0].title = "计算机专业资料分享";
-        return args;
-      });
+  chainWebpack: (config) => {
+    config.plugin("html").tap((args) => {
+      args[0].title = "rainforest 的资料分享";
+      return args;
+    });
   },
   // 配置 gzip 压缩
-  configureWebpack: config => {
+  configureWebpack: () => {
     return {
       plugins: [
         new compressionPlugin({
           test: /\.js$|\.html$|\.css/,
           threshold: 10240,
-          deleteOriginalAssets: false
-        })
-      ]
+          deleteOriginalAssets: false,
+        }),
+      ],
     };
   },
   productionSourceMap: true,
