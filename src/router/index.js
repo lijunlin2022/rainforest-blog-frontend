@@ -41,8 +41,8 @@ const routes = [
   },
   {
     path: "/admin",
-    name: "AHome",
-    component: () => import("@/views/admin/AHome.vue"),
+    name: "Home",
+    component: () => import("@/views/admin/Home.vue"),
     meta: {
       title: "Admin",
     },
@@ -50,17 +50,24 @@ const routes = [
     children: [
       {
         path: "nList",
-        name: "ANList",
-        component: () => import("@/views/admin/aNList/ANList.vue"),
+        name: "NList",
+        component: () => import("@/views/admin/nList/NList.vue"),
         meta: {
           title: "NotebookList",
         },
       },
       {
         path: "list/:id",
-        component: () => import("@/views/admin/aList/AList.vue"),
+        component: () => import("@/views/admin/list/List.vue"),
         meta: {
           title: "NoteList",
+        },
+      },
+      {
+        path: "detail/:pid/:id",
+        component: () => import("@/views/admin/detail/Detail.vue"),
+        meta: {
+          title: "Detail",
         },
       },
     ],

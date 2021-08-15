@@ -1,6 +1,5 @@
 <template>
   <el-table :data="notebooksArray" style="font-size: 16px" stripe>
-    <el-table-column type="index" label="序号"></el-table-column>
     <el-table-column
       v-for="item in columns"
       :label="item.label"
@@ -10,15 +9,15 @@
     </el-table-column>
     <el-table-column label="操作" width="150 ">
       <template #default="scope">
-        <el-button type="danger" @click="openDialog(scope)" size="small">
-          编辑
-        </el-button>
         <el-button
           type="primary"
           size="small"
           @click="$utils.changeRoute(`/admin/list/${scope.row.id}`)"
         >
           查看
+        </el-button>
+        <el-button type="danger" @click="openDialog(scope)" size="small">
+          编辑
         </el-button>
       </template>
     </el-table-column>
@@ -62,10 +61,7 @@ export default {
     };
   },
   async created() {
-    const queryData = {};
-    queryData.current = null;
-    queryData.size = null;
-    const notebooks = await getNotebookList(queryData);
+    const notebooks = await getNotebookList({ current: null, size: null });
     this.notebooksArray = notebooks.data.data.map((item) => {
       return this.$utils.htmlDecodeObject(item);
     });
@@ -73,14 +69,17 @@ export default {
   methods: {
     openDialog(scope) {
       const { id, name, description } = scope.row;
-      this.form.id = id;
-      this.form.name = name;
-      this.form.description = description;
+      this.form = { id, name, description };
       this.dialog = true;
     },
     async handleUpdate() {
       try {
         await updateNotebook(this.form.id, this.form);
+        // 更新成功后重新调用获取表格的接口
+        const notebooks = await getNotebookList({ current: null, size: null });
+        this.notebooksArray = notebooks.data.data.map((item) => {
+          return this.$utils.htmlDecodeObject(item);
+        });
         this.$message.success("更新成功");
         this.dialog = false;
       } catch (e) {
