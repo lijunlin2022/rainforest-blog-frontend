@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-// import store from "../store";
+import store from "../store";
 
 const routes = [
   {
@@ -45,6 +45,7 @@ const routes = [
     component: () => import("@/views/admin/Home.vue"),
     meta: {
       title: "Admin",
+      requireAuth: true,
     },
     redirect: "/admin/nList",
     children: [
@@ -84,12 +85,12 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach((to) => {
-//   if (to.meta.requireAuth && store.getters.getLoginStatus === false) {
-//     return {
-//       path: "/login",
-//     };
-//   }
-// });
+router.beforeEach((to) => {
+  if (to.meta.requireAuth && store.getters.getLoginStatus === false) {
+    return {
+      path: "/login",
+    };
+  }
+});
 
 export default router;

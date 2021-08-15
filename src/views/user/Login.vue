@@ -70,14 +70,18 @@ export default {
   },
   methods: {
     async handleLogin() {
-      const result = await login(this.userData);
-      const res = result.data;
-      if (res.code !== 200) {
-        alert(res.message);
-      } else {
-        this.$store.commit("login");
-        this.$router.go(-1);
-        alert("登录成功");
+      try {
+        const result = await login(this.userData);
+        const res = result.data;
+        if (res.code !== 200) {
+          this.$message.error(res.message);
+        } else {
+          this.$store.commit("login");
+          this.$router.replace("/admin");
+          this.$message.success("登录成功");
+        }
+      } catch (e) {
+        this.$message.error("发生错误, 无法登录");
       }
     },
     toggleForm() {

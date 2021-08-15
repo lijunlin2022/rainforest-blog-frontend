@@ -1,9 +1,5 @@
 <template>
   <header>
-    <div @click="$utils.changeRoute('/admin/note', noteData.id)">
-      <span class="iconfont icon-edit"></span>
-      <span class>编辑文章</span>
-    </div>
     <div>
       <span class="iconfont icon-view"></span>
       <span>浏览量</span>
