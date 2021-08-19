@@ -55,17 +55,18 @@ export default {
     };
   },
   async created() {
-    let result = await getNotebookList();
+    let result = await getNotebookList({ current: null, size: null });
     this.listArray = result.data.data.map((item) => {
       return this.$utils.htmlDecodeObject(item);
     });
   },
   methods: {
     async search() {
-      const queryData = {};
-      queryData.keyword = this.searchValue;
-      queryData.current = null;
-      queryData.size = null;
+      const queryData = {
+        keyword: this.searchValue,
+        current: null,
+        size: null,
+      };
       let result = await getNotebookList(queryData);
       this.listArray = result.data.data.map((item) => {
         return this.$utils.htmlDecodeObject(item);

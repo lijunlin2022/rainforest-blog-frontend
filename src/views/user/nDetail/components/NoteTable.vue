@@ -35,8 +35,11 @@ export default {
   async created() {
     this.id = this.$route.params.id;
     try {
-      const queryNoteData = {};
-      queryNoteData.pid = this.id;
+      const queryNoteData = {
+        pid: this.id,
+        current: null,
+        size: null,
+      };
       const notes = await getNoteList(queryNoteData);
       this.noteArray = notes.data.data.map((item) => {
         return this.$utils.htmlDecodeObject(item);
