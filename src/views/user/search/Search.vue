@@ -40,6 +40,7 @@
 
 <script>
 import { getNotebookList } from "@/api/notebooks.js";
+import { debounce } from "@/utils/debounce.js";
 import options from "./components/options.js";
 import Notebook from "@/components/notebook/Notebook.vue";
 export default {
@@ -61,17 +62,21 @@ export default {
     });
   },
   methods: {
-    async search() {
-      const queryData = {
-        keyword: this.searchValue,
-        current: null,
-        size: null,
-      };
-      let result = await getNotebookList(queryData);
-      this.listArray = result.data.data.map((item) => {
-        return this.$utils.htmlDecodeObject(item);
-      });
-    },
+    search: debounce(
+      async function () {
+        const queryData = {
+          keyword: this.searchValue,
+          current: null,
+          size: null,
+        };
+        let result = await getNotebookList(queryData);
+        this.listArray = result.data.data.map((item) => {
+          return this.$utils.htmlDecodeObject(item);
+        });
+      },
+      300,
+      false
+    ),
     async sort() {
       const queryData = {};
       queryData.keyword = this.searchValue;

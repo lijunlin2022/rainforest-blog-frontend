@@ -57,6 +57,8 @@
 
 <script>
 import { login } from "@/api/users.js";
+import { debounce } from "@/utils/debounce.js";
+
 export default {
   name: "Login",
   data() {
@@ -69,21 +71,25 @@ export default {
     };
   },
   methods: {
-    async handleLogin() {
-      try {
-        const result = await login(this.userData);
-        const res = result.data;
-        if (res.code !== 200) {
-          this.$message.error(res.message);
-        } else {
-          this.$store.commit("login");
-          this.$router.replace("/admin");
-          this.$message.success("登录成功");
+    handleLogin: debounce(
+      async function () {
+        try {
+          const result = await login(this.userData);
+          const res = result.data;
+          if (res.code !== 200) {
+            this.$message.error(res.message);
+          } else {
+            this.$store.commit("login");
+            this.$router.replace("/admin");
+            this.$message.success("登录成功");
+          }
+        } catch (e) {
+          this.$message.error("发生错误, 无法登录");
         }
-      } catch (e) {
-        this.$message.error("发生错误, 无法登录");
-      }
-    },
+      },
+      300,
+      true
+    ),
     toggleForm() {
       this.isActive = !this.isActive;
     },
