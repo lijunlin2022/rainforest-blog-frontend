@@ -1,4 +1,13 @@
 <template>
+  <a-header>
+    <el-button
+      type="success"
+      size="small"
+      @click="$utils.changeRoute(`/admin/detail/${id}/${0}`)"
+    >
+      新建
+    </el-button>
+  </a-header>
   <el-table
     :data="noteArray"
     style="font-size: 16px"
@@ -32,19 +41,14 @@
       </template>
     </el-table-column>
   </el-table>
-
-  <div class="btn-container">
-    <button @click="$utils.changeRoute(`/admin/detail/${id}/${0}`)">
-      新建
-    </button>
-  </div>
 </template>
 
 <script>
 import { getNoteList } from "@/api/notes.js";
 import columns from "./components/columns.js";
+import AHeader from "@/components/header/AHeader.vue";
 export default {
-  name: "Overview",
+  components: { AHeader },
   data() {
     return {
       id: null,

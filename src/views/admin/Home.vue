@@ -3,16 +3,11 @@
     <el-menu-item class="menu-item">笔记本管理</el-menu-item>
     <el-menu-item class="menu-item" @click="logout">退出</el-menu-item>
   </el-menu>
-  <b-breadcrumb></b-breadcrumb>
   <router-view />
 </template>
 
 <script>
-import BBreadcrumb from "@/components/breadcrumb/BBreadcrumb.vue";
 export default {
-  components: {
-    BBreadcrumb,
-  },
   methods: {
     logout() {
       this.$store.commit("logout");

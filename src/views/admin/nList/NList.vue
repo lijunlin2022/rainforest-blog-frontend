@@ -1,4 +1,11 @@
 <template>
+  <a-header>
+    <template #default>
+      <el-button @click="dialog = true" type="success" size="small">
+        新增
+      </el-button>
+    </template>
+  </a-header>
   <el-table :data="notebooksArray" stripe border height="500">
     <el-table-column
       v-for="item in columns"
@@ -41,9 +48,6 @@
       <el-button type="primary" @click="submit" size="small">提交</el-button>
     </div>
   </el-drawer>
-  <div class="btn-container">
-    <button @click="dialog = true">新增</button>
-  </div>
 </template>
 
 <script>
@@ -53,8 +57,12 @@ import {
   newNotebook,
 } from "@/api/notebooks.js";
 import columns from "./components/columns.js";
+import AHeader from "@/components/header/AHeader.vue";
+
 export default {
-  name: "Overview",
+  components: {
+    AHeader,
+  },
   data() {
     return {
       columns,
@@ -126,12 +134,10 @@ export default {
   margin: 20px 0;
 }
 .btn-container {
-  padding: 10px;
-}
-.btn-container button {
-  width: 200px;
-  height: 40px;
-  outline: none;
-  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 20px;
 }
 </style>
