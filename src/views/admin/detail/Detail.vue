@@ -1,21 +1,28 @@
 <template>
+  <a-header>
+    <template #default>
+      <el-button
+        type="primary"
+        size="small"
+        @click="$utils.changeRoute(`/admin/list/${pid}`)"
+      >
+        上一页
+      </el-button>
+    </template>
+  </a-header>
   <div class="admin-note">
     <main>
+      <v-md-editor class="md-editor" v-model="noteData.content"></v-md-editor>
       <el-input type="text" class="title" v-model="noteData.title">
         <template #prepend>标题</template>
       </el-input>
-      <v-md-editor class="md-editor" v-model="noteData.content"></v-md-editor>
-      <el-input type="text" v-model="noteData.abstract">
-        <template #prepend>摘要</template>
+      <el-input
+        type="textarea"
+        v-model="noteData.abstract"
+        placeholder="请输入摘要"
+      >
       </el-input>
       <div class="btn-container">
-        <el-button
-          type="primary"
-          size="small"
-          @click="$utils.changeRoute(`/admin/list/${pid}`)"
-        >
-          回到 List
-        </el-button>
         <el-button type="danger" size="small" @click="submit">提交</el-button>
       </div>
     </main>
@@ -24,8 +31,10 @@
 
 <script>
 import { newNote, getNoteDetail, updateNote } from "@/api/notes.js";
+import AHeader from "@/components/header/AHeader.vue";
+
 export default {
-  name: "AdminNote",
+  components: { AHeader },
   data() {
     return {
       id: null,
@@ -69,7 +78,7 @@ export default {
     this.id = this.$route.params.id;
     this.pid = this.$route.params.pid;
     if (this.id !== "0") {
-      const note = await getNoteDetail(this.id);
+      const note = await getNoteDetail({ id: this.id });
       this.noteData = this.$utils.htmlDecodeObject(note.data.data);
     } else {
       this.noteData.pid = this.pid;
@@ -81,9 +90,8 @@ export default {
 
 <style scoped>
 .btn-container {
-  padding: 10px;
-  display: flex;
-  justify-content: flex-end;
+  padding: 10px 100px;
+  text-align: right;
 }
 .md-editor {
   width: 100%;

@@ -4,6 +4,7 @@
     <el-menu-item class="menu-item" @click="logout">退出</el-menu-item>
   </el-menu>
   <router-view />
+  <el-backtop />
 </template>
 
 <script>

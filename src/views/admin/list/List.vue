@@ -1,12 +1,14 @@
 <template>
   <a-header>
-    <el-button
-      type="success"
-      size="small"
-      @click="$utils.changeRoute(`/admin/detail/${id}/${0}`)"
-    >
-      新建
-    </el-button>
+    <template #default>
+      <el-button
+        type="success"
+        size="small"
+        @click="$utils.changeRoute(`/admin/detail/${id}/${0}`)"
+      >
+        新建
+      </el-button>
+    </template>
   </a-header>
   <el-table
     :data="noteArray"
