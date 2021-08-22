@@ -10,6 +10,12 @@
       </el-button>
     </template>
   </a-header>
+  <el-input
+    placeholder="请输入 Notebook 的名字"
+    v-model="searchValue"
+    @input="search"
+  >
+  </el-input>
   <el-table
     :data="noteArray"
     style="font-size: 16px"
@@ -47,12 +53,14 @@
 
 <script>
 import { getNoteList } from "@/api/notes.js";
+import { debounce } from "@/utils/debounce.js";
 import columns from "./components/columns.js";
 import AHeader from "@/components/header/AHeader.vue";
 export default {
   components: { AHeader },
   data() {
     return {
+      searchValue: "",
       id: null,
       columns,
       noteArray: [],
@@ -73,6 +81,22 @@ export default {
     del(scope) {
       console.log(scope.row);
     },
+    search: debounce(
+      async function () {
+        this.id = this.$route.params.id;
+        const notes = await getNoteList({
+          pid: this.id,
+          current: null,
+          size: null,
+          keyword: this.searchValue,
+        });
+        this.noteArray = notes.data.data.map((item) => {
+          return this.$utils.htmlDecodeObject(item);
+        });
+      },
+      300,
+      false
+    ),
   },
 };
 </script>

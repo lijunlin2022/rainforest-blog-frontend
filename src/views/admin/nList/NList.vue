@@ -6,7 +6,13 @@
       </el-button>
     </template>
   </a-header>
-  <el-table :data="notebooksArray" stripe border height="500">
+  <el-input
+    placeholder="请输入 Notebook 的名字"
+    v-model="searchValue"
+    @input="search"
+  >
+  </el-input>
+  <el-table :data="notebooksArray" stripe border>
     <el-table-column
       v-for="item in columns"
       :label="item.label"
@@ -56,6 +62,7 @@ import {
   updateNotebook,
   newNotebook,
 } from "@/api/notebooks.js";
+import { debounce } from "@/utils/debounce.js";
 import columns from "./components/columns.js";
 import AHeader from "@/components/header/AHeader.vue";
 
@@ -65,6 +72,7 @@ export default {
   },
   data() {
     return {
+      searchValue: "",
       columns,
       notebooksArray: [],
       dialog: false,
@@ -82,6 +90,20 @@ export default {
     });
   },
   methods: {
+    search: debounce(
+      async function () {
+        const notebooks = await getNotebookList({
+          current: null,
+          size: null,
+          keyword: this.searchValue,
+        });
+        this.notebooksArray = notebooks.data.data.map((item) => {
+          return this.$utils.htmlDecodeObject(item);
+        });
+      },
+      300,
+      false
+    ),
     openDialog(scope) {
       const { id, name, description } = scope.row;
       this.form = { id, name, description };
