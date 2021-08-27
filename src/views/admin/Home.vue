@@ -10,12 +10,12 @@
 <script>
 export default {
   methods: {
-    logout() {
-      this.$store.commit("logout");
-      this.$utils.changeRoute("/overview");
-    },
-  },
-};
+    logout () {
+      this.$store.commit('logout')
+      this.$utils.changeRoute('/overview')
+    }
+  }
+}
 </script>
 <style scoped>
 .menu {

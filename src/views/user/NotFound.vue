@@ -11,21 +11,21 @@
 
 <script>
 export default {
-  name: "NotFound",
-  data() {
+  name: 'NotFound',
+  data () {
     return {
-      timer: 5,
-    };
+      timer: 5
+    }
   },
-  created() {
+  created () {
     setInterval(() => {
-      this.timer--;
+      this.timer--
       if (this.timer === 0) {
-        this.$router.replace("/");
+        this.$router.replace('/')
       }
-    }, 1000);
-  },
-};
+    }, 1000)
+  }
+}
 </script>
 
 <style scoped>

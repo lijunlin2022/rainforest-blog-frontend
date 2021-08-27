@@ -1,11 +1,11 @@
-import { htmlDecode, htmlDecodeObject } from "../utils/htmlUtils";
-import { getYearMonthDay, getMonthDay } from "../utils/timeUtils";
-import router from "../router/index";
+import { htmlDecode, htmlDecodeObject } from '../utils/htmlUtils'
+import { getYearMonthDay, getMonthDay } from '../utils/timeUtils'
+import router from '../router/index'
 
-function changeRoute(path) {
+function changeRoute (path) {
   router.push({
-    path: path,
-  });
+    path: path
+  })
 }
 
 export default {
@@ -13,5 +13,5 @@ export default {
   htmlDecodeObject,
   getYearMonthDay,
   getMonthDay,
-  changeRoute,
-};
+  changeRoute
+}

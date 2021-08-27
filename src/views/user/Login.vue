@@ -4,23 +4,13 @@
       <div :class="{ container: true, active: isActive }">
         <div class="user signinBx">
           <div class="imgBx">
-            <img
-              src="https://gitee.com/Li-Jun-Lin/figure/raw/master/background/forest.png"
-            />
+            <img src="https://gitee.com/Li-Jun-Lin/figure/raw/master/background/forest.png" />
           </div>
           <div class="formBx">
             <form>
               <h2>登录</h2>
-              <input
-                type="text"
-                v-model="userData.username"
-                placeholder="Username"
-              />
-              <input
-                type="password"
-                v-model="userData.password"
-                placeholder="Password"
-              />
+              <input type="text" v-model="userData.username" placeholder="Username" />
+              <input type="password" v-model="userData.password" placeholder="Password" />
               <input type="button" value="Login" @click="handleLogin" />
               <p class="signup">
                 没有账号 ?<a @click="toggleForm()">注册</a> 或
@@ -45,9 +35,7 @@
             </form>
           </div>
           <div class="imgBx">
-            <img
-              src="https://gitee.com/Li-Jun-Lin/figure/raw/master/background/jungle.png"
-            />
+            <img src="https://gitee.com/Li-Jun-Lin/figure/raw/master/background/jungle.png" />
           </div>
         </div>
       </div>
@@ -56,45 +44,45 @@
 </template>
 
 <script>
-import { login } from "@/api/users.js";
-import { debounce } from "@/utils/debounce.js";
+import { login } from '@/api/users.js'
+import { debounce } from '@/utils/debounce.js'
 
 export default {
-  name: "Login",
-  data() {
+  name: 'Login',
+  data () {
     return {
       isActive: false,
       userData: {
-        username: "",
-        password: "",
-      },
-    };
+        username: '',
+        password: ''
+      }
+    }
   },
   methods: {
     handleLogin: debounce(
       async function () {
         try {
-          const result = await login(this.userData);
-          const res = result.data;
+          const result = await login(this.userData)
+          const res = result.data
           if (res.code !== 200) {
-            this.$message.error(res.message);
+            this.$message.error(res.message)
           } else {
-            this.$store.commit("login");
-            this.$router.replace("/admin");
-            this.$message.success("登录成功");
+            this.$store.commit('login')
+            this.$router.replace('/admin')
+            this.$message.success('登录成功')
           }
         } catch (e) {
-          this.$message.error("发生错误, 无法登录");
+          this.$message.error('发生错误, 无法登录')
         }
       },
       300,
       true
     ),
-    toggleForm() {
-      this.isActive = !this.isActive;
-    },
-  },
-};
+    toggleForm () {
+      this.isActive = !this.isActive
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -175,7 +163,7 @@ section .container .user .formBx input {
   margin: 8px 0;
   font-size: 14px;
 }
-section .container .user .formBx input[type="button"] {
+section .container .user .formBx input[type='button'] {
   max-width: 100px;
   background-color: var(--link-color);
   color: var(--main-color);

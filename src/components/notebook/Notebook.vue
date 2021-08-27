@@ -9,12 +9,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "BlogDirectory",
-};
-</script>
-
 <style scoped>
 .directory {
   box-sizing: border-box;

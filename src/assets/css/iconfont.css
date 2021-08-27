@@ -1,10 +1,10 @@
 @font-face {
-  font-family: "iconfont"; /* Project id  */
+  font-family: 'iconfont'; /* Project id  */
   src: url('iconfont.ttf?t=1625158476472') format('truetype');
 }
 
 .iconfont {
-  font-family: "iconfont" !important;
+  font-family: 'iconfont' !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -12,41 +12,40 @@
 }
 
 .icon-comment:before {
-  content: "\e62c";
+  content: '\e62c';
   color: #ffd33d;
 }
 
 .icon-time:before {
-  content: "\e61f";
+  content: '\e61f';
   color: #d15704;
 }
 
 .icon-edit:before {
-  content: "\e636";
+  content: '\e636';
   color: #fe898a;
 }
 
 .icon-add:before {
-  content: "\e502";
+  content: '\e502';
 }
 
 .icon-file:before {
-  content: "\e678";
+  content: '\e678';
   color: #00a1e3;
 }
 
 .icon-view:before {
-  content: "\e609";
+  content: '\e609';
   color: #2166d6;
 }
 
 .icon-back:before {
-  content: "\e639";
+  content: '\e639';
   color: #e34c26;
 }
 
 .icon-update:before {
-  content: "\e6b6";
+  content: '\e6b6';
   color: #28a745;
 }
-

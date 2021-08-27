@@ -3,44 +3,43 @@
     <b-breadcrumb></b-breadcrumb>
     <main>
       <note-table></note-table>
-      <v-md-preview class="readme" :text="content" v-show="hasReadme">
-      </v-md-preview>
+      <v-md-preview class="readme" :text="content" v-show="hasReadme"> </v-md-preview>
     </main>
   </div>
 </template>
 
 <script>
-import { getNoteDetail } from "@/api/notes.js";
+import { getNoteDetail } from '@/api/notes.js'
 
-import BBreadcrumb from "@/components/breadcrumb/BBreadcrumb.vue";
-import NoteTable from "./components/NoteTable.vue";
+import BBreadcrumb from '@/components/breadcrumb/BBreadcrumb.vue'
+import NoteTable from './components/NoteTable.vue'
 
 export default {
-  name: "NotebookDetail",
+  name: 'NotebookDetail',
   components: {
     BBreadcrumb,
-    NoteTable,
+    NoteTable
   },
-  data() {
+  data () {
     return {
       hasReadme: true,
-      content: "",
-    };
+      content: ''
+    }
   },
-  async created() {
+  async created () {
     try {
       const readme = await getNoteDetail({
         id: null,
         pid: this.$route.params.id,
-        title: "README",
-      });
-      this.content = this.$utils.htmlDecode(readme.data.data.content);
+        title: 'README'
+      })
+      this.content = this.$utils.htmlDecode(readme.data.data.content)
     } catch (e) {
-      this.hasReadme = false;
-      console.error("获取 README 失败");
+      this.hasReadme = false
+      console.error('获取 README 失败')
     }
-  },
-};
+  }
+}
 </script>
 
 <style scoped>

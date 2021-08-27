@@ -15,12 +15,11 @@ import {
   ElDrawer,
   ElForm,
   ElFormItem,
-  ElMessage,
-} from "element-plus";
-import "element-plus/lib/theme-chalk/index.css";
+  ElMessage
+} from 'element-plus'
+import 'element-plus/lib/theme-chalk/index.css'
 
-const components = [
-  ElBacktop,
+const components = [ElBacktop,
   ElButton,
   ElBreadcrumb,
   ElBreadcrumbItem,
@@ -36,7 +35,7 @@ const components = [
   ElSelect,
   ElSubmenu,
   ElTable,
-  ElTableColumn,
-];
+  ElTableColumn
+]
 
-export default components;
+export default components

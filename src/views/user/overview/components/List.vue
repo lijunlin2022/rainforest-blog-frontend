@@ -1,11 +1,7 @@
 <template>
   <main>
     <section class="notes">
-      <note
-        v-for="item in noteArray"
-        :key="item.id"
-        @click="$utils.changeRoute(`/detail/${item.id}`)"
-      >
+      <note v-for="item in noteArray" :key="item.id" @click="$utils.changeRoute(`/detail/${item.id}`)">
         <template v-slot:title>
           {{ item.title }}
         </template>
@@ -27,43 +23,43 @@
 </template>
 
 <script>
-import { getNoteList } from "@/api/notes.js";
-import Note from "@/components/note/Note.vue";
+import { getNoteList } from '@/api/notes.js'
+import Note from '@/components/note/Note.vue'
 export default {
   components: {
-    Note,
+    Note
   },
-  data() {
+  data () {
     return {
       noteArray: [],
       current: 0,
       size: 10,
-      hasNext: true,
-    };
+      hasNext: true
+    }
   },
-  async created() {
-    const queryBody = {};
-    queryBody.current = this.current;
-    queryBody.size = this.size;
-    let result = await getNoteList(queryBody);
+  async created () {
+    const queryBody = {}
+    queryBody.current = this.current
+    queryBody.size = this.size
+    const result = await getNoteList(queryBody)
     this.noteArray = result.data.data.map((item) => {
-      return this.$utils.htmlDecodeObject(item);
-    });
+      return this.$utils.htmlDecodeObject(item)
+    })
   },
   methods: {
-    async handleNextBtn() {
-      this.current++;
-      const res = await getNoteList({ current: this.current, size: this.size });
-      let array = res.data.data.map((item) => {
-        return this.$utils.htmlDecodeObject(item);
-      });
-      this.noteArray.push(...array);
+    async handleNextBtn () {
+      this.current++
+      const res = await getNoteList({ current: this.current, size: this.size })
+      const array = res.data.data.map((item) => {
+        return this.$utils.htmlDecodeObject(item)
+      })
+      this.noteArray.push(...array)
       if (res.data.data.length < this.size) {
-        this.hasNext = false;
+        this.hasNext = false
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped>

@@ -1,96 +1,96 @@
-import { createRouter, createWebHistory } from "vue-router";
-import store from "../store";
+import { createRouter, createWebHistory } from 'vue-router'
+import store from '../store'
 
 const routes = [
   {
-    path: "/",
-    component: () => import("@/views/user/Home.vue"),
-    redirect: "/overview",
+    path: '/',
+    component: () => import('@/views/user/Home.vue'),
+    redirect: '/overview',
     meta: {
-      title: "Overview",
+      title: 'Overview'
     },
     children: [
       {
-        path: "/overview",
-        component: () => import("@/views/user/overview/Overview.vue"),
+        path: '/overview',
+        component: () => import('@/views/user/overview/Overview.vue')
       },
       {
-        path: "/search",
-        component: () => import("@/views/user/search/Search.vue"),
+        path: '/search',
+        component: () => import('@/views/user/search/Search.vue')
       },
       {
-        path: "/nDetail/:id",
-        component: () => import("@/views/user/nDetail/NDetail.vue"),
+        path: '/nDetail/:id',
+        component: () => import('@/views/user/nDetail/NDetail.vue'),
         meta: {
-          title: "Notebook",
-        },
+          title: 'Notebook'
+        }
       },
       {
-        path: "/detail/:id",
-        component: () => import("@/views/user/detail/Detail.vue"),
+        path: '/detail/:id',
+        component: () => import('@/views/user/detail/Detail.vue'),
         meta: {
-          title: "Note",
-        },
+          title: 'Note'
+        }
       },
       {
-        path: "/:pathMatch(.*)*",
-        name: "NotFound",
-        component: () => import("@/views/user/NotFound.vue"),
-      },
-    ],
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: () => import('@/views/user/NotFound.vue')
+      }
+    ]
   },
   {
-    path: "/admin",
-    name: "Home",
-    component: () => import("@/views/admin/Home.vue"),
+    path: '/admin',
+    name: 'Home',
+    component: () => import('@/views/admin/Home.vue'),
     meta: {
-      title: "Admin",
-      requireAuth: true,
+      title: 'Admin',
+      requireAuth: true
     },
-    redirect: "/admin/nList",
+    redirect: '/admin/nList',
     children: [
       {
-        path: "nList",
-        name: "NList",
-        component: () => import("@/views/admin/nList/NList.vue"),
+        path: 'nList',
+        name: 'NList',
+        component: () => import('@/views/admin/nList/NList.vue'),
         meta: {
-          title: "NotebookList",
-        },
+          title: 'NotebookList'
+        }
       },
       {
-        path: "list/:id",
-        component: () => import("@/views/admin/list/List.vue"),
+        path: 'list/:id',
+        component: () => import('@/views/admin/list/List.vue'),
         meta: {
-          title: "NoteList",
-        },
+          title: 'NoteList'
+        }
       },
       {
-        path: "detail/:pid/:id",
-        component: () => import("@/views/admin/detail/Detail.vue"),
+        path: 'detail/:pid/:id',
+        component: () => import('@/views/admin/detail/Detail.vue'),
         meta: {
-          title: "Detail",
-        },
-      },
-    ],
+          title: 'Detail'
+        }
+      }
+    ]
   },
   {
-    path: "/login",
-    name: "Login",
-    component: () => import("@/views/user/Login.vue"),
-  },
-];
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/user/Login.vue')
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
+  routes
+})
 
 router.beforeEach((to) => {
   if (to.meta.requireAuth && store.getters.getLoginStatus === false) {
     return {
-      path: "/login",
-    };
+      path: '/login'
+    }
   }
-});
+})
 
-export default router;
+export default router

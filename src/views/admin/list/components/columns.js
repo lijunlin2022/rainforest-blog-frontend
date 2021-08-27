@@ -1,12 +1,12 @@
 const columns = [
   {
-    label: "标题",
-    prop: "title",
+    label: '标题',
+    prop: 'title'
   },
   {
-    label: "摘要",
-    prop: "abstract",
-  },
-];
+    label: '摘要',
+    prop: 'abstract'
+  }
+]
 
-export default columns;
+export default columns

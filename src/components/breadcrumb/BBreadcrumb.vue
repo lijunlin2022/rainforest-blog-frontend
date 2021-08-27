@@ -9,11 +9,11 @@
 <script>
 export default {
   computed: {
-    list() {
-      return this.$route.matched;
-    },
-  },
-};
+    list () {
+      return this.$route.matched
+    }
+  }
+}
 </script>
 
 <style scoped>

@@ -2,31 +2,15 @@
   <main>
     <!-- 搜索栏 -->
     <header>
-      <el-input
-        class="b-input"
-        placeholder="请输入 Notebook 的名字"
-        v-model="searchValue"
-        @input="search"
-      >
-      </el-input>
+      <el-input class="b-input" placeholder="请输入 Notebook 的名字" v-model="searchValue" @input="search"> </el-input>
       <el-select v-model="value" placeholder="排序" @change="sort">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        >
-        </el-option>
+        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
       </el-select>
     </header>
 
     <!-- 列表栏 -->
     <section>
-      <notebook
-        v-for="item in listArray"
-        :key="item.id"
-        @click="$utils.changeRoute(`/nDetail/${item.id}`)"
-      >
+      <notebook v-for="item in listArray" :key="item.id" @click="$utils.changeRoute(`/nDetail/${item.id}`)">
         <template #name>
           {{ item.name }}
         </template>
@@ -39,27 +23,27 @@
 </template>
 
 <script>
-import { getNotebookList } from "@/api/notebooks.js";
-import { debounce } from "@/utils/debounce.js";
-import options from "./components/options.js";
-import Notebook from "@/components/notebook/Notebook.vue";
+import { getNotebookList } from '@/api/notebooks.js'
+import { debounce } from '@/utils/debounce.js'
+import options from './components/options.js'
+import Notebook from '@/components/notebook/Notebook.vue'
 export default {
   components: {
-    Notebook,
+    Notebook
   },
-  data() {
+  data () {
     return {
-      searchValue: "",
+      searchValue: '',
       listArray: [],
       options,
-      value: "",
-    };
+      value: ''
+    }
   },
-  async created() {
-    let result = await getNotebookList({ current: null, size: null });
+  async created () {
+    const result = await getNotebookList({ current: null, size: null })
     this.listArray = result.data.data.map((item) => {
-      return this.$utils.htmlDecodeObject(item);
-    });
+      return this.$utils.htmlDecodeObject(item)
+    })
   },
   methods: {
     search: debounce(
@@ -67,29 +51,29 @@ export default {
         const queryData = {
           keyword: this.searchValue,
           current: null,
-          size: null,
-        };
-        let result = await getNotebookList(queryData);
+          size: null
+        }
+        const result = await getNotebookList(queryData)
         this.listArray = result.data.data.map((item) => {
-          return this.$utils.htmlDecodeObject(item);
-        });
+          return this.$utils.htmlDecodeObject(item)
+        })
       },
       300,
       false
     ),
-    async sort() {
-      const queryData = {};
-      queryData.keyword = this.searchValue;
-      queryData.current = null;
-      queryData.size = null;
-      queryData.sortMode = this.value;
-      let result = await getNotebookList(queryData);
+    async sort () {
+      const queryData = {}
+      queryData.keyword = this.searchValue
+      queryData.current = null
+      queryData.size = null
+      queryData.sortMode = this.value
+      const result = await getNotebookList(queryData)
       this.listArray = result.data.data.map((item) => {
-        return this.$utils.htmlDecodeObject(item);
-      });
-    },
-  },
-};
+        return this.$utils.htmlDecodeObject(item)
+      })
+    }
+  }
+}
 </script>
 
 <style scoped>

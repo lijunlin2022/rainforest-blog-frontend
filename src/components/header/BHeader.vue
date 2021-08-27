@@ -18,22 +18,21 @@
 
 <script>
 export default {
-  name: "BlogHeader",
-  data() {
+  data () {
     return {
       isActive: false,
       navItems: [
-        { path: "/overview", title: "主页" },
-        { path: "/search", title: "搜索" },
-      ],
-    };
+        { path: '/overview', title: '主页' },
+        { path: '/search', title: '搜索' }
+      ]
+    }
   },
   methods: {
-    toggle() {
-      this.isActive = !this.isActive;
-    },
-  },
-};
+    toggle () {
+      this.isActive = !this.isActive
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -66,7 +65,7 @@ export default {
   font-family: var(--text-font);
   font-size: 18px;
 }
-.blog-header .navbar input[type="checkbox"] {
+.blog-header .navbar input[type='checkbox'] {
   display: none;
 }
 .blog-header .navbar label {
@@ -78,7 +77,7 @@ export default {
 }
 .blog-header .navbar label::before,
 .blog-header .navbar label::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 30px;
   height: 4px;
@@ -92,12 +91,12 @@ export default {
 .blog-header .navbar label::after {
   top: calc(50% + 6px);
 }
-.blog-header .navbar input[type="checkbox"]:checked + label::before {
+.blog-header .navbar input[type='checkbox']:checked + label::before {
   top: calc(50% - 2px);
   transform: rotate(-45deg);
   transition: top 0.3s ease-out, transform 0.3s ease-out;
 }
-.blog-header .navbar input[type="checkbox"]:checked + label::after {
+.blog-header .navbar input[type='checkbox']:checked + label::after {
   top: calc(50% - 2px);
   transform: rotate(45deg);
   transition: top 0.3s ease-out, transform 0.3s ease-out;

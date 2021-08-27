@@ -1,9 +1,7 @@
 <template>
   <div class="profile">
     <div class="logo">
-      <img
-        src="https://gitee.com/Li-Jun-Lin/figure/raw/master/avater/tutu.png"
-      />
+      <img src="https://gitee.com/Li-Jun-Lin/figure/raw/master/avater/tutu.png" />
     </div>
     <div>
       <v-md-preview :text="profileContent"></v-md-preview>
@@ -12,22 +10,22 @@
 </template>
 
 <script>
-import { getNoteDetail } from "@/api/notes.js";
+import { getNoteDetail } from '@/api/notes.js'
 export default {
-  data() {
+  data () {
     return {
-      profileContent: "",
-    };
-  },
-  async created() {
-    try {
-      const profile = await getNoteDetail({ id: 1 });
-      this.profileContent = this.$utils.htmlDecode(profile.data.data.content);
-    } catch (error) {
-      console.error("Profile 请求失败");
+      profileContent: ''
     }
   },
-};
+  async created () {
+    try {
+      const profile = await getNoteDetail({ id: 1 })
+      this.profileContent = this.$utils.htmlDecode(profile.data.data.content)
+    } catch (error) {
+      console.error('Profile 请求失败')
+    }
+  }
+}
 </script>
 
 <style scoped>

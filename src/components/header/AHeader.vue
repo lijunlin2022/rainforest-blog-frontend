@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import BBreadcrumb from "../breadcrumb/BBreadcrumb.vue";
+import BBreadcrumb from '../breadcrumb/BBreadcrumb.vue'
 export default {
-  components: { BBreadcrumb },
-};
+  components: { BBreadcrumb }
+}
 </script>
 
 <style scoped>

@@ -22,18 +22,18 @@
 </template>
 
 <script>
-import Profile from "./components/Profile.vue";
-import NList from "./components/NList.vue";
-import List from "./components/List.vue";
+import Profile from './components/Profile.vue'
+import NList from './components/NList.vue'
+import List from './components/List.vue'
 
 export default {
-  name: "Overview",
+  name: 'Overview',
   components: {
     Profile,
     NList,
-    List,
-  },
-};
+    List
+  }
+}
 </script>
 
 <style scoped>

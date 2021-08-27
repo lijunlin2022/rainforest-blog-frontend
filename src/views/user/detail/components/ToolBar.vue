@@ -27,9 +27,9 @@
 export default {
   props: {
     createdTime: Number,
-    updatedTime: Number,
-  },
-};
+    updatedTime: Number
+  }
+}
 </script>
 <style scoped>
 header {

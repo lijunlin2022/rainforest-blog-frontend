@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import BHeader from "@/components/header/BHeader.vue";
+import BHeader from '@/components/header/BHeader.vue'
 export default {
   components: {
-    BHeader,
-  },
-};
+    BHeader
+  }
+}
 </script>
 
 <style scoped>

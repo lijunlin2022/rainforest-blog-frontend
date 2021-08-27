@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from 'axios'
 // import router from "@/router";
 // import store from "@/store";
 
-export function request(config) {
+export function request (config) {
   const instance = axios.create({
-    baseURL: "/api",
-  });
+    baseURL: '/api'
+  })
 
   // instance.interceptors.response.use((res) => {
   //   // 拦截响应，做统一处理
@@ -16,5 +16,5 @@ export function request(config) {
   //   return res;
   // });
 
-  return instance(config);
+  return instance(config)
 }

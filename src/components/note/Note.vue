@@ -21,10 +21,26 @@
 
 <script>
 export default {
-  name: "BlogFile",
-};
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    abstract: {
+      type: String,
+      required: true
+    },
+    createdTime: {
+      type: String,
+      required: true
+    },
+    updatedTime: {
+      type: String,
+      required: true
+    }
+  }
+}
 </script>
-
 <style scoped>
 section {
   display: block;
