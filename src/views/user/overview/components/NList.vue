@@ -1,12 +1,12 @@
 <template>
   <section class="notebooks">
-    <notebook v-for="item in notebookArray" :key="item.id" @click="$utils.changeRoute(`/nDetail/${item.id}`)">
-      <template #name>
-        {{ item.name }}
-      </template>
-      <template #description>
-        {{ item.description }}
-      </template>
+    <notebook
+      v-for="item in notebookArray"
+      :key="item.id"
+      @click="$utils.changeRoute(`/nDetail/${item.id}`)"
+      :name="item.name"
+      :description="item.description"
+    >
     </notebook>
   </section>
 </template>

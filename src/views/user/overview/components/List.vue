@@ -1,19 +1,15 @@
 <template>
   <main>
     <section class="notes">
-      <note v-for="item in noteArray" :key="item.id" @click="$utils.changeRoute(`/detail/${item.id}`)">
-        <template v-slot:title>
-          {{ item.title }}
-        </template>
-        <template v-slot:abstract>
-          {{ item.abstract }}
-        </template>
-        <template v-slot:createdTime>
-          {{ $utils.getYearMonthDay(item.created_time) }}
-        </template>
-        <template v-slot:updatedTime>
-          {{ $utils.getYearMonthDay(item.updated_time) }}
-        </template>
+      <note
+        v-for="item in noteArray"
+        :key="item.id"
+        @click="$utils.changeRoute(`/detail/${item.id}`)"
+        :title="item.title"
+        :abstract="item.abstract"
+        :createdTime="item.created_time"
+        :updatedTime="item.updated_time"
+      >
       </note>
     </section>
     <footer>

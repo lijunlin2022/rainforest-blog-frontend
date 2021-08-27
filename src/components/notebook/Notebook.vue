@@ -1,14 +1,28 @@
 <template>
   <div class="directory">
     <div class="name">
-      <slot name="name"></slot>
+      <span>{{ name }}</span>
     </div>
     <div class="description">
-      <slot name="description"></slot>
+      <span>{{ description }}</span>
     </div>
   </div>
 </template>
 
+<script>
+export default {
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    }
+  }
+}
+</script>
 <style scoped>
 .directory {
   box-sizing: border-box;

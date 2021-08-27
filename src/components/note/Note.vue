@@ -1,19 +1,19 @@
 <template>
   <section>
     <div class="title">
-      <slot name="title"></slot>
+      <span>{{ title }}</span>
     </div>
     <div class="abstract">
-      <slot name="abstract"></slot>
+      <span>{{ abstract }}</span>
     </div>
     <footer>
       <div class="container">
         <span class="dot-create"></span>
-        <slot name="createdTime"></slot>
+        <span>{{ createdTime }}</span>
       </div>
       <div class="container">
         <span class="dot-update"></span>
-        <slot name="updatedTime"></slot>
+        <span>{{ updatedTime }}</span>
       </div>
     </footer>
   </section>
