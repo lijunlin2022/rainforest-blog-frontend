@@ -1,12 +1,14 @@
 <template>
-  <router-view />
+  <router-view></router-view>
 </template>
 
-<style>
-@import url(./assets/css/style.css);
-@import url(./assets/css/iconfont.css);
-* {
-  padding: 0;
-  margin: 0;
+<script>
+export default {
+  name: 'App'
 }
+</script>
+
+<style lang="less">
+@import url('./assets/css/reset.css');
+@import url('./assets/css/index.less');
 </style>
