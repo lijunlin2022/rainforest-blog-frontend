@@ -3,7 +3,7 @@
     <div :class="['nav-side', isCollapse ? 'fold' : 'unfold']">
       <!-- 系统 Logo -->
       <div class="logo">
-        <img src="" alt="" />
+        <img src="https://gitee.com/Li-Jun-Lin/figure/raw/master/avater/tutu.png" />
         <span v-show="!isCollapse">Admin</span>
       </div>
       <!-- 导航菜单 -->
@@ -17,7 +17,7 @@
       >
         <el-sub-menu index="1">
           <template #title>
-            <i class="el-icon-location"></i>
+            <i class="el-icon-setting"></i>
             <span>笔记管理</span>
           </template>
           <el-menu-item-group>
@@ -27,7 +27,7 @@
         </el-sub-menu>
         <el-sub-menu index="2">
           <template #title>
-            <i class="el-icon-location"></i>
+            <i class="el-icon-setting"></i>
             <span>用户管理</span>
           </template>
           <el-menu-item-group>
