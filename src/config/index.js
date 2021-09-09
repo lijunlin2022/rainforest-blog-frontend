@@ -20,5 +20,6 @@ const EnvConfig = {
 export default {
   env,
   mock: true,
+  namespace: 'rainforestBlog',
   ...EnvConfig[env]
 }
