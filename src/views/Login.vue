@@ -5,15 +5,21 @@
         <img src="https://gitee.com/Li-Jun-Lin/figure/raw/master/background/forest.png" />
       </div>
       <div class="formBx">
-        <form>
+        <el-form :model="userData" :rules="rules" status-icon ref="userForm">
           <h2>登录</h2>
-          <el-input type="text" v-model="userData.username" placeholder="Username" />
-          <el-input type="password" v-model="userData.password" placeholder="Password" />
-          <button>Login</button>
+          <el-form-item prop="username">
+            <el-input type="text" v-model="userData.username" placeholder="Username" prefix-icon="el-icon-user" />
+          </el-form-item>
+          <el-form-item prop="password">
+            <el-input type="password" v-model="userData.password" placeholder="Password" prefix-icon="el-icon-lock" />
+          </el-form-item>
+          <el-form-item>
+            <el-button @click="handleLogin">Login</el-button>
+          </el-form-item>
           <p>
             没有账号 ? <router-link to="/">直接浏览</router-link>
           </p>
-        </form>
+        </el-form>
       </div>
     </div>
   </div>
@@ -29,7 +35,33 @@ export default {
       userData: {
         username: '',
         password: ''
+      },
+      rules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' }
+        ]
       }
+    }
+  },
+  methods: {
+    handleLogin () {
+      this.$refs.userForm.validate(async (valid) => {
+        if (valid) {
+          try {
+            const res = await this.$api.login(this.userData)
+            console.log(res)
+            this.$store.commit('saveUserInfo', res)
+            this.$router.push('/welcome')
+          } catch (e) {
+            console.error(e)
+          }
+        } else {
+          return false
+        }
+      })
     }
   }
 }
@@ -64,22 +96,24 @@ export default {
         width: 100%;
       }
       display: flex;
+      justify-content: center;
       align-items: center;
-      form {
-        margin: 0 20px;
+      .el-form {
+        margin: 20px;
+        width: 100%;
         h2 {
           font-size: 18px;
           font-weight: bold;
           text-align: center;
-          margin-bottom: 40px;
+          margin: 20px 0;
         }
-        button {
-          outline: none;
-          border: none;
-          padding: 10px 30px;
-          margin: 40px 0;
+        .el-input {
+          margin: 5px 0;
+        }
+        .el-button {
           background-color: #0366d6;
           color: #fff;
+          margin-bottom: 20px;
         }
         p {
           font-size: 12px;

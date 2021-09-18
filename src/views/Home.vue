@@ -43,7 +43,7 @@
           <div class="bread">面包屑</div>
         </div>
         <div class="user-info">
-          <el-badge :is-dot="true" class="notice">
+          <el-badge :is-dot="Boolean(noticeCount)" class="notice">
             <i class="el-icon-bell"></i>
           </el-badge>
           <el-dropdown>
@@ -52,7 +52,7 @@
             </span>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item command="email">邮箱</el-dropdown-item>
+                <el-dropdown-item command="email">邮箱: {{ userInfo.userEmail }}</el-dropdown-item>
                 <el-dropdown-item command="logout">退出</el-dropdown-item>
               </el-dropdown-menu>
             </template>
@@ -60,9 +60,7 @@
         </div>
       </div>
       <div class="wrapper">
-        <div class="main-page">
-          <router-view></router-view>
-        </div>
+        <router-view></router-view>
       </div>
     </div>
   </div>
@@ -74,15 +72,24 @@ export default {
   data () {
     return {
       isCollapse: true,
-      userInfo: {
-        username: 'Jack',
-        userEmail: '1808150553@qq.com'
-      }
+      userInfo: this.$store.state.userInfo,
+      noticeCount: 0
     }
+  },
+  mounted () {
+    this.getNoticeCount()
   },
   methods: {
     toggle () {
       this.isCollapse = !this.isCollapse
+    },
+    async getNoticeCount () {
+      try {
+        const count = this.$api.noticeCount()
+        this.noticeCount = count
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 }
@@ -157,10 +164,6 @@ export default {
       background: #eef0f3;
       padding: 20px;
       height: calc(100vh - 50px);
-      .main-page {
-        background-color: #fff;
-        height: 100%;
-      }
     }
   }
 }

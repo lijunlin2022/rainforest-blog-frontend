@@ -3,18 +3,13 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import App from './App.vue'
 import router from './router/index.js'
-import storage from './utils/storage.js'
+import store from './store/index.js'
+import api from './api/index.js'
 
-import axios from 'axios'
-import config from './config/index.js'
-
-axios.get(config.mockApi + '/test').then(res => {
-  console.log(res)
-})
-
-console.log('环境变量', process.env)
 const app = createApp(App)
-app.config.globalProperties.$storage = storage
+app.config.globalProperties.$api = api
+
 app.use(router)
-app.use(ElementPlus)
+app.use(store)
+app.use(ElementPlus, { size: 'small' })
 app.mount('#app')

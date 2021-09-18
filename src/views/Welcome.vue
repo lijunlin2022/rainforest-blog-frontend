@@ -23,6 +23,7 @@ export default {
   justify-content: center;
   align-content: center;
   height: 100%;
+  background-color: #fff;
   .content {
     .sub-title {
       font-size: 30px;
