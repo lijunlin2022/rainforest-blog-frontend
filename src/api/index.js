@@ -19,5 +19,19 @@ export default {
       url: '/menu',
       method: 'get'
     })
+  },
+  userList (params) {
+    return request({
+      url: '/user/list',
+      method: 'post',
+      data: params
+    })
+  },
+  userDelete (params) {
+    return request({
+      url: '/user/delete',
+      method: 'post',
+      data: params
+    })
   }
 }
