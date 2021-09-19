@@ -13,5 +13,11 @@ export default {
       url: '/notice',
       method: 'get'
     })
+  },
+  menuList () {
+    return request({
+      url: '/menu',
+      method: 'get'
+    })
   }
 }

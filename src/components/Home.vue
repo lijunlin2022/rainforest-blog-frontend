@@ -9,38 +9,20 @@
       <!-- 导航菜单 -->
       <el-menu
         class="nav-menu"
-        default-active="1"
+        :default-active="activeMenu"
         background-color="#001529"
         text-color="#fff"
         router
         :collapse="isCollapse"
       >
-        <el-sub-menu index="1">
-          <template #title>
-            <i class="el-icon-setting"></i>
-            <span>笔记管理</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="1-1">笔记本</el-menu-item>
-            <el-menu-item index="1-2">笔记</el-menu-item>
-          </el-menu-item-group>
-        </el-sub-menu>
-        <el-sub-menu index="2">
-          <template #title>
-            <i class="el-icon-setting"></i>
-            <span>用户管理</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="2-1">用户名密码</el-menu-item>
-          </el-menu-item-group>
-        </el-sub-menu>
+        <tree-menu :menuList="menuList"></tree-menu>
       </el-menu>
     </div>
     <div :class="['content-right', isCollapse ? 'fold' : 'unfold']">
       <div class="nav-top">
         <div class="nav-left">
           <div class="menu-fold" @click="toggle"><i class="el-icon-s-fold"></i></div>
-          <div class="bread">面包屑</div>
+          <bread-crumb></bread-crumb>
         </div>
         <div class="user-info">
           <el-badge :is-dot="Boolean(noticeCount)" class="notice">
@@ -67,17 +49,26 @@
 </template>
 
 <script>
+import TreeMenu from './TreeMenu.vue'
+import BreadCrumb from './BreadCrumb.vue'
 export default {
   name: 'Home',
+  components: {
+    TreeMenu,
+    BreadCrumb
+  },
   data () {
     return {
       isCollapse: true,
       userInfo: this.$store.state.userInfo,
-      noticeCount: 0
+      noticeCount: 0,
+      menuList: [],
+      activeMenu: location.pathname
     }
   },
   mounted () {
     this.getNoticeCount()
+    this.getMenuList()
   },
   methods: {
     toggle () {
@@ -85,10 +76,18 @@ export default {
     },
     async getNoticeCount () {
       try {
-        const count = this.$api.noticeCount()
+        const count = await this.$api.noticeCount()
         this.noticeCount = count
       } catch (e) {
         console.log(e)
+      }
+    },
+    async getMenuList () {
+      try {
+        const list = await this.$api.menuList()
+        this.menuList = list
+      } catch (e) {
+        console.error(e)
       }
     }
   }
