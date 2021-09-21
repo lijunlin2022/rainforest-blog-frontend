@@ -22,7 +22,6 @@ export default {
   display: flex;
   justify-content: center;
   align-content: center;
-  height: 100%;
   background-color: #fff;
   .content {
     .sub-title {

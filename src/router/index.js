@@ -28,6 +28,14 @@ const routes = [
         component: () => import('@/views/Dir.vue')
       },
       {
+        name: 'File',
+        path: '/file/:_id',
+        meta: {
+          title: '新建文件'
+        },
+        component: () => import('@/views/File.vue')
+      },
+      {
         name: 'User',
         path: '/user',
         meta: {

@@ -18,7 +18,27 @@ function fileAdd (params) {
   })
 }
 
+function fileItem (params) {
+  return request({
+    url: '/file/item',
+    method: 'post',
+    data: params,
+    mock: false
+  })
+}
+
+function fileUpdate (params) {
+  return request({
+    url: '/file/update',
+    method: 'post',
+    data: params,
+    mock: false
+  })
+}
+
 export default {
   fileList,
-  fileAdd
+  fileAdd,
+  fileItem,
+  fileUpdate
 }

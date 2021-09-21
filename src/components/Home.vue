@@ -94,7 +94,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .basic-layout {
   position: relative;
   .nav-side {
@@ -105,7 +105,7 @@ export default {
       width: 200px;
     }
     position: fixed;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #001529;
     color: #fff;
     overflow: auto;
@@ -163,7 +163,7 @@ export default {
     .wrapper {
       background: #eef0f3;
       padding: 20px;
-      height: calc(100vh - 50px);
+      min-height: calc(100vh - 50px);
     }
   }
 }

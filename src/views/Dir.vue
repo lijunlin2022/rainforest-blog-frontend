@@ -42,7 +42,7 @@
               class="img"
               fit="contain"
               :src="fileImgUrl"
-              @click="handleFileClick(item._id)"
+              @click="handleFileClick(item)"
             />
           </el-tooltip>
           <div class="name">{{ item.filename }}</div>
@@ -151,8 +151,11 @@ export default {
     }
 
     // 文件被点击
-    const handleFileClick = async (_id) => {
-
+    const handleFileClick = async (item) => {
+      const path = proxy.$router.resolve({
+        path: `/file/${item._id}`
+      })
+      window.open(path.href, '_blank')
     }
 
     // 文件夹的面包屑被点击
@@ -248,7 +251,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .base-table {
   .path-bread {
     margin: 20px;
