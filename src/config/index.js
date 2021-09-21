@@ -4,15 +4,15 @@
 const env = process.env.NODE_ENV || 'production'
 const EnvConfig = {
   development: {
-    baseApi: '/',
+    baseApi: '/api',
     mockApi: 'http://rap2api.taobao.org/app/mock/290374/api'
   },
   test: {
-    baseApi: '/',
+    baseApi: '/api',
     mockApi: 'http://rap2api.taobao.org/app/mock/290374/api'
   },
   production: {
-    baseApi: '/',
+    baseApi: '/api',
     mockApi: ''
   }
 }

@@ -1,7 +1,6 @@
 <template>
-  <el-breadcrumb>
+  <el-breadcrumb separator-class="el-icon-arrow-right">
     <el-breadcrumb-item
-      separator-class="el-icon-right-array"
       v-for="item in breadList"
       :key="item.path"
       :to="item.path"

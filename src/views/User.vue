@@ -8,12 +8,11 @@
         <el-form-item label="用户名称" prop="username">
           <el-input placeholder="请输入用户名称" v-model="options.username"></el-input>
         </el-form-item>
-        <el-form-item label="用户状态" prop="state">
+        <el-form-item label="用户角色" prop="role">
           <el-select v-model="options.state">
-            <el-option :value="0" label="所有"></el-option>
-            <el-option :value="1" label="在职"></el-option>
-            <el-option :value="2" label="离职"></el-option>
-            <el-option :value="3" label="试用期"></el-option>
+            <el-option :value="null" label="所有"></el-option>
+            <el-option :value="0" label="管理员"></el-option>
+            <el-option :value="1" label="普通用户"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item>
@@ -87,7 +86,7 @@ export default {
     const options = reactive({
       _id: '',
       username: '',
-      state: 0
+      role: 0
     })
 
     const userList = ref([])
@@ -104,7 +103,7 @@ export default {
       { label: '用户邮箱', prop: 'email' },
       {
         label: '用户角色',
-        prop: 'roleId',
+        prop: 'role',
         formatter (row, column, value) {
           return {
             0: '管理员',

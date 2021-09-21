@@ -1,6 +1,10 @@
 import request from '../utils/request.js'
+import dirFunctions from './dir.js'
+import fileFuncions from './file.js'
 
 export default {
+  ...dirFunctions,
+  ...fileFuncions,
   login (params) {
     return request({
       url: '/user/login',
@@ -11,13 +15,15 @@ export default {
   noticeCount () {
     return request({
       url: '/notice',
-      method: 'get'
+      method: 'get',
+      mock: true
     })
   },
   menuList () {
     return request({
       url: '/menu',
-      method: 'get'
+      method: 'get',
+      mock: true
     })
   },
   userList (params) {

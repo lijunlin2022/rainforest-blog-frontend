@@ -20,6 +20,14 @@ const routes = [
         component: () => import('@/views/Welcome.vue')
       },
       {
+        name: 'Dir',
+        path: '/dir',
+        meta: {
+          title: '文件管理'
+        },
+        component: () => import('@/views/Dir.vue')
+      },
+      {
         name: 'User',
         path: '/user',
         meta: {

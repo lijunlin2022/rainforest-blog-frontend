@@ -127,6 +127,7 @@ export default {
     }
   }
   .content-right {
+    transition: margin-left .5s;
     &.fold {
       margin-left: 64px;
     }
