@@ -3,7 +3,7 @@
     <div class="base-table">
       <div class="action">
         <el-button type="primary" size="small" @click="dirFormVisible = true">新建文件夹</el-button>
-        <el-button type="danger" size="small">新建文件</el-button>
+        <el-button type="danger" size="small" @click="fileFormVisible = true">新建文件</el-button>
       </div>
 
       <el-breadcrumb class="path-bread" separator-class="el-icon-arrow-right">
@@ -27,7 +27,7 @@
               class="img"
               fit="contain"
               :src="dirImgUrl"
-              @click="handleDirClick(item)"
+              @click.once="handleDirClick(item)"
             />
           </el-tooltip>
           <div class="name">{{ item.dirName }}</div>
@@ -81,6 +81,23 @@
         </span>
       </template>
     </el-dialog>
+
+    <el-dialog title="新建文件" v-model="fileFormVisible">
+      <el-form :model="fileForm">
+        <el-form-item label="名字">
+          <el-input v-model="fileForm.filename" />
+        </el-form-item>
+        <el-form-item label="描述">
+          <el-input v-model="fileForm.abstract" />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="fileFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="handleFileAdd">确 定</el-button>
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -97,8 +114,10 @@ export default {
     const fileList = ref([])
     const dirDrawer = ref(false)
     const dirFormVisible = ref(false)
+    const fileFormVisible = ref(false)
     const pathRecord = ref([{ _id: '', dirName: 'repository', pDirId: '' }])
     const currentDirForm = reactive({})
+    const fileForm = reactive({})
 
     onMounted(() => {
       getRepositoryList()
@@ -184,6 +203,22 @@ export default {
         getDirAndFileList(pathRecord.value[pathRecord.value.length - 1])
         proxy.$message.success('新增成功')
         dirFormVisible.value = false
+        currentDirForm.value = {}
+      } catch (e) {
+        console.error(e)
+      }
+    }
+
+    // 新建文件
+    const handleFileAdd = async () => {
+      const pDirId = pathRecord.value[pathRecord.value.length - 1]._id
+      fileForm.pDirId = pDirId
+      try {
+        await proxy.$api.fileAdd(fileForm)
+        getDirAndFileList(pathRecord.value[pathRecord.value.length - 1])
+        proxy.$message.success('新增成功')
+        fileFormVisible.value = false
+        fileForm.value = {}
       } catch (e) {
         console.error(e)
       }
@@ -197,12 +232,15 @@ export default {
       pathRecord,
       dirDrawer,
       dirFormVisible,
+      fileFormVisible,
       currentDirForm,
+      fileForm,
       handleDirClick,
       handleDirRightClick,
       handleDirUpdate,
       handleDirDelete,
       handleDirAdd,
+      handleFileAdd,
       handleFileClick,
       handleBreadClick
     }

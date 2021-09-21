@@ -26,17 +26,20 @@ service.interceptors.request.use(req => {
 
 // 响应拦截
 service.interceptors.response.use(res => {
-  const { code, data, msg } = res.data
-  if (code === 200) {
-    return data
-  } else if (code === 401) {
-    ElMessage.error(TOKEN_INVALID)
-    setTimeout(() => {
+  if (res.status === 200) {
+    const { code, data, msg } = res.data
+    if (code === 50001) {
+      ElMessage.error(TOKEN_INVALID)
       router.push('/login')
-    }, 1500)
-    return Promise.reject(TOKEN_INVALID)
+      return
+    }
+    if (code === 200) {
+      return data
+    }
+    ElMessage.error(msg)
+    throw Error(msg)
   } else {
-    ElMessage.error(msg || NETOWEK_ERROR)
+    ElMessage.error(NETOWEK_ERROR)
   }
 })
 
