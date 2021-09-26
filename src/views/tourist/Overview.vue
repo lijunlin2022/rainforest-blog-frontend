@@ -11,6 +11,7 @@
         :key="item._id"
         :name="item.dirName"
         :description="item.description"
+        @click="$router.push(`/dir/${item._id}/${item.dirName}`)"
       />
       <i></i><i></i><i></i>
     </div>
@@ -23,6 +24,7 @@
         :abstract="item.abstract"
         :createTime="item.createTime.substring(0, 10)"
         :updateTime="item.updateTime.substring(0, 10)"
+        @click="$router.push(`/file/${item._id}`)"
       />
     </div>
   </div>

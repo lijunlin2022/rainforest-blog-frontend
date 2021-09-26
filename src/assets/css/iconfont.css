@@ -13,6 +13,7 @@
 
 .icon-viewed:before {
   content: "\e671";
+  color: #00008b;
 }
 
 .icon-file:before {

@@ -4,7 +4,6 @@ import Home from '@/components/tourist/Home..vue'
 
 const routes = [
   {
-    name: 'Admin',
     path: '/admin',
     meta: {
       title: '首页'
@@ -13,7 +12,6 @@ const routes = [
     redirect: '/admin/dir',
     children: [
       {
-        name: 'Dir',
         path: 'dir',
         meta: {
           title: '文件管理'
@@ -21,7 +19,6 @@ const routes = [
         component: () => import('@/views/admin/Dir.vue')
       },
       {
-        name: 'File',
         path: 'file/:_id',
         meta: {
           title: '新建文件'
@@ -31,7 +28,6 @@ const routes = [
     ]
   },
   {
-    name: 'Home',
     path: '/',
     meta: {
       title: '主页'
@@ -40,7 +36,6 @@ const routes = [
     redirect: '/overview',
     children: [
       {
-        name: 'Overview',
         path: 'overview',
         meta: {
           title: '概览'
@@ -48,17 +43,22 @@ const routes = [
         component: () => import('@/views/tourist/Overview.vue')
       },
       {
-        name: 'Dir',
         path: 'dir/:id/:name',
         meta: {
           title: '文件夹'
         },
         component: () => import('@/views/tourist/Dir.vue')
+      },
+      {
+        path: 'file/:id',
+        meta: {
+          title: '文件'
+        },
+        component: () => import('@/views/tourist/File.vue')
       }
     ]
   },
   {
-    name: 'Login',
     path: '/login',
     meta: {
       title: '登录'
@@ -66,7 +66,6 @@ const routes = [
     component: () => import('@/views/admin/Login.vue')
   },
   {
-    name: 'Test',
     path: '/test',
     component: () => import('@/components/Test.vue')
   }

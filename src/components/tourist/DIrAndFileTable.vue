@@ -5,7 +5,7 @@
       <div class="update-time">更新时间</div>
     </header>
     <!-- 文件夹 -->
-    <div class="row" v-for="item in dirListRef" :key="item.id" @click="sendClickToParent(item)">
+    <div class="row" v-for="item in dirListRef" :key="item._id" @click="sendClickToParent(item)">
       <div class="title">
         <span class="iconfont icon-dir"></span>
         <span class="name">{{ item.dirName }}</span>
@@ -15,7 +15,7 @@
       </div>
     </div>
     <!-- 文件 -->
-    <div class="row" v-for="item in fileListRef" :key="item.id" @click="$router.push(`/file/${item.id}`)">
+    <div class="row" v-for="item in fileListRef" :key="item._id" @click="$router.push(`/file/${item._id}`)">
       <div class="title">
         <span class="iconfont icon-file"></span>
         <span class="name">{{ item.filename }}</span>
@@ -51,7 +51,6 @@ section {
   text-align: center;
   color: #eb3941;
   padding: 16px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   header, .row {
     display: flex;
     justify-content: space-between;

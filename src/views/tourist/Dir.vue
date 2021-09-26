@@ -15,32 +15,40 @@
     @dirClick="handleDirClick"
   >
   </dir-and-file-table>
+  <hr />
+  <markdown-previewer :content="readmeContentRef"></markdown-previewer>
 </div>
 </template>
 
 <script>
 import { getCurrentInstance, onMounted, ref, watch } from 'vue'
 import DirAndFileTable from '@/components/tourist/DIrAndFileTable.vue'
+import MarkdownPreviewer from '@/components/tourist/MarkdownPreviewer.vue'
 
 export default {
   components: {
-    DirAndFileTable
+    DirAndFileTable,
+    MarkdownPreviewer
   },
   setup () {
     const { proxy } = getCurrentInstance()
-    const oldPdirRef = ref('')
     const pDirIdRef = ref(proxy.$route.params.id)
     const pDirNameRef = ref(proxy.$route.params.name)
 
     onMounted(() => {
       getDirAndFileList()
+      getReadmeContent()
     })
 
     watch(pDirIdRef, () => {
-      oldPdirRef.value = pDirIdRef
       getDirAndFileList()
+      readmeContentRef.value = ''
+      if (pathRecordRef.value[0]._id === pDirIdRef.value) {
+        getReadmeContent()
+      }
     })
 
+    // 获取文件和文件夹列表
     const dirListRef = ref([])
     const fileListRef = ref([])
 
@@ -67,14 +75,21 @@ export default {
       getDirAndFileList()
     }
 
+    // 获取 README 内容
+    const readmeContentRef = ref('')
+    const getReadmeContent = async () => {
+      const { content } = await proxy.$api.fileItem({ pDirId: pDirIdRef.value, filename: 'README' })
+      readmeContentRef.value = content
+    }
+
     return {
-      oldPdirRef,
       pDirIdRef,
       dirListRef,
       fileListRef,
       pathRecordRef,
       handleBreadClick,
-      handleDirClick
+      handleDirClick,
+      readmeContentRef
     }
   }
 }
@@ -88,6 +103,9 @@ export default {
   .path-bread {
     padding: 20px 25px;
     font-size: 16px;
+  }
+  hr {
+    border: 1px solid #f6f8fa;
   }
 }
 </style>
