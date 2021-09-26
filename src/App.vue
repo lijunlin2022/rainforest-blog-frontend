@@ -11,4 +11,5 @@ export default {
 <style lang="less">
 @import url('./assets/css/reset.css');
 @import url('./assets/css/index.less');
+@import url('./assets/css/iconfont.css');
 </style>

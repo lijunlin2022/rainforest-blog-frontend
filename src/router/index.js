@@ -1,47 +1,59 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '@/components/Home.vue'
+import Admin from '@/components/admin/Admin.vue'
+import Home from '@/components/tourist/Home..vue'
 
 const routes = [
+  {
+    name: 'Admin',
+    path: '/admin',
+    meta: {
+      title: '首页'
+    },
+    component: Admin,
+    redirect: '/admin/dir',
+    children: [
+      {
+        name: 'Dir',
+        path: 'dir',
+        meta: {
+          title: '文件管理'
+        },
+        component: () => import('@/views/admin/Dir.vue')
+      },
+      {
+        name: 'File',
+        path: 'file/:_id',
+        meta: {
+          title: '新建文件'
+        },
+        component: () => import('@/views/admin/File.vue')
+      }
+    ]
+  },
   {
     name: 'Home',
     path: '/',
     meta: {
-      title: '首页'
+      title: '主页'
     },
     component: Home,
-    redirect: '/welcome',
+    redirect: '/overview',
     children: [
       {
-        name: 'Welcome',
-        path: '/welcome',
+        name: 'Overview',
+        path: 'overview',
         meta: {
-          title: '欢迎你'
+          title: '概览'
         },
-        component: () => import('@/views/Welcome.vue')
+        component: () => import('@/views/tourist/Overview.vue')
       },
       {
         name: 'Dir',
-        path: '/dir',
+        path: 'dir/:id/:name',
         meta: {
-          title: '文件管理'
+          title: '文件夹'
         },
-        component: () => import('@/views/Dir.vue')
-      },
-      {
-        name: 'File',
-        path: '/file/:_id',
-        meta: {
-          title: '新建文件'
-        },
-        component: () => import('@/views/File.vue')
-      },
-      {
-        name: 'User',
-        path: '/user',
-        meta: {
-          title: '用户管理'
-        },
-        component: () => import('@/views/User.vue')
+        component: () => import('@/views/tourist/Dir.vue')
       }
     ]
   },
@@ -51,7 +63,12 @@ const routes = [
     meta: {
       title: '登录'
     },
-    component: () => import('@/views/Login.vue')
+    component: () => import('@/views/admin/Login.vue')
+  },
+  {
+    name: 'Test',
+    path: '/test',
+    component: () => import('@/components/Test.vue')
   }
 ]
 

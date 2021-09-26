@@ -36,9 +36,19 @@ function fileUpdate (params) {
   })
 }
 
+function fileDelete (params) {
+  return request({
+    url: '/file/delete',
+    method: 'post',
+    data: params,
+    mock: false
+  })
+}
+
 export default {
   fileList,
   fileAdd,
   fileItem,
-  fileUpdate
+  fileUpdate,
+  fileDelete
 }

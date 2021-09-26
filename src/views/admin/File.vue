@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import MarkdownEditor from '@/components/MarkdownEditor.vue'
+import MarkdownEditor from '@/components/admin/MarkdownEditor.vue'
 import { reactive, onMounted, getCurrentInstance } from 'vue'
 export default {
   components: {
