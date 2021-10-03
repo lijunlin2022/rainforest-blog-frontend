@@ -22,8 +22,7 @@ export default {
     return {
       isActive: false,
       navItems: [
-        { path: '/overview', title: '主页' },
-        { path: '/search', title: '搜索' }
+        { path: '/overview', title: '主页' }
       ]
     }
   },

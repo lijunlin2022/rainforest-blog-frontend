@@ -8,12 +8,21 @@
       @updateParent="updateFormContent"
     >
     </markdown-editor>
+    <el-dialog
+      v-model="dialogVisibleRef"
+      title="保存成功"
+      center
+      :show-close="false"
+      :close-on-click-modal="false"
+    >
+      <span>{{ timerRef }} 秒后自动关闭窗口</span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import MarkdownEditor from '@/components/admin/MarkdownEditor.vue'
-import { reactive, onMounted, getCurrentInstance } from 'vue'
+import { ref, reactive, onMounted, getCurrentInstance } from 'vue'
 export default {
   components: {
     MarkdownEditor
@@ -30,9 +39,17 @@ export default {
       Object.assign(fileForm, res)
     })
 
+    const timerRef = ref(3)
+    const dialogVisibleRef = ref(false)
     const handleFileSave = async () => {
       await proxy.$api.fileUpdate(fileForm)
-      proxy.$message.success('保存成功')
+      dialogVisibleRef.value = true
+      setInterval(() => {
+        timerRef.value -= 1
+        if (timerRef.value === 0) {
+          window.close()
+        }
+      }, 1000)
     }
 
     const updateFormContent = (val) => {
@@ -42,7 +59,9 @@ export default {
     return {
       fileForm,
       handleFileSave,
-      updateFormContent
+      updateFormContent,
+      timerRef,
+      dialogVisibleRef
     }
   }
 }
@@ -57,6 +76,11 @@ export default {
     margin-bottom: 20px;
     padding: 0 10px;
     background-color: #fff;
+  }
+  .dialog {
+    span {
+      text-align: center;
+    }
   }
 }
 

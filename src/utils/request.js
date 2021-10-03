@@ -3,6 +3,7 @@
  */
 import axios from 'axios'
 import config from '../config'
+import store from '../store'
 import router from '../router'
 import { ElMessage } from 'element-plus'
 
@@ -16,10 +17,9 @@ const service = axios.create({
 
 // 请求拦截
 service.interceptors.request.use(req => {
-  // TO DO
-  const headers = req.headers
-  if (!headers.Authorization) {
-    headers.Authorization = 'TEMP TOKEN'
+  const token = store.getters.token || ''
+  if (token) {
+    req.headers.Authorization = `Bearer ${token}`
   }
   return req
 })
@@ -28,7 +28,7 @@ service.interceptors.request.use(req => {
 service.interceptors.response.use(res => {
   if (res.status === 200) {
     const { code, data, msg } = res.data
-    if (code === 50001) {
+    if (code === 401) {
       ElMessage.error(TOKEN_INVALID)
       router.push('/login')
       return
@@ -37,7 +37,6 @@ service.interceptors.response.use(res => {
       return data
     }
     ElMessage.error(msg)
-    throw Error(msg)
   } else {
     ElMessage.error(NETOWEK_ERROR)
   }

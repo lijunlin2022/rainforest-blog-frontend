@@ -7,7 +7,7 @@
     <div class="split-marker">Repository</div>
     <div class="repository">
       <dir-card
-        v-for="item in repList"
+        v-for="item in repListRef"
         :key="item._id"
         :name="item.dirName"
         :description="item.description"
@@ -18,7 +18,7 @@
     <div class="split-marker">Article</div>
     <div class="article">
       <file-card
-        v-for="item in fileList"
+        v-for="item in fileListRef"
         :key="item._id"
         :name="item.filename"
         :abstract="item.abstract"
@@ -27,6 +27,7 @@
         @click="$router.push(`/file/${item._id}`)"
       />
     </div>
+    <button @click="readMore">阅读更多</button>
   </div>
 </template>
 
@@ -47,8 +48,8 @@ export default {
     const { proxy } = getCurrentInstance()
     const profileContent = ref('')
     const filePager = { current: 1, size: 10 }
-    const repList = ref([])
-    const fileList = ref([])
+    const repListRef = ref([])
+    const fileListRef = ref([])
 
     onMounted(() => {
       getProfile()
@@ -57,24 +58,30 @@ export default {
     })
 
     const getProfile = async () => {
-      const { content } = await proxy.$api.fileItem({ filename: 'profile' })
+      const { content } = await proxy.$api.fileItem({ pDirName: 'RainforestBlog', filename: 'Profile' })
       profileContent.value = content
-      console.log('profileContent => ', profileContent.value)
     }
     const getRepositoryList = async () => {
       const { list } = await proxy.$api.repositoryList()
-      repList.value = list
+      repListRef.value = list
     }
 
     const getFileList = async () => {
       const { list } = await proxy.$api.fileList(filePager)
-      fileList.value = list
+      fileListRef.value = list
+    }
+
+    const readMore = async () => {
+      filePager.current += 1
+      const { list } = await proxy.$api.fileList(filePager)
+      fileListRef.value.push(...list)
     }
 
     return {
       profileContent,
-      repList,
-      fileList
+      repListRef,
+      fileListRef,
+      readMore
     }
   }
 }
@@ -82,10 +89,15 @@ export default {
 
 <style lang="less" scoped>
 .overview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 900px;
   margin: 0 auto;
   background-color: #fff;
   .split-marker {
+    width: 100%;
+    text-align: left;
     padding: 16px;
     color: #24292f;
     font-size: 16px;
@@ -101,6 +113,14 @@ export default {
   .article {
     display: flex;
     flex-wrap: wrap;
+  }
+  button {
+    width: 250px;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border: 1px solid #ddd;
+    background-color: #fff;
   }
 }
 </style>

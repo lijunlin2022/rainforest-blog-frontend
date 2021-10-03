@@ -1,6 +1,7 @@
 <template>
 <div class="dir-container">
   <el-breadcrumb class="path-bread" separator-class="el-icon-arrow-right">
+    <el-breadcrumb-item @click="$router.push('/Overview')">Overview</el-breadcrumb-item>
     <el-breadcrumb-item
       v-for="(item, index) in pathRecordRef"
       :key="item._id"
@@ -103,6 +104,7 @@ export default {
   .path-bread {
     padding: 20px 25px;
     font-size: 16px;
+    cursor: pointer;
   }
   hr {
     border: 1px solid #f6f8fa;

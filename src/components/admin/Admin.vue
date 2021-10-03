@@ -24,20 +24,8 @@
           <div class="menu-fold" @click="toggle"><i class="el-icon-s-fold"></i></div>
           <bread-crumb></bread-crumb>
         </div>
-        <div class="user-info">
-          <el-badge :is-dot="Boolean(noticeCount)" class="notice">
-            <i class="el-icon-bell"></i>
-          </el-badge>
-          <el-dropdown>
-            <span class="user-link">
-              下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item command="logout">退出</el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
+        <div class="nav-right">
+          <el-button @click="logout" size="small">退出</el-button>
         </div>
       </div>
       <div class="wrapper">
@@ -66,28 +54,20 @@ export default {
     }
   },
   mounted () {
-    this.getNoticeCount()
     this.getMenuList()
   },
   methods: {
     toggle () {
       this.isCollapse = !this.isCollapse
     },
-    async getNoticeCount () {
-      try {
-        const count = await this.$api.noticeCount()
-        this.noticeCount = count
-      } catch (e) {
-        console.log(e)
-      }
-    },
     async getMenuList () {
-      try {
-        const list = await this.$api.menuList()
-        this.menuList = list
-      } catch (e) {
-        console.error(e)
-      }
+      const list = await this.$api.menuList()
+      this.menuList = list
+    },
+    logout () {
+      this.$store.commit('reomveUserInfo')
+      this.$router.replace('/login')
+      this.$messgae.success('退出成功')
     }
   }
 }
@@ -146,16 +126,6 @@ export default {
         .menu-fold {
           margin-right: 15px;
           font-size: 18px;
-        }
-      }
-      .user-info {
-        .notice {
-          line-height: 30px;
-          margin-right: 15px;
-        }
-        .user-link {
-          cursor: pointer;
-          color: #409eff;
         }
       }
     }

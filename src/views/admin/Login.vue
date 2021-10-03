@@ -11,7 +11,7 @@
             <el-input type="text" v-model="userData.username" placeholder="Username" prefix-icon="el-icon-user" />
           </el-form-item>
           <el-form-item prop="password">
-            <el-input type="password" v-model="userData.password" placeholder="Password" prefix-icon="el-icon-lock" />
+            <el-input type="password" v-model="userData.password" placeholder="Password" prefix-icon="el-icon-lock" @keyup.enter="handleLogin" />
           </el-form-item>
           <el-form-item>
             <el-button @click="handleLogin">Login</el-button>
@@ -54,7 +54,8 @@ export default {
             const res = await this.$api.login(this.userData)
             console.log(res)
             this.$store.commit('saveUserInfo', res)
-            this.$router.push('/welcome')
+            this.$router.push('/admin/dir')
+            this.$message.success('登录成功')
           } catch (e) {
             console.error(e)
           }

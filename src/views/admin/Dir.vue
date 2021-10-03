@@ -252,7 +252,7 @@ export default {
     }
 
     // 路径的面包屑
-    const pathRecordRef = ref([{ _id: '', dirName: 'repository', pDirId: '' }])
+    const pathRecordRef = ref([{ _id: '', dirName: 'Repository', pDirId: '' }])
 
     const handleBreadClick = async (index) => {
       pathRecordRef.value.splice(index + 1)

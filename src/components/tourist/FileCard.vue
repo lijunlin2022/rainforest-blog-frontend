@@ -43,7 +43,9 @@ export default {
 </script>
 <style lang="less" scoped>
 .file-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   box-sizing: border-box;
   width: 100%;
   max-width: 430px;
