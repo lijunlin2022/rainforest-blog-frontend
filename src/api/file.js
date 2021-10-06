@@ -35,6 +35,14 @@ export default {
   },
   fileDelete (params) {
     return request({
+      url: '/file/update',
+      method: 'post',
+      data: params,
+      mock: false
+    })
+  },
+  fileCompletelyDelete (params) {
+    return request({
       url: '/file/delete',
       method: 'post',
       data: params,

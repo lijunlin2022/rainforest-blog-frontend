@@ -2,19 +2,19 @@
 <header>
   <div class="tool-bar">
     <div class="tool-bar-item" @click="isUnfoldLeftRef = !isUnfoldLeftRef">
-      <span class="iconfont icon-return"></span>
+      <span class="iconfont icon-right-arrow"></span>
       <span>博客目录</span>
     </div>
-    <div class="tool-bar-item">
-      <span class="iconfont icon-viewed"></span>
-      <span>{{ fileData.viewed }}</span>
+    <div class="tool-bar-item" @click="$router.go(-1)">
+      <span class="iconfont icon-back"></span>
+      <span>回退</span>
     </div>
     <div class="tool-bar-item">
-      <span class="iconfont icon-viewed"></span>
-      <span>返回仓库</span>
+      <span class="iconfont icon-create"></span>
+      <span>{{ fileData.updateTime.substring(5, 10) }}</span>
     </div>
     <div class="tool-bar-item" @click="isUnfoldRightRef = !isUnfoldRightRef">
-      <span class="iconfont icon-return"></span>
+      <span class="iconfont icon-left-arrow"></span>
       <span>相关文章</span>
     </div>
   </div>
@@ -51,7 +51,7 @@
 <footer>
   <div class="tool-bar">
     <div class="tool-bar-item" @click="isUnfoldLeftRef = !isUnfoldLeftRef">
-      <span class="iconfont icon-return"></span>
+      <span class="iconfont icon-right-arrow"></span>
       <span>博客目录</span>
     </div>
     <div class="tool-bar-item">
@@ -59,11 +59,11 @@
       <span>{{ fileData.viewed }}</span>
     </div>
     <div class="tool-bar-item">
-      <span class="iconfont icon-viewed"></span>
-      <span>返回仓库</span>
+      <span class="iconfont icon-create"></span>
+      <span>{{ fileData.createTime.substring(5, 10) }}</span>
     </div>
     <div class="tool-bar-item" @click="isUnfoldRightRef = !isUnfoldRightRef">
-      <span class="iconfont icon-return"></span>
+      <span class="iconfont icon-left-arrow"></span>
       <span>相关文章</span>
     </div>
   </div>
@@ -89,7 +89,9 @@ export default {
       pDirId: '',
       pDirName: '',
       content: '',
-      viewed: 0
+      viewed: 0,
+      updateTime: '',
+      createTime: ''
     })
 
     const filesInSamePdirRef = ref([])
@@ -159,7 +161,7 @@ header, footer {
       width: 100px;
       font-size: 12px;
       .iconfont {
-        padding-right: 2px;
+        padding-right: 3px;
       }
     }
   }

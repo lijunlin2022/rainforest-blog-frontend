@@ -58,8 +58,10 @@ export default {
     })
 
     const getProfile = async () => {
-      const { content } = await proxy.$api.fileItem({ pDirName: 'RainforestBlog', filename: 'Profile' })
-      profileContent.value = content
+      const res = await proxy.$api.fileItem({ pDirName: 'RainforestBlog', filename: 'Profile' })
+      if (res) {
+        profileContent.value = res.content
+      }
     }
     const getRepositoryList = async () => {
       const { list } = await proxy.$api.repositoryList()
@@ -67,6 +69,7 @@ export default {
     }
 
     const getFileList = async () => {
+      filePager.sortMode = '-updateTime'
       const { list } = await proxy.$api.fileList(filePager)
       fileListRef.value = list
     }

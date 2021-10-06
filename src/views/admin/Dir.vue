@@ -146,11 +146,16 @@ export default {
     }
 
     const getDirAndFileList = async (item) => {
-      const params = { pDirId: item._id || '', state: 0 }
-      const dirRes = await proxy.$api.dirList(params)
-      const fileRes = await proxy.$api.fileList(params)
-      dirListRef.value = dirRes.list
-      fileListRef.value = fileRes.list
+      if (item._id === '') {
+        getRepositoryList()
+        fileListRef.value.splice(0)
+      } else {
+        const params = { pDirId: item._id, state: 0 }
+        const dirRes = await proxy.$api.dirList(params)
+        const fileRes = await proxy.$api.fileList(params)
+        dirListRef.value = dirRes.list
+        fileListRef.value = fileRes.list
+      }
     }
 
     // 新建 | 更新 | 删除文件夹
@@ -177,10 +182,12 @@ export default {
       if (pDir._id !== '') {
         dirForm.dirType = 1
       }
-      await proxy.$api.dirAdd(dirForm)
-      getDirAndFileList(pDir)
-      proxy.$message.success('新增成功')
-      dirFormVisibleRef.value = false
+      const res = await proxy.$api.dirAdd(dirForm)
+      if (res) {
+        getDirAndFileList(pDir)
+        proxy.$message.success('新增成功')
+        dirFormVisibleRef.value = false
+      }
     }
 
     const handleDirUpdate = async () => {
@@ -191,7 +198,8 @@ export default {
     }
 
     const handleDirDelete = async () => {
-      await proxy.$api.dirDelete({ _ids: [dirForm._id] })
+      dirForm.state = 1
+      await proxy.$api.dirDelete(dirForm)
       getDirAndFileList(pathRecordRef.value[pathRecordRef.value.length - 1])
       proxy.$message.success('删除成功')
       dirDrawerRef.value = false
@@ -218,10 +226,15 @@ export default {
       const pDir = pathRecordRef.value[pathRecordRef.value.length - 1]
       fileForm.pDirId = pDir._id
       fileForm.pDirName = pDir.dirName
-      await proxy.$api.fileAdd(fileForm)
-      getDirAndFileList(pathRecordRef.value[pathRecordRef.value.length - 1])
-      proxy.$message.success('新增成功')
-      fileFormVisibleRef.value = false
+      if (fileForm.filename === 'README') {
+        fileForm.fileType = 0
+      }
+      const res = await proxy.$api.fileAdd(fileForm)
+      if (res) {
+        getDirAndFileList(pathRecordRef.value[pathRecordRef.value.length - 1])
+        proxy.$message.success('新增成功')
+        fileFormVisibleRef.value = false
+      }
     }
 
     const handleFileUpdate = async () => {
@@ -232,7 +245,8 @@ export default {
     }
 
     const handleFileDelete = async () => {
-      await proxy.$api.fileDelete({ _ids: [fileForm._id] })
+      fileForm.state = 1
+      await proxy.$api.fileDelete(fileForm)
       getDirAndFileList(pathRecordRef.value[pathRecordRef.value.length - 1])
       proxy.$message.success('删除成功')
       fileDrawerRef.value = false

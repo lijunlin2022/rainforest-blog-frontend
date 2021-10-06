@@ -4,10 +4,10 @@
 import axios from 'axios'
 import config from '../config'
 import store from '../store'
-import router from '../router'
+// import router from '../router'
 import { ElMessage } from 'element-plus'
 
-const TOKEN_INVALID = 'token 验证失败, 请重新登录'
+// const TOKEN_INVALID = 'token 验证失败, 请重新登录'
 const NETOWEK_ERROR = '网络异常, 请稍后尝试'
 
 const service = axios.create({
@@ -28,15 +28,13 @@ service.interceptors.request.use(req => {
 service.interceptors.response.use(res => {
   if (res.status === 200) {
     const { code, data, msg } = res.data
-    if (code === 401) {
-      ElMessage.error(TOKEN_INVALID)
-      router.push('/login')
-      return
-    }
     if (code === 200) {
       return data
     }
-    ElMessage.error(msg)
+    if (code === 400) {
+      ElMessage.error(msg)
+      return null
+    }
   } else {
     ElMessage.error(NETOWEK_ERROR)
   }

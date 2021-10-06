@@ -79,7 +79,7 @@ export default {
     // 获取 README 内容
     const readmeContentRef = ref('')
     const getReadmeContent = async () => {
-      const { content } = await proxy.$api.fileItem({ pDirId: pDirIdRef.value, filename: 'README' })
+      const { content } = await proxy.$api.fileItem({ pDirId: pDirIdRef.value, filename: 'README' }) || ''
       readmeContentRef.value = content
     }
 

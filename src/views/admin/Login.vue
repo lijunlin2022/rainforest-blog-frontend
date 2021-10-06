@@ -50,14 +50,11 @@ export default {
     handleLogin () {
       this.$refs.userForm.validate(async (valid) => {
         if (valid) {
-          try {
-            const res = await this.$api.login(this.userData)
-            console.log(res)
+          const res = await this.$api.login(this.userData)
+          if (res) {
             this.$store.commit('saveUserInfo', res)
             this.$router.push('/admin/dir')
             this.$message.success('登录成功')
-          } catch (e) {
-            console.error(e)
           }
         } else {
           return false

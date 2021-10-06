@@ -1,11 +1,6 @@
 <template>
   <div class="basic-layout">
     <div :class="['nav-side', isCollapse ? 'fold' : 'unfold']">
-      <!-- 系统 Logo -->
-      <div class="logo">
-        <img src="https://gitee.com/Li-Jun-Lin/figure/raw/master/avater/tutu.png" />
-        <span v-show="!isCollapse">Admin</span>
-      </div>
       <!-- 导航菜单 -->
       <el-menu
         class="nav-menu"
@@ -49,20 +44,37 @@ export default {
       isCollapse: true,
       userInfo: this.$store.state.userInfo,
       noticeCount: 0,
-      menuList: [],
+      menuList: [
+        {
+          _id: 1,
+          menuName: '笔记本',
+          pMenuId: null,
+          path: '/',
+          icon: 'el-icon-folder',
+          children: [
+            {
+              _id: 2,
+              menuName: '文件管理',
+              pMenuId: 1,
+              path: '/admin/dir',
+              children: []
+            },
+            {
+              _id: 3,
+              menuName: '回收站',
+              pMenuId: 1,
+              path: '/admin/dustbin',
+              children: []
+            }
+          ]
+        }
+      ],
       activeMenu: location.pathname
     }
-  },
-  mounted () {
-    this.getMenuList()
   },
   methods: {
     toggle () {
       this.isCollapse = !this.isCollapse
-    },
-    async getMenuList () {
-      const list = await this.$api.menuList()
-      this.menuList = list
     },
     logout () {
       this.$store.commit('reomveUserInfo')

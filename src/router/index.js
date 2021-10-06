@@ -19,6 +19,13 @@ const routes = [
         component: () => import('@/views/admin/Dir.vue')
       },
       {
+        path: 'dustbin',
+        meta: {
+          title: '回收站'
+        },
+        component: () => import('@/views/admin/Dustbin.vue')
+      },
+      {
         path: 'file/:_id',
         meta: {
           title: '新建文件'
