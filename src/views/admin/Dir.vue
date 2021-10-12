@@ -330,6 +330,7 @@ export default {
       .name {
         padding: 5px 0;
         font-size: 12px;
+        text-align: center;
       }
     }
   }

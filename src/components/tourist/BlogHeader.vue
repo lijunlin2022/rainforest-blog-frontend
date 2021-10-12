@@ -1,7 +1,7 @@
 <template>
   <div class="blog-header">
     <div class="logo">
-      <a href="/nDetail/1">Rainforest</a>
+      <a>Rainforest</a>
     </div>
     <div class="navbar">
       <input type="checkbox" id="nav" :checked="isActive" @click="toggle" />

@@ -90,7 +90,7 @@ export default {
   position: relative;
   .nav-side {
     &.fold {
-      width: 64px;
+      width: 0;
     }
     &.unfold {
       width: 200px;
@@ -120,7 +120,7 @@ export default {
   .content-right {
     transition: margin-left .5s;
     &.fold {
-      margin-left: 64px;
+      margin-left: 0;
     }
     &.unfold {
       margin-left: 200px;

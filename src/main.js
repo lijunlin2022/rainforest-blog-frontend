@@ -11,5 +11,5 @@ app.config.globalProperties.$api = api
 
 app.use(router)
 app.use(store)
-app.use(ElementPlus, { size: 'small' })
+app.use(ElementPlus, { size: 'mini' })
 app.mount('#app')

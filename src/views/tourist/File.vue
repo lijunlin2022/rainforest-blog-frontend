@@ -11,7 +11,7 @@
     </div>
     <div class="tool-bar-item">
       <span class="iconfont icon-create"></span>
-      <span>{{ fileData.updateTime.substring(5, 10) }}</span>
+      <span>{{ fileData.createTime.substring(5, 10) }}</span>
     </div>
     <div class="tool-bar-item" @click="isUnfoldRightRef = !isUnfoldRightRef">
       <span class="iconfont icon-left-arrow"></span>
@@ -41,7 +41,7 @@
       <li
         v-for="item in filesInSamePdirRef"
         :key="item._id"
-        @click="fileIdRef = item._id"
+        @click="handleAboutArticle(item._id)"
       >
       {{ item.filename }}
       </li>
@@ -59,8 +59,8 @@
       <span>{{ fileData.viewed }}</span>
     </div>
     <div class="tool-bar-item">
-      <span class="iconfont icon-create"></span>
-      <span>{{ fileData.createTime.substring(5, 10) }}</span>
+      <span class="iconfont icon-update"></span>
+      <span>{{ fileData.updateTime.substring(5, 10) }}</span>
     </div>
     <div class="tool-bar-item" @click="isUnfoldRightRef = !isUnfoldRightRef">
       <span class="iconfont icon-left-arrow"></span>
@@ -129,6 +129,20 @@ export default {
     const handleJumpLocation = async (id) => {
       const y = document.getElementById(`data-id-${id}`).offsetTop - 150
       window.scrollTo(0, y)
+      const clientWidth = document.body.clientWidth
+      if (clientWidth < 1500) {
+        isUnfoldLeftRef.value = false
+        isUnfoldRightRef.value = false
+      }
+    }
+
+    const handleAboutArticle = (id) => {
+      fileIdRef.value = id
+      const clientWidth = document.body.clientWidth
+      if (clientWidth < 1500) {
+        isUnfoldLeftRef.value = false
+        isUnfoldRightRef.value = false
+      }
     }
 
     return {
@@ -139,7 +153,8 @@ export default {
       catalogueRef,
       fileIdRef,
       handleCatalogue,
-      handleJumpLocation
+      handleJumpLocation,
+      handleAboutArticle
     }
   }
 }

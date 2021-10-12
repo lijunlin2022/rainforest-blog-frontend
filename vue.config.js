@@ -15,12 +15,20 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://layfolk.ltd:4000',
+        target: 'http://layfolk.ltd:3000',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
         }
       }
     }
+  },
+  chainWebpack: config => {
+    config
+      .plugin('html')
+      .tap(args => {
+        args[0].title = '计算机专业资料分享'
+        return args
+      })
   }
 }

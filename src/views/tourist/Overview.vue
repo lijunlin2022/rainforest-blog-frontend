@@ -29,6 +29,7 @@
     </div>
     <button @click="readMore">阅读更多</button>
   </div>
+  <blog-footer></blog-footer>
 </template>
 
 <script>
@@ -36,13 +37,15 @@ import { getCurrentInstance, onMounted, ref } from 'vue'
 import Profile from '@/components/tourist/Profile.vue'
 import DirCard from '@/components/tourist/DirCard.vue'
 import FileCard from '@/components/tourist/FileCard.vue'
+import BlogFooter from '@/components/tourist/BlogFooter.vue'
 
 export default {
   name: 'Overview',
   components: {
     Profile,
     DirCard,
-    FileCard
+    FileCard,
+    BlogFooter
   },
   setup () {
     const { proxy } = getCurrentInstance()
